@@ -11,12 +11,14 @@ package com.cozi.xiaosai.pojo.dataOrigin.user;
  */
 public class User {
     private Integer id;
+    private String userId;
     private String name;
     private String userName;
     private String password;
     private Integer age;
     private Integer gender;
     private String telephone;
+    private String mail;
     private String idNum;
     private String createTime;
     private String modifyTime;
@@ -36,6 +38,14 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -86,6 +96,14 @@ public class User {
         this.telephone = telephone;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     public String getIdNum() {
         return idNum;
     }
@@ -114,12 +132,14 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", userId='" + userId + '\'' +
                 ", name='" + name + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
                 ", telephone='" + telephone + '\'' +
+                ", mail='" + mail + '\'' +
                 ", idNum='" + idNum + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", modifyTime='" + modifyTime + '\'' +

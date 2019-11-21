@@ -21,10 +21,20 @@ import java.util.Map;
 @RestController
 public class LoginController {
 
+    /**
+     * 注册接口
+     * @param user
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping("/register")
     public Map<String,Object> userRegister(User user, HttpServletRequest request,
                                            HttpServletResponse response){
+
         return ReturnMap.successResponse("注册成功");
     }
+
+
 
 }
