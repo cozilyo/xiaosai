@@ -12,6 +12,8 @@ package com.cozi.xiaosai.pojo.dataOrigin.user;
 public class User {
     private Integer id;
     private String name;
+    private String userName;
+    private String password;
     private Integer age;
     private Integer gender;
     private String telephone;
@@ -42,6 +44,22 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getAge() {
@@ -97,6 +115,8 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
                 ", telephone='" + telephone + '\'' +
