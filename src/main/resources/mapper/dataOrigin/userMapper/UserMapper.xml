@@ -3,6 +3,6 @@
 
 <mapper namespace="com.cozi.xiaosai.mapper.dataOrigin.user.UserMapper">
      <select id="getUser" parameterType="integer" resultType="com.cozi.xiaosai.pojo.dataOrigin.user.User">
-         SELECT id,name FROM user WHERE id=#{id}
+         SELECT id,user_id userId,name FROM xiaosai_user WHERE id=#{id}
      </select>
 </mapper>

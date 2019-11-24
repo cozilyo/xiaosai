@@ -274,7 +274,7 @@ public class EmailSendTool {
         } catch (GeneralSecurityException e1) {
             e1.printStackTrace();
         }
-        prop.put("mail.smtp.ssl.enable", "true");
+        prop.put("mail.smtp.ssl.enable", "false");
         prop.put("mail.smtp.ssl.socketFactory", sf);
         //
        //获取Session对象
@@ -296,11 +296,11 @@ public class EmailSendTool {
             mimeMessage.setSubject(domain.getTitle());
             mimeMessage.setSentDate(new Date());
             //设置内容
-            String kapataCode=NumberUtil.createData(6);
+            /*String kapataCode=NumberUtil.createData(6);
             Map<String, String> param = new HashMap<String, String>();
             param.put("code", kapataCode);
-            String newMsg=EmailSendTool.convertMessage(domain.getDescribes(),param);
-            domain.setDescribes(newMsg);
+            String newMsg=EmailSendTool.convertMessage(domain.getDescribes(),param);*/
+            domain.setDescribes(domain.getDescribes());
             mimeMessage.setText(domain.getDescribes());
             mimeMessage.saveChanges();
             //发送
