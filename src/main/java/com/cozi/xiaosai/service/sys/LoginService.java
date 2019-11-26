@@ -7,5 +7,4 @@ package com.cozi.xiaosai.service.sys;
  */
 
 public interface LoginService {
-    boolean registerMail();
 }

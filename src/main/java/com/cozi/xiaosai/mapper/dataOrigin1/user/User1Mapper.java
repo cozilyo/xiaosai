@@ -1,6 +1,6 @@
 package com.cozi.xiaosai.mapper.dataOrigin1.user;
 
-import com.cozi.xiaosai.pojo.dataOrigin.user.User;
+import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
 import org.apache.ibatis.annotations.Param;
 
 /**

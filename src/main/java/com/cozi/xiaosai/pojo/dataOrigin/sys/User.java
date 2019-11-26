@@ -1,4 +1,4 @@
-package com.cozi.xiaosai.pojo.dataOrigin.user;
+package com.cozi.xiaosai.pojo.dataOrigin.sys;
 
 /**
  * @Author xiaosai
