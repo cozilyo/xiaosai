@@ -52,7 +52,7 @@ public class Data1DataSourceConfiguration {
     public SqlSessionFactory data1SqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(data1Source);
-        //注意：这里是通过路径找到所有匹配的xml,不是一个getResources（）
+        //注意：这里是通过路径找到所有匹配的xml,不是一个,getResources（）
         sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER_XML_LOCATIONS));
         return sqlSessionFactoryBean.getObject();
     }

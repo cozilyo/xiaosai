@@ -9,7 +9,15 @@ import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
  */
 
 public interface UserService {
+    //查询User
     User getUser(String userId);
 
+    //添加user
     void addUser(User user);
+
+    //更新user
+    void editUser(User user);
+
+    //删除user
+    void delUser(String userId);
 }

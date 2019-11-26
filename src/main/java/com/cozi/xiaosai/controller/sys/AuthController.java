@@ -36,4 +36,9 @@ public class AuthController {
         }
     }
 
+    @RequestMapping("/ma")
+    public String getString(){
+        return "sss";
+    }
+
 }
