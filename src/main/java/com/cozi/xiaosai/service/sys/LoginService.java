@@ -2,6 +2,8 @@ package com.cozi.xiaosai.service.sys;
 
 import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
@@ -14,5 +16,6 @@ public interface LoginService {
 
     Map<String,Object> userRegister(User user);
 
-    Map<String,Object> userLogin(User user);
+    Map<String,Object> userLogin(User user, HttpServletRequest request,
+                                 HttpServletResponse response);
 }

@@ -103,7 +103,7 @@ public class LoginController {
             return ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
         }
         logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
-        return loginService.userLogin(user);
+        return loginService.userLogin(user,request,response);
     }
 
 
