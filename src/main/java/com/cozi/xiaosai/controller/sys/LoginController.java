@@ -47,12 +47,12 @@ public class LoginController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String getLoginHtml(){
-        return "xiaosai_login";
+        return "sys/xiaosai_login";
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String getRegisterHtml(){
-        return "xiaosai_register";
+        return "sys/xiaosai_register";
     }
 
     /**
