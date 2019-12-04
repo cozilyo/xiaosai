@@ -5,6 +5,7 @@ import com.cozi.xiaosai.mapper.dataOrigin.tool.MailSendMapper;
 import com.cozi.xiaosai.service.tool.MailSendService;
 import com.cozi.xiaosai.util.EmailSendTool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -29,6 +30,27 @@ public class MailSendServiceImpl implements MailSendService {
     public EmailInfoDomain getMailConfig(Integer id) {
         EmailInfoDomain emailInfoDomain = mailSendMapper.selectMailConfig(id);
         return emailInfoDomain;
+    }
+
+    /**
+     * 邮件发送-异步执行
+     * @param id
+     * @param mailAddr
+     * @param content
+     */
+    @Override
+    @Async
+    public void voidSendMail(Integer id, String mailAddr, String content) {
+        EmailInfoDomain emailInfoDomain = mailSendMapper.selectMailConfig(id);
+        if(emailInfoDomain!=null){
+            try {
+                emailInfoDomain.setEmailAddress(mailAddr);
+                emailInfoDomain.setDescribes(content);
+                EmailSendTool.sendTenxungEmail(emailInfoDomain);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

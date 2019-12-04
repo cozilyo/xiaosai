@@ -15,5 +15,7 @@ public interface MailSendService {
 
     EmailInfoDomain getMailConfig(Integer id);
 
+    void voidSendMail(Integer id,String mailAddr,String content);
+
     boolean sendMail(Integer id,String mailAddr,String content);
 }

@@ -1,5 +1,9 @@
 package com.cozi.xiaosai.service.sys;
 
+import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
+
+import java.util.Map;
+
 /**
  * @Author xiaosai
  * @Date 2019-11-24 14:42
@@ -7,4 +11,5 @@ package com.cozi.xiaosai.service.sys;
  */
 
 public interface LoginService {
+    Map<String,Object> userRegister(User user);
 }
