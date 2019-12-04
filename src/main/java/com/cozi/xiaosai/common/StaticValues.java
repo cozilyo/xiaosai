@@ -18,11 +18,16 @@ public class StaticValues {
     //LoginController结束
 
     //AuthController开始
-
     //AuthController结束
 
     //LoginServiceImpl开始
     public static final String LOGINSERVICE_REGISTER = "注册成功";
+
+    public static final String LOGINSERVICE_USERNAME_ISINEXISTENCE = "用户名不存在！";
+
+    public static final String LOGINSERVICE_LOGIN_SUCCESS = "登录成功";
+
+    public static final String LOGINSERVICE_LOGIN_FAILED = "登录失败！用户名或密码错误";
     //LoginServiceImpl结束
 
 

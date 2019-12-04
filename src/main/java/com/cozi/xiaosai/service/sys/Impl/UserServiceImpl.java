@@ -40,4 +40,14 @@ public class UserServiceImpl implements UserService {
     public void delUser(String userId) {
         userMapper.deleteUser(userId);
     }
+
+    @Override
+    public int userCountByUserName(String userName) {
+        return userMapper.userCountByUserName(userName);
+    }
+
+    @Override
+    public User userByUserName(String userName) {
+        return userMapper.userByUserName(userName);
+    }
 }

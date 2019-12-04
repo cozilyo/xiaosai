@@ -20,4 +20,10 @@ public interface UserService {
 
     //删除user
     void delUser(String userId);
+
+    //通过用户名查找
+    int userCountByUserName(String userName);
+
+    //通过用户名查找
+    User userByUserName(String userName);
 }

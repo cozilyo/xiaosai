@@ -37,7 +37,23 @@ public class LoginServiceImpl implements LoginService {
         userService.addUser(user);
         mailSendService.voidSendMail(2,user.getMail(),
                 "You have registered your account in our xiaosai system. " +
-                        "Please take good care of your account and password.Account number: "+user.getUserName()+", password: "+password+"。[xiaosai]");
+                        "Please take good care of your account and password.Account number: "+
+                        user.getUserName()+", password: "+password+"。[xiaosai]");
         return ReturnMap.successResponse(StaticValues.LOGINSERVICE_REGISTER);
+    }
+
+    @Override
+    public Map<String, Object> userLogin(User user) {
+        if(userService.userCountByUserName(user.getUserName())>0){
+            //预存用户
+            User user1 = userService.userByUserName(user.getUserName());
+            if(AES.decryptFromBase64(user1.getPassword(),AesKey.AES_KEY).equals(user.getPassword())){
+                return ReturnMap.successResponse(StaticValues.LOGINSERVICE_LOGIN_SUCCESS);
+            }else {
+                return ReturnMap.failureResponse(StaticValues.LOGINSERVICE_LOGIN_FAILED);
+            }
+        }else {
+            return ReturnMap.failureResponse(StaticValues.LOGINSERVICE_USERNAME_ISINEXISTENCE);
+        }
     }
 }

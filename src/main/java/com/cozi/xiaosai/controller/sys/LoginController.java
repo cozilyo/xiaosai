@@ -67,7 +67,7 @@ public class LoginController {
     public Map<String,Object> userRegister(User user, HttpServletRequest request,
                                            HttpServletResponse response){
         String uuid = UUID.getUuid();
-        logger.info("enter LoginController userRegister() 'registered user' : "+uuid);
+        logger.info("^-^ enter into LoginController userRegister() 'registered user' : "+uuid);
         //唯一id标识
         user.setUserId(uuid);
         if(StringUtils.isEmpty(user.getName())){
@@ -85,12 +85,25 @@ public class LoginController {
         return loginService.userRegister(user);
     }
 
+    /**
+     * 用户登录检查
+     * @param user
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/checkUser",method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> userLogin(User user, HttpServletRequest request,
                                         HttpServletResponse response){
-        System.out.println(user);
-        return ReturnMap.successResponse("登录成功");
+        if(StringUtils.isEmpty(user.getUserName())){
+            return ReturnMap.failureResponse(StaticValues.LOGIN_USERNAME_ISEMPTY);
+        }
+        if(StringUtils.isEmpty(user.getPassword())){
+            return ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
+        }
+        logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
+        return loginService.userLogin(user);
     }
 
 

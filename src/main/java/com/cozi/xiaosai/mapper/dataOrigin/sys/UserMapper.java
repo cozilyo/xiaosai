@@ -22,4 +22,10 @@ public interface UserMapper {
 
     //删除user
     void deleteUser(@Param(value = "userId") String userId);
+
+    //通过用户名查找
+    int userCountByUserName(@Param(value = "userName")String userName);
+
+    //通过用户名查找
+    User userByUserName(@Param(value = "userName")String userName);
 }
