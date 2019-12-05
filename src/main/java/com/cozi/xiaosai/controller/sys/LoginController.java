@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,7 +47,8 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String getLoginHtml(){
+    public String getLoginHtml(Model model){
+        model.addAttribute("msg","");
         return "sys/xiaosai_login";
     }
 
@@ -63,9 +65,8 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
-    @ResponseBody
     public Map<String,Object> userRegister(User user, HttpServletRequest request,
-                                           HttpServletResponse response){
+                                           HttpServletResponse response,Model model){
         String uuid = UUID.getUuid();
         logger.info("^-^ enter into LoginController userRegister() 'registered user' : "+uuid);
         //唯一id标识
@@ -86,25 +87,30 @@ public class LoginController {
     }
 
     /**
-     * 用户登录检查
+     *用户登录检查，成功后直接进入首页
      * @param user
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/checkUser",method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String,Object> userLogin(User user, HttpServletRequest request,
-                                        HttpServletResponse response){
+    public String userLogin(User user, HttpServletRequest request,
+                                        HttpServletResponse response,Model model){
         if(StringUtils.isEmpty(user.getUserName())){
-            return ReturnMap.failureResponse(StaticValues.LOGIN_USERNAME_ISEMPTY);
+            ReturnMap.failureResponse(StaticValues.LOGIN_USERNAME_ISEMPTY);
         }
         if(StringUtils.isEmpty(user.getPassword())){
-            return ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
+            ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
         }
         logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
-        return loginService.userLogin(user,request,response);
-    }
+        Map<String, Object> map = loginService.userLogin(user, request, response);
+        if(map.get("return_code").equals(1)){
+            return "sys/xiaosai_index";
+        }else {
+            model.addAttribute("msg","用户名或密码错误！");
+            return "sys/xiaosai_login";
+        }
 
+    }
 
 }

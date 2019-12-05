@@ -20,7 +20,11 @@
         </div>
         <br/>
         <div>
-            <span>密码：</span><input type="text" id="password" name="password" placeholder="最多16位">
+            <span>密码：</span><input type="password" id="password" name="password" placeholder="最多16位">
+        </div>
+        <br/>
+        <div>
+            <span>确认密码：</span><input type="password" id="passwords" name="passwords" placeholder="最多16位">
         </div>
         <br/>
         <div>
@@ -45,7 +49,9 @@
             <span>身份证号：</span><input type="text" id="idNum" name="idNum" placeholder="请输入正确的身份证号">
         </div>
         <div style="margin-top: 20px;">
-            <input type="submit" value="注册" style="background: #39cc39;"><input type="button" value="登录" style="margin-left: 3px;background: #39cc39;">
+            <input type="submit" value="注册" style="background: #39cc39;">
+            <a href="/xiaosai/login">登录</a>
+<#--            <input type="button" value="登录" style="margin-left: 3px;background: #39cc39;">-->
         </div>
     </form>
 </div>

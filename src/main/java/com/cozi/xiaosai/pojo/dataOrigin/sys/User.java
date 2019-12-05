@@ -15,6 +15,7 @@ public class User {
     private String name;
     private String userName;
     private String password;
+    private String passwords;
     private Integer age;
     private Integer gender;
     private String telephone;
@@ -70,6 +71,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswords() {
+        return passwords;
+    }
+
+    public void setPasswords(String passwords) {
+        this.passwords = passwords;
     }
 
     public Integer getAge() {
