@@ -48,6 +48,7 @@
         <div>
             <span>身份证号：</span><input type="text" id="idNum" name="idNum" placeholder="请输入正确的身份证号">
         </div>
+        <div style="margin-top: 20px;"><spa style="color: red">${msg}</spa></div>
         <div style="margin-top: 20px;">
             <input type="submit" value="注册" style="background: #39cc39;">
             <a href="/xiaosai/login">登录</a>

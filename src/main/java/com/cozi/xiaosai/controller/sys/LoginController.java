@@ -53,7 +53,8 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.GET)
-    public String getRegisterHtml(){
+    public String getRegisterHtml(Model model){
+        model.addAttribute("msg","");
         return "sys/xiaosai_register";
     }
 
@@ -65,25 +66,41 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
-    public Map<String,Object> userRegister(User user, HttpServletRequest request,
+    public String userRegister(User user, HttpServletRequest request,
                                            HttpServletResponse response,Model model){
+        String msg = "";
         String uuid = UUID.getUuid();
         logger.info("^-^ enter into LoginController userRegister() 'registered user' : "+uuid);
         //唯一id标识
         user.setUserId(uuid);
         if(StringUtils.isEmpty(user.getName())){
-            return ReturnMap.failureResponse(StaticValues.LOGIN_NAME_ISEMPTY);
+            msg = "姓名不能为空！";
+            return returnMsg(model,msg);
         }
         if(StringUtils.isEmpty(user.getUserName())){
-            return ReturnMap.failureResponse(StaticValues.LOGIN_USERNAME_ISEMPTY);
+            msg = "用户名不能为空！";
+            return returnMsg(model,msg);
         }
-        if(StringUtils.isEmpty(user.getPassword())){
-            return ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
+        if(StringUtils.isEmpty(user.getPassword())||StringUtils.isEmpty(user.getPasswords())||!user.getPassword().equals(user.getPasswords())){
+            msg = "密码为空或者两次密码不一致！";
+            return returnMsg(model,msg);
         }
-        if(StringUtils.isEmpty(user.getMail())&& VerifyUtil.verifyMail(user.getMail())){
-            return ReturnMap.failureResponse(StaticValues.LOGIN_MAIL_ISEMPTY);
+        if(StringUtils.isEmpty(user.getMail())|| !VerifyUtil.verifyMail(user.getMail())){
+            msg = "邮箱为空或者邮箱无效！";
+            return returnMsg(model,msg);
         }
-        return loginService.userRegister(user);
+        if(userService.userCountByUserName(user.getUserName())>0){
+            msg = "用户已存在！";
+            return returnMsg(model,msg);
+        }
+        loginService.userRegister(user);
+        model.addAttribute("msg",msg);
+        return "sys/xiaosai_login";
+    }
+
+    public String returnMsg(Model model,String msg){
+        model.addAttribute("msg",msg);
+        return "sys/xiaosai_register";
     }
 
     /**

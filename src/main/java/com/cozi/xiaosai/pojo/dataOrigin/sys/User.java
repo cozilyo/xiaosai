@@ -145,6 +145,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", passwords='" + passwords + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
                 ", telephone='" + telephone + '\'' +
