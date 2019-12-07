@@ -7,7 +7,7 @@
         FROM xiaosai_user
         WHERE user_id=#{userId}
     </select>
-    <insert id="insertUser" parameterType="com.cozi.xiaosai.pojo.dataOrigin.sys.User">
+    <insert id="insertUser" parameterType="com.cozi.xiaosai.pojo.dataOrigin.sys.User" >
         INSERT INTO xiaosai_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userId!=null and userId!=''">

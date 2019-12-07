@@ -28,8 +28,6 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
     private static Set<String> uriSet = new HashSet<>();
 
     static {
-        //导航图标
-        uriSet.add("/favicon.ico");
         uriSet.add("/xiaosai/login");
         uriSet.add("/xiaosai/register");
         uriSet.add("/xiaosai/addUser");
@@ -38,7 +36,7 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("^-^The system is accessed at the following address:"+request.getRequestURI());
+        //logger.info("^-^The system is accessed at the following address:"+request.getRequestURI());
         if(uriSet.contains(request.getRequestURI())){
             return true;
         }

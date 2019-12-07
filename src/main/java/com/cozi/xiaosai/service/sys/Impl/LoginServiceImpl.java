@@ -37,7 +37,8 @@ public class LoginServiceImpl implements LoginService {
         String password = user.getPassword();
         //密码加密
         user.setPassword(AES.encryptToBase64(password, AesKey.AES_KEY));
-        userService.addUser(user);
+        int i = userService.addUser(user);
+        //System.out.println("返回值："+i);
         mailSendService.voidSendMail(2,user.getMail(),
                 "You have registered your account in our xiaosai system. " +
                         "Please take good care of your account and password.Account number: "+

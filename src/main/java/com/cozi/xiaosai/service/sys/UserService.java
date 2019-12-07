@@ -13,7 +13,7 @@ public interface UserService {
     User getUser(String userId);
 
     //添加user
-    void addUser(User user);
+    int addUser(User user);
 
     //更新user
     void editUser(User user);

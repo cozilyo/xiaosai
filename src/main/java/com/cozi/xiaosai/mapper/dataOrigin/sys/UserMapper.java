@@ -15,7 +15,7 @@ public interface UserMapper {
     User selectUser(@Param(value = "userId") String userId);
 
     //添加user
-    void insertUser(User user);
+    int insertUser(User user);
 
     //更新user
     void updateUser(User user);
