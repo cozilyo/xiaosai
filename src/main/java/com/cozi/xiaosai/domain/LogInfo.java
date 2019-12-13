@@ -1,7 +1,5 @@
 package com.cozi.xiaosai.domain;
 
-import java.util.Date;
-
 /**
  * @Author xiaosai
  * @Date 2019-12-12 11:46
@@ -10,12 +8,19 @@ import java.util.Date;
 
 public class LogInfo {
     private int id;
+//    操作者
     private String operator;
+//    操作模块
     private String operationModule;
+//    操作类型
     private String operationType;
+//    操作对象
     private String operands;
+//    操作时间
     private String operationTime;
+//    操作ip
     private String ip;
+//    操作内容
     private String operationContent;
     private String createTime;
     private String modifyTime;
