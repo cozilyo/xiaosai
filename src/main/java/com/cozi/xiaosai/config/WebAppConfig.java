@@ -24,7 +24,6 @@ import java.util.List;
  * springboot2.x之后，最低支持jdk8,拦截只需要保留@Configuration
  */
 @Configuration
-//@EnableWebMvc
 public class WebAppConfig implements WebMvcConfigurer {
 
     //

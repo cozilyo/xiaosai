@@ -1,5 +1,6 @@
 package com.cozi.xiaosai.controller.sys;
 
+import com.cozi.xiaosai.annotation.Log1oneAnnotation;
 import com.cozi.xiaosai.common.ReturnMap;
 import com.cozi.xiaosai.common.StaticValues;
 import com.cozi.xiaosai.common.UUID;
@@ -16,10 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -49,7 +50,7 @@ public class LoginController {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String getLoginHtml(Model model){
         model.addAttribute("msg","");
-        return "sys/xiaosai_login";
+        return "sys/XSlogin";
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.GET)
@@ -57,6 +58,8 @@ public class LoginController {
         model.addAttribute("msg","");
         return "sys/xiaosai_register";
     }
+
+
 
     /**
      * 注册接口
@@ -122,10 +125,10 @@ public class LoginController {
         logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
         Map<String, Object> map = loginService.userLogin(user, request, response);
         if(map.get("return_code").equals(1)){
-            return "sys/xiaosai_index";
+            return "layuimini/index";
         }else {
             model.addAttribute("msg","用户名或密码错误！");
-            return "sys/xiaosai_login";
+            return "sys/XSlogin";
         }
 
     }

@@ -2,6 +2,7 @@
 springboot+druid 多数据源
 #技术特色
 ```
+后端
 spring boot 2.2.1
 druid 1.1.21
 mybatis 2.1.1
@@ -11,6 +12,11 @@ fastjson
 gson
 commons-lang3
 mail
+```
+```
+前端
+layui
+模板引用于：github:https://github.com/zhongshaofa/layuimini.git
 ```
 ![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/login.png)
 #有什么问题
