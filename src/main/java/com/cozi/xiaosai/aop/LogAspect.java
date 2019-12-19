@@ -3,6 +3,7 @@ package com.cozi.xiaosai.aop;
 import com.cozi.xiaosai.annotation.Log1oneAnnotation;
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.common.StaticValues;
+import com.cozi.xiaosai.designpatterns.Impl.typeName.*;
 import com.cozi.xiaosai.domain.LogInfo;
 import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
 import com.cozi.xiaosai.service.tool.Log1oneService;
@@ -19,7 +20,6 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
-import java.util.Enumeration;
 
 /**
  * @Author xiaosai
@@ -129,18 +129,28 @@ public class LogAspect {
     public String getModule(ProceedingJoinPoint joinPoint){
         // 注解所切的方法所在类的全类名
         String typeName = joinPoint.getTarget().getClass().getName();
+//        ExeStrategy exeStrategy = new ExeStrategy(new TyStrategy());
 
         if(typeName.contains("com.cozi.xiaosai")){
             return "学校";
         }else if(typeName.contains(StaticValues.TYPE_NAME)){
+//            exeStrategy.executeStrategy();
             return StaticValues.TYPE_NAME_VALUE;
         }else if(typeName.contains(StaticValues.TYPE_NAME_CRB)){
+//            exeStrategy = new ExeStrategy(new CrbStrategy());
+//            exeStrategy.executeStrategy();
             return StaticValues.TYPE_NAME_CRB_VALUE;
         }else if(typeName.contains(StaticValues.TYPE_NAME_OCC)){
+//            exeStrategy = new ExeStrategy(new OccStrategy());
+//            exeStrategy.executeStrategy();
             return StaticValues.TYPE_NAME_OCC_VALUE;
         }else if(typeName.contains(StaticValues.TYPE_NAME_SCH)){
+//            exeStrategy = new ExeStrategy(new SchStrategy());
+//            exeStrategy.executeStrategy();
             return StaticValues.TYPE_NAME_SCH_VALUE;
         }else if(typeName.contains(StaticValues.TYPE_NAME_JHB)){
+//            exeStrategy = new ExeStrategy(new JhbStrategy());
+//            exeStrategy.executeStrategy();
             return StaticValues.TYPE_NAME_JHB_VALUE;
         }else{
             return "未知模块";
