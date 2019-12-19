@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="layuimini/lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="../layuimini/lib/layui-v2.5.4/css/layui.css" type="text/css" media="all">
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -51,23 +51,22 @@
                     <label class="layui-icon layui-icon-vercode" for="captcha"></label>
                     <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="xszg">
                     <div class="captcha-img">
-                        <img id="captchaPic" src="layuimini/images/captcha.jpg">
+                        <img id="captchaPic" src="../layuimini/images/captcha.jpg">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
                 </div>
                 <div class="layui-form-item">
-<#--                    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">登 入</button>-->
+                    <button class="layui-btn layui-btn-fluid" type="submit">登 入</button>
                 </div>
-                <input type="submit" value="登陆">
             </form>
         </div>
     </div>
 </div>
-<script src="layuimini/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
-<script src="layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
-<script src="layuimini/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+<script src="../layuimini/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="../layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script src="../layuimini/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
 <script>
     layui.use(['form'], function () {
         var form = layui.form,
@@ -85,7 +84,7 @@
         });
 
         // 进行登录操作
-        form.on('submit(login)', function (data) {
+        /*form.on('submit(login)', function (data) {
             data = data.field;
             if (data.username == '') {
                 layer.msg('用户名不能为空');
@@ -103,7 +102,7 @@
                 window.location = '/index.html';
             });
             return false;
-        });
+        });*/
     });
 </script>
 </body>

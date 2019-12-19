@@ -32,13 +32,14 @@ public class WebAppConfig implements WebMvcConfigurer {
         //对于静态文件，直接放过
 //        List<String> list = new ArrayList<>();
 //        list.add("/static/**");
-        registry.addInterceptor(new XsHandlerInterceptor()).excludePathPatterns("/static/**");
+        registry.addInterceptor(new XsHandlerInterceptor()).excludePathPatterns("/layuimini/**");
     }
 
     //资源
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+//        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/layuimini/");
+        registry.addResourceHandler("/layuimini/**").addResourceLocations("classpath:/static/layuimini/");
     }
 
     @Override

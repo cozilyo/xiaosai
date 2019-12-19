@@ -30,6 +30,26 @@ public class StaticValues {
     public static final String LOGINSERVICE_LOGIN_FAILED = "登录失败！用户名或密码错误";
     //LoginServiceImpl结束
 
+    //LogAspect开始
+    public static final String TYPE_NAME = "com.eoner.controller";
 
+    public static final String TYPE_NAME_VALUE = "平台通用设置";
+
+    public static final String TYPE_NAME_CRB = "com.eoner.crbcontroller";
+
+    public static final String TYPE_NAME_CRB_VALUE = "传染病监测";
+
+    public static final String TYPE_NAME_OCC = "com.eoner.occupationaldiseasecontroller";
+
+    public static final String TYPE_NAME_OCC_VALUE = "职业健康及危害因素监测";
+
+    public static final String TYPE_NAME_SCH = "com.eoner.schoolhealthcontroller";
+
+    public static final String TYPE_NAME_SCH_VALUE = "学校卫生监测";
+
+    public static final String TYPE_NAME_JHB = "com.eoner.jhbcontroller";
+
+    public static final String TYPE_NAME_JHB_VALUE = "结核病监测";
+    //LogAspect结束
 
 }

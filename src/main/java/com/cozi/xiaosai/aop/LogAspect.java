@@ -2,6 +2,7 @@ package com.cozi.xiaosai.aop;
 
 import com.cozi.xiaosai.annotation.Log1oneAnnotation;
 import com.cozi.xiaosai.common.R;
+import com.cozi.xiaosai.common.StaticValues;
 import com.cozi.xiaosai.domain.LogInfo;
 import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
 import com.cozi.xiaosai.service.tool.Log1oneService;
@@ -131,16 +132,16 @@ public class LogAspect {
 
         if(typeName.contains("com.cozi.xiaosai")){
             return "学校";
-        }else if(typeName.contains("com.eoner.controller")){
-            return "平台通用设置";
-        }else if(typeName.contains("com.eoner.crbcontroller")){
-            return "传染病监测";
-        }else if(typeName.contains("com.eoner.occupationaldiseasecontroller")){
-            return "职业健康及危害因素监测";
-        }else if(typeName.contains("com.eoner.schoolhealthcontroller")){
-            return "学校卫生监测";
-        }else if(typeName.contains("com.eoner.jhbcontroller")){
-            return "结核病监测";
+        }else if(typeName.contains(StaticValues.TYPE_NAME)){
+            return StaticValues.TYPE_NAME_VALUE;
+        }else if(typeName.contains(StaticValues.TYPE_NAME_CRB)){
+            return StaticValues.TYPE_NAME_CRB_VALUE;
+        }else if(typeName.contains(StaticValues.TYPE_NAME_OCC)){
+            return StaticValues.TYPE_NAME_OCC_VALUE;
+        }else if(typeName.contains(StaticValues.TYPE_NAME_SCH)){
+            return StaticValues.TYPE_NAME_SCH_VALUE;
+        }else if(typeName.contains(StaticValues.TYPE_NAME_JHB)){
+            return StaticValues.TYPE_NAME_JHB_VALUE;
         }else{
             return "未知模块";
         }
