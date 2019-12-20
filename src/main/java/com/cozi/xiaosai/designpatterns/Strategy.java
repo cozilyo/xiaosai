@@ -6,6 +6,9 @@ package com.cozi.xiaosai.designpatterns;
  * @Version 1.0
  */
 
+/**
+ * 策略模式
+ */
 public interface Strategy {
     String execute();
 }

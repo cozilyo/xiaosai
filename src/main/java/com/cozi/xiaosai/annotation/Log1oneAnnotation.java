@@ -25,4 +25,8 @@ import java.lang.annotation.*;
 public @interface Log1oneAnnotation {
 
     String operationType()default "";//操作类型
+
+    String operands()default "";//操作对象
+
+    String msg()default "";//操作描述
 }

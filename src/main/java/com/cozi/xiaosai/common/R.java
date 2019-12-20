@@ -22,8 +22,6 @@ public class R<T> implements Serializable {
 
     private String msg = "";
 
-    private String operands = "";
-
     //APIS
     public static R isOk() {
         return new R().status(OK);
@@ -68,11 +66,6 @@ public class R<T> implements Serializable {
         return this;
     }
 
-    public R operands(String operands){
-        this.setOperands(operands);
-        return this;
-    }
-
 
     //Constructors
     public R() {
@@ -111,14 +104,6 @@ public class R<T> implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public String getOperands() {
-        return operands;
-    }
-
-    public void setOperands(String operands) {
-        this.operands = operands;
     }
     /*@Override
     public String toString() {

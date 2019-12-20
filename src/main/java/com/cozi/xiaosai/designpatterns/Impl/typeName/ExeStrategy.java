@@ -8,6 +8,9 @@ import com.cozi.xiaosai.designpatterns.Strategy;
  * @Version 1.0
  */
 
+/**
+ * 策略执行类
+ */
 public class ExeStrategy {
 
     private Strategy strategy;

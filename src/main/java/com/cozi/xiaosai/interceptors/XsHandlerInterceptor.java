@@ -29,7 +29,7 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
 
     static {
         uriSet.add("/xiaosai/login");
-        uriSet.add("/xiaosai/register");
+        uriSet.add("/xiaosai/regis");
         uriSet.add("/xiaosai/addUser");
         uriSet.add("/xiaosai/checkUser");
     }

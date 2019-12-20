@@ -8,6 +8,7 @@ import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.tool.MailSendService;
 import com.cozi.xiaosai.util.aes.AES;
 import com.cozi.xiaosai.util.aes.AesKey;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,10 +40,12 @@ public class LoginServiceImpl implements LoginService {
         user.setPassword(AES.encryptToBase64(password, AesKey.AES_KEY));
         int i = userService.addUser(user);
         //System.out.println("返回值："+i);
-        mailSendService.voidSendMail(2,user.getMail(),
-                "You have registered your account in our xiaosai system. " +
-                        "Please take good care of your account and password.Account number: "+
-                        user.getUserName()+", password: "+password+"。[xiaosai]");
+        if(StringUtils.isNotEmpty(user.getMail())){
+            mailSendService.voidSendMail(2,user.getMail(),
+                    "You have registered your account in our xiaosai system. " +
+                            "Please take good care of your account and password.Account number: "+
+                            user.getUserName()+", password: "+password+"。[xiaosai]");
+        }
         return ReturnMap.successResponse(StaticValues.LOGINSERVICE_REGISTER);
     }
 

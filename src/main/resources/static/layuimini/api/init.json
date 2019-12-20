@@ -28,12 +28,6 @@
               "href": "/xiaosai/welcome",
               "icon": "fa fa-tachometer",
               "target": "_self"
-            },
-            {
-              "title": "主页二",
-              "href": "/xiaosai/welcome2",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
             }
           ]
         },
@@ -85,12 +79,6 @@
               "title": "登录-1",
               "href": "/xiaosai/login1",
               "icon": "fa fa-stumbleupon-circle",
-              "target": "_blank"
-            },
-            {
-              "title": "登录-2",
-              "href": "/xiaosai/login2",
-              "icon": "fa fa-viacoin",
               "target": "_blank"
             }
           ]

@@ -30,12 +30,11 @@ public class layuiminiController {
         return "layuimini/page/user-setting";
     }
 
-    @Log1oneAnnotation(operationType = "修改")
+    @Log1oneAnnotation(operationType = "修改",operands = "xiaosai_user",msg = "修改密码")
     @RequestMapping(value = "/userPassword",method = RequestMethod.GET)
-    @ResponseBody
-    public R<String> getUserPassword(HttpServletRequest request){
-
-        return R.isOk().data("layuimini/page/user-password").msg("sssss").operands("admin");
+    public String getUserPassword(HttpServletRequest request){
+//        return R.isOk().data("layuimini/page/user-password").msg("修改密码").operands("xiaosai_user");
+        return "layuimini/page/user-password";
     }
 
     @RequestMapping(value = "/welcome",method = RequestMethod.GET)

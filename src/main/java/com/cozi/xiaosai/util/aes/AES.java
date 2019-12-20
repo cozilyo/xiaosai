@@ -17,7 +17,7 @@ import java.security.SecureRandom;
 public class AES {
     public static void main(String[] args){
         String encrypt = AES.encryptToBase64("123456",AesKey.AES_KEY);
-        String oldpwd=AES.decryptFromBase64("Q77GAZOX4IujT/jm8IZMNQ==",AesKey.AES_KEY);
+        String oldpwd=AES.decryptFromBase64("hLixFo0xuneku/QrBFHqCQ==",AesKey.AES_KEY);
        System.out.println(encrypt);
        System.out.println(oldpwd);
 

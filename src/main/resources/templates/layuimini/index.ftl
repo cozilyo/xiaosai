@@ -49,7 +49,7 @@
                 <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
             </li>
             <li class="layui-nav-item layuimini-setting">
-                <a href="javascript:;">admin</a>
+                <a href="javascript:;"><p class="user_account"></p></a>
                 <dl class="layui-nav-child">
                     <dd>
                         <a href="javascript:;" data-iframe-tab="/xiaosai/userSetting" data-title="基本资料" data-icon="fa fa-gears">基本资料</a>
@@ -113,9 +113,11 @@
 
         layuimini.init('../layuimini/api/init.json');
 
+        layuimini.userNameInit("/xiaosai/getUserInfo");
+
         $('.login-out').on("click", function () {
             layer.msg('退出登录成功', function () {
-                window.location = '/xiaosai/login1';
+                window.location = '/xiaosai/logout';
             });
         });
     });

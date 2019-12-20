@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>XIAOSAI-登陆</title>
+    <title>XIAOSAI-注册</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,11 +15,11 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        html, body {width: 100%;height: 100%;overflow: hidden}
+        html, body {width: 100%;height: 100%;overflow-y: hidden;}
         body {background: #009688;}
         body:after {content:'';background-repeat:no-repeat;background-size:cover;-webkit-filter:blur(3px);-moz-filter:blur(3px);-o-filter:blur(3px);-ms-filter:blur(3px);filter:blur(3px);position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;}
-        .layui-container {width: 100%;height: 100%;overflow: hidden}
-        .admin-login-background {width:360px;height:300px;position:absolute;left:50%;top:40%;margin-left:-180px;margin-top:-100px;}
+        .layui-container {width: 100%;height:100%;position: relative;overflow: hidden;}
+        .admin-login-background {width:360px;position:absolute;top:50%;left: 50%;transform: translate(-50%,-50%)}
         .logo-title {text-align:center;letter-spacing:2px;padding:14px 0;}
         .logo-title h1 {color:#009688;font-size:25px;font-weight:bold;}
         .login-form {background-color:#fff;border:1px solid #fff;border-radius:3px;padding:14px 20px;box-shadow:0 0 8px #eeeeee;}
@@ -35,33 +35,46 @@
 <div class="layui-container">
     <div class="admin-login-background">
         <div class="layui-form login-form">
-            <form class="layui-form" action="/xiaosai/checkUser" method="post">
+            <form class="layui-form" action="/xiaosai/addUser" method="post">
                 <div class="layui-form-item logo-title">
-                    <h1>XIAOSAI登录</h1>
+                    <h1>XIAOSAI注册</h1>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-username" for="name"></label>
+                    <input type="text" name="name" lay-verify="required|name" placeholder="姓名" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username" for="username"></label>
-                    <input type="text" name="userName" lay-verify="required|account" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input">
+                    <input type="text" name="userName" lay-verify="required|username" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-password" for="password"></label>
                     <input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-icon layui-icon-vercode" for="captcha"></label>
-                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha">
-                    <div class="captcha-img">
-                        <img id="captchaPic" src="../layuimini/images/captcha.jpg">
-                    </div>
+                    <label class="layui-icon layui-icon-password" for="passwords"></label>
+                    <input type="password" name="passwords" lay-verify="required|passwords" placeholder="确认密码" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
-                    <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
+                    <input type="text" name="telephone" placeholder="手机号" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" type="submit">登 入</button>
+                    <input type="text" name="mail" placeholder="邮箱" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid xs_register" type="button">注 册 </button>
+                    <input type="text" name="idNum" placeholder="身份证号" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <input type="text" name="age" placeholder="性别" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <input type="text" name="gender" placeholder="年龄" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid" type="submit">注 册</button>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid xs_login" type="button">登 入</button>
                 </div>
             </form>
         </div>
@@ -86,8 +99,8 @@
             });
         });
 
-        $(".xs_register").on("click",function () {
-            window.location = "/xiaosai/regis";
+        $(".xs_login").on("click",function () {
+            window.location = "/xiaosai/login";
         });
     });
 </script>

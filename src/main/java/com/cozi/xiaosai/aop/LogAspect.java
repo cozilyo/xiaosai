@@ -82,7 +82,7 @@ public class LogAspect {
         Log1oneAnnotation annotation = method.getAnnotation(Log1oneAnnotation.class);
 
         logInfo.setOperationType(annotation.operationType());
-        logInfo.setOperands(r.getOperands());
+        logInfo.setOperands(annotation.operands());
         logInfo.setOperationContent(r.getMsg());
 
         log1oneService.addLog(logInfo);
@@ -118,7 +118,8 @@ public class LogAspect {
         Log1oneAnnotation annotation = method.getAnnotation(Log1oneAnnotation.class);
 
         logInfo.setOperationType(annotation.operationType());
-        logInfo.setOperationContent(annotation.operationType());
+        logInfo.setOperands(annotation.operands());
+        logInfo.setOperationContent(annotation.msg());
 
         log1oneService.addLog(logInfo);
 

@@ -61,6 +61,19 @@ layui.define(["element", "jquery"], function (exports) {
             layer.close(loading);
         };
 
+        this.userNameInit = function (url) {
+            $.getJSON(url,function (data) {
+                if(data==null){
+                    layuimini.msg_error('暂无用户信息');
+                }else {
+                    $(".user_account").html(data.userName);
+                }
+            }).fail(function () {
+                layuimini.msg_error('用户信息接口有误');
+            });
+        };
+
+
         /**
          * 初始化设备端
          */

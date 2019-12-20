@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,15 +50,14 @@ public class LoginController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String getLoginHtml(Model model){
-        model.addAttribute("msg","");
         return "sys/XSlogin";
     }
 
-    @RequestMapping(value = "/register",method = RequestMethod.GET)
-    public String getRegisterHtml(Model model){
-        model.addAttribute("msg","");
-        return "sys/xiaosai_register";
+    @RequestMapping(value = "/regis",method = RequestMethod.GET)
+    public String getRegisterHtml(){
+        return "sys/XSregister";
     }
+
 
 
 
@@ -76,7 +76,7 @@ public class LoginController {
         logger.info("^-^ enter into LoginController userRegister() 'registered user' : "+uuid);
         //唯一id标识
         user.setUserId(uuid);
-        if(StringUtils.isEmpty(user.getName())){
+        /*if(StringUtils.isEmpty(user.getName())){
             msg = "姓名不能为空！";
             return returnMsg(model,msg);
         }
@@ -91,14 +91,13 @@ public class LoginController {
         if(StringUtils.isEmpty(user.getMail())|| !VerifyUtil.verifyMail(user.getMail())){
             msg = "邮箱为空或者邮箱无效！";
             return returnMsg(model,msg);
-        }
-        if(userService.userCountByUserName(user.getUserName())>0){
+        }*/
+        /*if(userService.userCountByUserName(user.getUserName())>0){
             msg = "用户已存在！";
             return returnMsg(model,msg);
-        }
+        }*/
         loginService.userRegister(user);
-        model.addAttribute("msg",msg);
-        return "sys/xiaosai_login";
+        return "sys/XSlogin";
     }
 
     public String returnMsg(Model model,String msg){
@@ -127,10 +126,38 @@ public class LoginController {
         if(map.get("return_code").equals(1)){
             return "layuimini/index";
         }else {
-            model.addAttribute("msg","用户名或密码错误！");
             return "sys/XSlogin";
         }
+    }
 
+    /**
+     * 获取用户信息
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/getUserInfo",method = RequestMethod.GET)
+    @ResponseBody
+    public User getUserName(HttpServletRequest request,
+                           HttpServletResponse response){
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        return user;
+    }
+
+
+    /**
+     * 注销登录
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public String loginOut(HttpServletRequest request,
+                           HttpServletResponse response){
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "sys/XSlogin";
     }
 
 }
