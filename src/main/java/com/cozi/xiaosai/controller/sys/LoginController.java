@@ -8,7 +8,9 @@ import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
 import com.cozi.xiaosai.service.sys.LoginService;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.tool.MailSendService;
+import com.cozi.xiaosai.util.NumberUtil;
 import com.cozi.xiaosai.util.VerifyUtil;
+import com.cozi.xiaosai.util.redis.RedisUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,8 +50,13 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    @Autowired
+    private RedisUtils redisUtils;
+
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String getLoginHtml(Model model){
+        String stringRandom = NumberUtil.getStringRandom(5);
+        redisUtils.set(stringRandom,"登入验证码",30L,1);
         return "sys/XSlogin";
     }
 

@@ -41,7 +41,7 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username" for="username"></label>
-                    <input type="text" name="userName" lay-verify="required|account" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input">
+                    <input type="text" name="userName" lay-verify="required|username" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-password" for="password"></label>
