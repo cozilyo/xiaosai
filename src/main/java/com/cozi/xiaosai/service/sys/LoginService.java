@@ -16,6 +16,6 @@ public interface LoginService {
 
     Map<String,Object> userRegister(User user);
 
-    Map<String,Object> userLogin(User user, HttpServletRequest request,
+    Map<String,Object> userLogin(User user, String captcha,HttpServletRequest request,
                                  HttpServletResponse response);
 }

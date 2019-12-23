@@ -49,16 +49,18 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-vercode" for="captcha"></label>
-                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha">
+                    <input id="captcha_id" type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" maxlength="5" autocomplete="off" class="layui-input verification captcha">
                     <div class="captcha-img">
-                        <img id="captchaPic" src="../layuimini/images/captcha.jpg">
+                        <img id="captchaPic" class="captcha_Pic" src="/xiaosai/getVerify" alt="点击验证码更换" title="点击验证码更换">
                     </div>
+                </div>
+                <div class="layui-form-item" id="verify_msg">
                 </div>
                 <div class="layui-form-item">
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" type="submit">登 入</button>
+                    <button id="submit_id" class="layui-btn layui-btn-fluid" type="submit" disabled>登 入</button>
                 </div>
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid xs_register" type="button">注 册 </button>
@@ -88,6 +90,33 @@
 
         $(".xs_register").on("click",function () {
             window.location = "/xiaosai/regis";
+        });
+
+        //获取验证码
+        $(".captcha_Pic").on("click", function() {
+            $(".captcha_Pic").attr("src", '/xiaosai/getVerify?' + Math.random());//jquery方式
+        });
+        $("#captcha_id").on("input propertychange",function () {
+            var value = $("#captcha_id").val();
+            // alert(value);
+            $.ajax({
+                async: false,
+                type: 'get',
+                url: '/xiaosai/checkVerify',
+                dataType: "json",
+                data: {
+                    verifyInput: value
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result.return_code == 1) {
+                         $("#verify_msg").html("<p style='color: #008000;'>验证成功</p>");
+                         $("#submit_id").removeAttr("disabled");
+                    } else {
+                        $("#verify_msg").html("<p style='color: red;'>验证失败或者失效！</p>");
+                    }
+                }
+            })
         });
     });
 </script>

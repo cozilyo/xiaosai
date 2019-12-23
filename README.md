@@ -12,6 +12,8 @@ fastjson
 gson
 commons-lang3
 mail
+redis
+redisTemplare
 ```
 ```
 前端

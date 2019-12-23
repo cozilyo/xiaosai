@@ -1,6 +1,5 @@
 package com.cozi.xiaosai.controller.sys;
 
-import com.cozi.xiaosai.annotation.Log1oneAnnotation;
 import com.cozi.xiaosai.common.ReturnMap;
 import com.cozi.xiaosai.common.StaticValues;
 import com.cozi.xiaosai.common.UUID;
@@ -9,7 +8,7 @@ import com.cozi.xiaosai.service.sys.LoginService;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.tool.MailSendService;
 import com.cozi.xiaosai.util.NumberUtil;
-import com.cozi.xiaosai.util.VerifyUtil;
+import com.cozi.xiaosai.util.RandomValidateCodeUtil;
 import com.cozi.xiaosai.util.redis.RedisUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -19,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,14 +55,42 @@ public class LoginController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String getLoginHtml(Model model){
-        String stringRandom = NumberUtil.getStringRandom(5);
-        redisUtils.set(stringRandom,"登入验证码",30L,1);
         return "sys/XSlogin";
     }
 
     @RequestMapping(value = "/regis",method = RequestMethod.GET)
     public String getRegisterHtml(){
         return "sys/XSregister";
+    }
+
+    /**
+     * 生成验证码
+     */
+    @RequestMapping(value = "/getVerify")
+    public void getVerify(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            response.setContentType("image/jpeg");//设置相应类型,告诉浏览器输出的内容为图片
+            response.setHeader("Pragma", "No-cache");//设置响应头信息，告诉浏览器不要缓存此内容
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expire", 0);
+            //随机生成验证码，并放入redis中
+            String stringRandom = NumberUtil.getStringRandom(5);
+            redisUtils.set(stringRandom.toUpperCase(),"登入验证码",30L,1);
+            RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
+            randomValidateCode.getRandcode(request, response,stringRandom);//输出验证码图片方法
+        } catch (Exception e) {
+            logger.error("获取验证码失败>>>>  ", e);
+        }
+    }
+
+    @RequestMapping(value = "/checkVerify")
+    @ResponseBody
+    public Map<String,Object> checkVerify(@RequestParam(value = "verifyInput") String verifyInput){
+        if(redisUtils.get(verifyInput.toUpperCase(), 1)!=null&&"登入验证码".equals(redisUtils.get(verifyInput.toUpperCase(), 1).toString())){
+            return ReturnMap.successResponse();
+        }else {
+            return ReturnMap.failureResponse();
+        }
     }
 
 
@@ -120,8 +148,8 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/checkUser",method = RequestMethod.POST)
-    public String userLogin(User user, HttpServletRequest request,
-                                        HttpServletResponse response,Model model){
+    public String userLogin(User user, @RequestParam(value = "captcha") String captcha, HttpServletRequest request,
+                            HttpServletResponse response, Model model){
         if(StringUtils.isEmpty(user.getUserName())){
             ReturnMap.failureResponse(StaticValues.LOGIN_USERNAME_ISEMPTY);
         }
@@ -129,10 +157,16 @@ public class LoginController {
             ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
         }
         logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
-        Map<String, Object> map = loginService.userLogin(user, request, response);
-        if(map.get("return_code").equals(1)){
-            return "layuimini/index";
-        }else {
+        //验证码有效
+        if(redisUtils.get(captcha.toUpperCase(), 1)!=null&&"登入验证码".equals(redisUtils.get(captcha.toUpperCase(), 1).toString())){
+            Map<String, Object> map = loginService.userLogin(user, captcha,request, response);
+            if(map.get("return_code").equals(1)){
+                return "layuimini/index";
+            }else {
+                return "sys/XSlogin";
+            }
+        //验证码失效
+        }else{
             return "sys/XSlogin";
         }
     }

@@ -50,7 +50,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Map<String, Object> userLogin(User user, HttpServletRequest request,
+    public Map<String, Object> userLogin(User user, String captcha,HttpServletRequest request,
                                          HttpServletResponse response) {
         if(userService.userCountByUserName(user.getUserName())>0){
             //预存用户

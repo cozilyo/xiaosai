@@ -28,6 +28,9 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
     private static Set<String> uriSet = new HashSet<>();
 
     static {
+        uriSet.add("/");
+        uriSet.add("/xiaosai/getVerify");
+        uriSet.add("/xiaosai/checkVerify");
         uriSet.add("/xiaosai/login");
         uriSet.add("/xiaosai/regis");
         uriSet.add("/xiaosai/addUser");
