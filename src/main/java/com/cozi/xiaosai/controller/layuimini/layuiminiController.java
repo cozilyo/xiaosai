@@ -1,14 +1,9 @@
 package com.cozi.xiaosai.controller.layuimini;
 
 import com.cozi.xiaosai.annotation.Log1oneAnnotation;
-import com.cozi.xiaosai.common.R;
-import com.cozi.xiaosai.domain.LogInfo;
-import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 

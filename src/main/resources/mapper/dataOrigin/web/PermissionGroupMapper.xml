@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cozi.xiaosai.mapper.dataOrigin.web.PermissionGroupMapper">
+      <resultMap id="result_map" type="com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo">
+          <id column="id" property="id" jdbcType="INTEGER"/>
+          <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+          <result column="group_type" property="groupType" jdbcType="INTEGER"/>
+          <result column="access_level" property="accessLevel" jdbcType="INTEGER"/>
+          <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+          <result column="modify_time" property="modifyTime" jdbcType="VARCHAR"/>
+      </resultMap>
+      <select id="selectPermissionGroupByInfo" parameterType="com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo" resultMap="result_map">
+          SELECT * FROM xiaosai_permission_group WHERE 1=1
+          <if test="id != null and id != ''">
+              AND id = #{id}
+          </if>
+          <if test="groupName != null and groupName != ''">
+              AND group_name LIKE CONCAT('%',#{groupName},'%')
+          </if>
+          <if test="groupType != null and groupType >= 0">
+              AND group_type = #{groupType}
+          </if>
+          <if test="accessLevel != null and accessLevel >= 0">
+              AND access_level = #{accessLevel}
+          </if>
+          <if test="createTime != null and createTime != ''">
+              AND create_time = #{createTime}
+          </if>
+          <if test="modifyTime != null and modifyTime != ''">
+              AND modify_time = #{modifyTime}
+          </if>
+      </select>
+</mapper>

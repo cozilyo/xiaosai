@@ -1,4 +1,4 @@
-package com.cozi.xiaosai.pojo.dataOrigin.sys;
+package com.cozi.xiaosai.pojo.dataorigin.sys;
 
 /**
  * @Author xiaosai
@@ -6,10 +6,12 @@ package com.cozi.xiaosai.pojo.dataOrigin.sys;
  * @Version 1.0
  */
 
+import com.cozi.xiaosai.common.PageModel;
+
 /**
  * 用户信息
  */
-public class User {
+public class User extends PageModel {
     private Integer id;
     private String userId;
     private String name;
@@ -21,6 +23,7 @@ public class User {
     private String telephone;
     private String mail;
     private String idNum;
+    private String address;
     private String createTime;
     private String modifyTime;
 
@@ -135,6 +138,14 @@ public class User {
 
     public void setModifyTime(String modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override

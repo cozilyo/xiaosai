@@ -18,14 +18,20 @@
       "icon": "fa fa-address-book",
       "child": [
         {
-          "title": "主页模板",
+          "title": "用户管理",
           "href": "",
           "icon": "fa fa-home",
           "target": "_self",
           "child": [
             {
-              "title": "主页一",
-              "href": "/xiaosai/welcome",
+              "title": "用户列表",
+              "href": "/xiaosai/userList",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "用户权限",
+              "href": "/xiaosai/PermissionGroupList",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }

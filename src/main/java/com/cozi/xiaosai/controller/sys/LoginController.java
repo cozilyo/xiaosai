@@ -3,7 +3,7 @@ package com.cozi.xiaosai.controller.sys;
 import com.cozi.xiaosai.common.ReturnMap;
 import com.cozi.xiaosai.common.StaticValues;
 import com.cozi.xiaosai.common.UUID;
-import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.service.sys.LoginService;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.tool.MailSendService;
@@ -26,21 +26,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-/**
- * @Author xiaosai
- * @Date 2019-11-21 17:24
- * @Version 1.0
- */
 
 /**
  * 用户登录处理接口
+ * @author xiaosai
+ * @date 2019-11-21 17:24
+ * @version 1.0
+ * @describe
  */
 @Controller
 @RequestMapping("/xiaosai")
 public class LoginController {
 
-    private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+    private final Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     private MailSendService mailSendService;
 
@@ -69,15 +68,18 @@ public class LoginController {
     @RequestMapping(value = "/getVerify")
     public void getVerify(HttpServletRequest request, HttpServletResponse response) {
         try {
-            response.setContentType("image/jpeg");//设置相应类型,告诉浏览器输出的内容为图片
-            response.setHeader("Pragma", "No-cache");//设置响应头信息，告诉浏览器不要缓存此内容
+            response.setContentType("image/jpeg");
+            //设置相应类型,告诉浏览器输出的内容为图片
+            response.setHeader("Pragma", "No-cache");
+            //设置响应头信息，告诉浏览器不要缓存此内容
             response.setHeader("Cache-Control", "no-cache");
             response.setDateHeader("Expire", 0);
             //随机生成验证码，并放入redis中
             String stringRandom = NumberUtil.getStringRandom(5);
             redisUtils.set(stringRandom.toUpperCase(),"登入验证码",30L,1);
             RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
-            randomValidateCode.getRandcode(request, response,stringRandom);//输出验证码图片方法
+            randomValidateCode.getRandcode(request, response,stringRandom);
+            //输出验证码图片方法
         } catch (Exception e) {
             logger.error("获取验证码失败>>>>  ", e);
         }
@@ -86,7 +88,7 @@ public class LoginController {
     @RequestMapping(value = "/checkVerify")
     @ResponseBody
     public Map<String,Object> checkVerify(@RequestParam(value = "verifyInput") String verifyInput){
-        if(redisUtils.get(verifyInput.toUpperCase(), 1)!=null&&"登入验证码".equals(redisUtils.get(verifyInput.toUpperCase(), 1).toString())){
+        if(redisUtils.get(verifyInput.toUpperCase(), 1)!=null&&StaticValues.verify_code.equals(redisUtils.get(verifyInput.toUpperCase(), 1).toString())){
             return ReturnMap.successResponse();
         }else {
             return ReturnMap.failureResponse();
@@ -158,10 +160,10 @@ public class LoginController {
         }
         logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
         //验证码有效
-        if(redisUtils.get(captcha.toUpperCase(), 1)!=null&&"登入验证码".equals(redisUtils.get(captcha.toUpperCase(), 1).toString())){
+        if(redisUtils.get(captcha.toUpperCase(), 1)!=null&&StaticValues.verify_code.equals(redisUtils.get(captcha.toUpperCase(), 1).toString())){
             Map<String, Object> map = loginService.userLogin(user, captcha,request, response);
             if(map.get("return_code").equals(1)){
-                return "layuimini/index";
+                return "redirect:/xiaosai/index";
             }else {
                 return "sys/XSlogin";
             }

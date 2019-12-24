@@ -16,7 +16,7 @@ public class R<T> implements Serializable {
     private static final int UNAUTHORIZED = 2;
 
     private T data; //服务端数据
-    private int status; //状态码
+    private int code; //状态码
 
     private String error = ""; //描述信息
 
@@ -24,11 +24,11 @@ public class R<T> implements Serializable {
 
     //APIS
     public static R isOk() {
-        return new R().status(OK);
+        return new R().code(OK);
     }
 
     public static R isFail() {
-        return new R().status(FAIL);
+        return new R().code(FAIL);
     }
 
     public static R isFail(Throwable e) {
@@ -37,7 +37,7 @@ public class R<T> implements Serializable {
 
     public static R isFail(int error, ResultEnum r) {
         R result = isFail().error(r.getMessage());
-        result.setStatus(error);
+        result.setCode(error);
         return result;
     }
 
@@ -56,8 +56,8 @@ public class R<T> implements Serializable {
         return this;
     }
 
-    public R status(int status) {
-        this.setStatus(status);
+    public R code(int code) {
+        this.setCode(code);
         return this;
     }
 
@@ -82,12 +82,12 @@ public class R<T> implements Serializable {
         this.data = data;
     }
 
-    public int getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getError() {
@@ -105,6 +105,17 @@ public class R<T> implements Serializable {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    @Override
+    public String toString() {
+        return "R{" +
+                "data=" + data +
+                ", status=" + code +
+                ", error='" + error + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
+
     /*@Override
     public String toString() {
         String s = "";

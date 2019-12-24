@@ -1,7 +1,9 @@
 package com.cozi.xiaosai.mapper.dataOrigin.sys;
 
-import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Author xiaosai
@@ -28,4 +30,6 @@ public interface UserMapper {
 
     //通过用户名查找
     User userByUserName(@Param(value = "userName")String userName);
+
+    List<User> selectUserListByUser(User user);
 }

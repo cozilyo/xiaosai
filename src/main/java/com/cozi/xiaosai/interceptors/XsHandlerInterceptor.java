@@ -39,7 +39,7 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //logger.info("^-^The system is accessed at the following address:"+request.getRequestURI());
+        logger.info("^-^The system is accessed at the following address:"+request.getRequestURI());
         if(uriSet.contains(request.getRequestURI())){
             return true;
         }
@@ -47,7 +47,9 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
         if(session!=null&&session.getAttribute("user")!=null){
             return true;
         }else {
-            return sessionExpire(response,"请求session失效，请重新登录！");
+            //return sessionExpire(response,"请求session失效，请重新登录！");
+            request.getRequestDispatcher("/xiaosai/login").forward(request,response);
+            return false;
         }
     }
 

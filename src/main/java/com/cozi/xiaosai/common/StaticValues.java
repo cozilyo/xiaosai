@@ -52,4 +52,6 @@ public class StaticValues {
     public static final String TYPE_NAME_JHB_VALUE = "结核病监测";
     //LogAspect结束
 
+    public static final String verify_code = "登入验证码";
+
 }

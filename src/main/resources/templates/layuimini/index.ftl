@@ -23,7 +23,6 @@
 </head>
 <body class="layui-layout-body layuimini-all">
 <div class="layui-layout layui-layout-admin">
-
     <div class="layui-header header">
         <div class="layui-logo">
         </div>

@@ -1,6 +1,6 @@
 package com.cozi.xiaosai.service.sys;
 
-import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

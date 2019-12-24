@@ -1,10 +1,12 @@
 package com.cozi.xiaosai.service.sys.Impl;
 
 import com.cozi.xiaosai.mapper.dataOrigin.sys.UserMapper;
-import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author xiaosai
@@ -49,5 +51,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User userByUserName(String userName) {
         return userMapper.userByUserName(userName);
+    }
+
+    @Override
+    public List<User> userListByUser(User user) {
+        return userMapper.selectUserListByUser(user);
     }
 }

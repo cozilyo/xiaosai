@@ -29,6 +29,7 @@
         .captcha {width:60%;display:inline-block;}
         .captcha-img {display:inline-block;width:34%;float:right;}
         .captcha-img img {height:34px;border:1px solid #e6e6e6;height:36px;width:100%;}
+        .layui-input-block{margin-left: 55px;}
     </style>
 </head>
 <body>
@@ -65,10 +66,15 @@
                     <input type="text" name="idNum" placeholder="身份证号" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
-                    <input type="text" name="age" placeholder="性别" autocomplete="off" class="layui-input">
+                    <div class="layui-input-block">
+                        <input type="radio" name="gender" value="2" title="男">
+                        <input type="radio" name="gender" value="1" title="女" checked>
+                        <input type="radio" name="gender" value="0" title="保密">
+                    </div>
+<#--                    <input type="text" name="gender" placeholder="性别" autocomplete="off" class="layui-input">-->
                 </div>
                 <div class="layui-form-item">
-                    <input type="text" name="gender" placeholder="年龄" autocomplete="off" class="layui-input">
+                    <input type="text" name="age" placeholder="年龄" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid" type="submit">注 册</button>

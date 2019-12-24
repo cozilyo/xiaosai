@@ -2,12 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.cozi.xiaosai.mapper.dataOrigin.sys.UserMapper">
-    <select id="selectUser" parameterType="string" resultType="com.cozi.xiaosai.pojo.dataOrigin.sys.User">
+    <resultMap id="result_map" type="com.cozi.xiaosai.pojo.dataorigin.sys.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+        <result column="telephone" property="telephone" jdbcType="VARCHAR"/>
+        <result column="mail" property="mail" jdbcType="VARCHAR"/>
+        <result column="id_num" property="idNum" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="modify_time" property="modifyTime" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectUser" parameterType="string" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.User">
         SELECT id,user_id,name,user_name,password,age,gender,telephone,mail,id_num,create_time,modify_time
         FROM xiaosai_user
         WHERE user_id=#{userId}
     </select>
-    <insert id="insertUser" parameterType="com.cozi.xiaosai.pojo.dataOrigin.sys.User" >
+    <insert id="insertUser" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.User" >
         INSERT INTO xiaosai_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userId!=null and userId!=''">
@@ -73,7 +86,7 @@
         </trim>
     </insert>
 
-    <update id="updateUser" parameterType="com.cozi.xiaosai.pojo.dataOrigin.sys.User">
+    <update id="updateUser" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.User">
         UPDATE xiaosai_user
         SET
         <trim suffixOverrides=",">
@@ -111,7 +124,10 @@
     <select id="userCountByUserName" parameterType="string" resultType="int">
          SELECT COUNT(id) FROM xiaosai_user WHERE user_name=#{userName}
     </select>
-    <select id="userByUserName" parameterType="string" resultType="com.cozi.xiaosai.pojo.dataOrigin.sys.User">
+    <select id="userByUserName" parameterType="string" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.User">
          SELECT * FROM xiaosai_user WHERE user_name=#{userName}
+    </select>
+    <select id="selectUserListByUser" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.User" resultMap="result_map">
+         SELECT * FROM xiaosai_user
     </select>
 </mapper>

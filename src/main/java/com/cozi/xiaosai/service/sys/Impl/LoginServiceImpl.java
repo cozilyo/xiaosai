@@ -2,7 +2,7 @@ package com.cozi.xiaosai.service.sys.Impl;
 
 import com.cozi.xiaosai.common.ReturnMap;
 import com.cozi.xiaosai.common.StaticValues;
-import com.cozi.xiaosai.pojo.dataOrigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.service.sys.LoginService;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.tool.MailSendService;
