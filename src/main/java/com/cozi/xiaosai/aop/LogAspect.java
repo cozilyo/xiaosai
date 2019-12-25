@@ -95,8 +95,8 @@ public class LogAspect {
         Method method = ms.getMethod();
         Log1oneAnnotation annotation = method.getAnnotation(Log1oneAnnotation.class);
 
-        logInfo.setOperationType(annotation.operationType());
-        logInfo.setOperands(annotation.operands());
+        logInfo.setOperationType(annotation.operationType().getValue());
+        logInfo.setOperands(annotation.operands().getValue());
         logInfo.setOperationContent(r.getMsg());
 
         log1oneService.addLog(logInfo);
@@ -131,8 +131,8 @@ public class LogAspect {
         Method method = ms.getMethod();
         Log1oneAnnotation annotation = method.getAnnotation(Log1oneAnnotation.class);
 
-        logInfo.setOperationType(annotation.operationType());
-        logInfo.setOperands(annotation.operands());
+        logInfo.setOperationType(annotation.operationType().getValue());
+        logInfo.setOperands(annotation.operands().getValue());
         logInfo.setOperationContent(annotation.msg());
 
         log1oneService.addLog(logInfo);

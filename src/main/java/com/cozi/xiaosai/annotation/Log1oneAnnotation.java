@@ -1,9 +1,14 @@
 package com.cozi.xiaosai.annotation;
 
 import com.cozi.xiaosai.domain.LogInfo;
+import com.cozi.xiaosai.enums.OperationObjects;
+import com.cozi.xiaosai.enums.OperationType;
+import org.omg.CORBA.UNKNOWN;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author xiaosai
@@ -24,9 +29,9 @@ import java.lang.annotation.*;
 @Documented // 说明该注解将被包含在javadoc中
 public @interface Log1oneAnnotation {
 
-    String operationType()default "";//操作类型
+    OperationType operationType()default OperationType.UNKNOWN;//操作类型
 
-    String operands()default "";//操作对象
+    OperationObjects operands()default OperationObjects.UNKNOWN;//操作对象
 
     String msg()default "";//操作描述
 }
