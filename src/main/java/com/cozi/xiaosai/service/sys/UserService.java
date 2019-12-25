@@ -59,4 +59,10 @@ public interface UserService {
      * @return 用户list
      */
     List<User> userListByUser(User user);
+
+    /**
+     * 通过userid批量删除用户
+     * @param userIds userid以‘，’隔开
+     */
+    void batchDelUser(String userIds);
 }

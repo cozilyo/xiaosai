@@ -26,13 +26,13 @@
             {
               "title": "用户列表",
               "href": "/xiaosai/userList",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-smile-o",
               "target": "_self"
             },
             {
               "title": "用户权限",
               "href": "/xiaosai/PermissionGroupList",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-smile-o",
               "target": "_self"
             }
           ]

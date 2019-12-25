@@ -17,13 +17,13 @@ public interface UserMapper {
     User selectUser(@Param(value = "userId") String userId);
 
     //添加user
-    int insertUser(User user);
+    int insertUser(User user) throws Exception;
 
     //更新user
-    void updateUser(User user);
+    void updateUser(User user) throws Exception;
 
     //删除user
-    void deleteUser(@Param(value = "userId") String userId);
+    void deleteUser(@Param(value = "userId") String userId) throws Exception;
 
     //通过用户名查找
     int userCountByUserName(@Param(value = "userName")String userName);
@@ -31,5 +31,9 @@ public interface UserMapper {
     //通过用户名查找
     User userByUserName(@Param(value = "userName")String userName);
 
+    //通过用户信息查找
     List<User> selectUserListByUser(User user);
+
+    //通过userid批量删除用户
+    void delBatchUser(@Param(value = "userIds") String userIds) throws Exception;
 }

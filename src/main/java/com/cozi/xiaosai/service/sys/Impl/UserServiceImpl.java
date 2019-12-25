@@ -30,17 +30,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int addUser(User user) {
-        return userMapper.insertUser(user);
+        try {
+            return userMapper.insertUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     @Override
     public void editUser(User user) {
-        userMapper.updateUser(user);
+        try {
+            userMapper.updateUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delUser(String userId) {
-        userMapper.deleteUser(userId);
+        try {
+            userMapper.deleteUser(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -56,5 +69,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> userListByUser(User user) {
         return userMapper.selectUserListByUser(user);
+    }
+
+    @Override
+    public void batchDelUser(String userIds) {
+        try {
+            userMapper.delBatchUser(userIds);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -128,6 +128,24 @@
          SELECT * FROM xiaosai_user WHERE user_name=#{userName}
     </select>
     <select id="selectUserListByUser" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.User" resultMap="result_map">
-         SELECT * FROM xiaosai_user
+         SELECT id,user_id,name,user_name,age,gender,telephone,mail,id_num,create_time,modify_time FROM xiaosai_user WHERE 1=1
+         <if test="name != null and name != ''">
+             AND name LIKE CONCAT('%',#{name},'%')
+         </if>
+        <if test="userName != null and userName != ''">
+            AND user_name LIKE CONCAT('%',#{userName},'%')
+        </if>
+        <if test="telephone != null and telephone != ''">
+            AND telephone LIKE CONCAT('%',#{telephone},'%')
+        </if>
+        <if test="mail != null and mail != ''">
+            AND mail LIKE CONCAT('%',#{mail},'%')
+        </if>
+        <if test="address != null and address != ''">
+            AND address LIKE CONCAT('%',#{address},'%')
+        </if>
     </select>
+    <delete id="delBatchUser" parameterType="string">
+         DELETE FROM xiaosai_user WHERE user_id IN (${userIds})
+    </delete>
 </mapper>
