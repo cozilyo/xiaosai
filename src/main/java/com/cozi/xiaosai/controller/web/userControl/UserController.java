@@ -65,8 +65,7 @@ public class UserController {
     @ResponseBody
     public R batchDelUser(@RequestParam(value = "userIds") String userIds){
         logger.info("用户信息批量删除："+StringUtils.strip(userIds,"[]"));
-        //userService.batchDelUser(StringUtils.strip(userIds,"[]"));
-        int a = 1/0;
+        userService.batchDelUser(StringUtils.strip(userIds,"[]"));
         return R.isOk();
     }
 

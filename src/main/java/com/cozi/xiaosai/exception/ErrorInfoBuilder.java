@@ -1,6 +1,9 @@
 package com.cozi.xiaosai.exception;
 
+import com.cozi.xiaosai.controller.web.userControl.UserController;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.core.Ordered;
@@ -29,6 +32,8 @@ import java.time.LocalDateTime;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Component
 public class ErrorInfoBuilder implements HandlerExceptionResolver, Ordered {
+
+    private final Logger logger = LoggerFactory.getLogger(ErrorInfoBuilder.class);
     /**
      * 错误KEY
      */
@@ -73,6 +78,7 @@ public class ErrorInfoBuilder implements HandlerExceptionResolver, Ordered {
         errorInfo.setStatusCode(getHttpStatus(request).value());
         errorInfo.setReasonPhrase(getHttpStatus(request).getReasonPhrase());
         errorInfo.setStackTrace(getStackTraceInfo(error, isIncludeStackTrace(request)));
+        logger.error(errorInfo.toString());
         return errorInfo;
     }
 

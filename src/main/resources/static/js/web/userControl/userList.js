@@ -104,6 +104,20 @@ layui.use(['form','layer', 'table'], function () {
             success: function (result) {
                 if (result.code == 0) {
                     layer.msg('用户删除成功')
+                    //执行重载
+                    table.reload('tableReload', {
+                        url:"/xiaosai/userListData",
+                        where: {
+                            name:'',
+                            userName:'',
+                            telephone:'',
+                            mail:'',
+                            address:''
+                        },
+                        page:{
+                            curr: 1
+                        }
+                    });
                 } else {
                     layer.msg('用户删除失败！')
                 }

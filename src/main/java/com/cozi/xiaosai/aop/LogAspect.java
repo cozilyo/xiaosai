@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,7 +43,7 @@ public class LogAspect {
 
     // 前置通知
     @Before("cut()")
-    public void BeforeCall() {
+    public void BeforeCall(ProceedingJoinPoint joinPoint) {
     }
 
     // 环绕通知
@@ -60,7 +62,7 @@ public class LogAspect {
 
         // 获取参数
         Object[] arguments = joinPoint.getArgs();
-        for(Object o:arguments){
+        /*for(Object o:arguments){
             if(o instanceof HttpServletRequest){
                 String ipAddr = IpUtil.getIpAddr((HttpServletRequest) o);
                 logInfo.setIp(ipAddr);
@@ -69,7 +71,20 @@ public class LogAspect {
                 User user = (User)session.getAttribute("user");
                 logInfo.setOperator(user.getUserName());
             }
-        }
+        }*/
+
+        //获取RequestAttributes
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        //从获取RequestAttributes中获取HttpServletRequest的信息
+        HttpServletRequest request = (HttpServletRequest) requestAttributes.resolveReference(RequestAttributes.REFERENCE_REQUEST);
+
+        String ipAddr = IpUtil.getIpAddr(request);
+        logInfo.setIp(ipAddr);
+        String token = (request).getHeaders("token").toString();
+        HttpSession session = (request).getSession();
+        User user = (User)session.getAttribute("user");
+        logInfo.setOperator(user.getUserName());
+
 
         if(StringUtils.isEmpty(logInfo.getIp())||StringUtils.isEmpty(logInfo.getOperator())){
             return r;
