@@ -1,5 +1,6 @@
 package com.cozi.xiaosai.service.web.Impl;
 
+import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.mapper.dataOrigin.web.PermissionGroupMapper;
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
 import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams;
@@ -26,5 +27,18 @@ public class PermissionGroupServiceImpl implements PermissionGroupService {
     @Override
     public Page<PermissionGroupPojo> getPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams) {
         return permissionGroupMapper.selectPermissionGroupByInfo(permissionGroupPojoParams);
+    }
+
+    @Override
+    public R addPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams) {
+        if(permissionGroupMapper.selectPermissionGroupBygroupName(permissionGroupPojoParams.getGroupName())>0){
+            return R.isFail().msg("权限组添加失败，名称不能重复！");
+        }
+        if(permissionGroupMapper.selectPermissionGroupBygroupType(permissionGroupPojoParams.getGroupType())>0){
+            return R.isFail().msg("权限组添加失败，代号不能重复！");
+        }
+
+        permissionGroupMapper.insertPermissionGroup(permissionGroupPojoParams);
+        return R.isOk().msg("权限组添加成功");
     }
 }

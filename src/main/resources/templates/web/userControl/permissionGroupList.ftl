@@ -46,7 +46,8 @@
         </fieldset>
 
         <div class="layui-btn-group">
-            <button class="layui-btn data-add-btn">添加</button>
+            <#--<button class="layui-btn data-add-btn">添加</button>-->
+            <a class="layui-btn data-add-btn layui-menu-tips" href="/xiaosai/PermissionGroupAdd" target="_self">添加</a>
             <button class="layui-btn layui-btn-danger data-delete-btn" style="margin-left: 10px !important;">批量删除</button>
         </div>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
@@ -58,6 +59,7 @@
 </div>
 <script src="../layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../js/web/userControl/permissionGroupList.js"></script>
+<script src="../layuimini/js/index.js"></script>
 
 </body>
 </html>

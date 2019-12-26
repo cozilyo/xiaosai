@@ -52,6 +52,11 @@ public class UserController {
         return "web/userControl/permissionGroupList";
     }
 
+    @RequestMapping("/PermissionGroupAdd")
+    public String getPermissionGroupAdd(){
+        return "web/userControl/permissionGroupAdd";
+    }
+
     /**
      * 用户列表
      * @param userParams
@@ -94,6 +99,20 @@ public class UserController {
         PageInfo<PermissionGroupPojo> permissionGroupPojoPageInfo = new PageInfo<>(permissionGroupService.getPermissionGroup(permissionGroupPojoParams));
         return new PageFormatConver(permissionGroupPojoPageInfo).isOK();
     }
+
+    /**
+     * 权限组添加
+     * @param permissionGroupPojoParams
+     * @return
+     */
+    @RequestMapping(value = "/addPermissionGroup",method = RequestMethod.POST)
+    @ResponseBody
+    public R addPermissionGroup(@RequestBody PermissionGroupPojoParams permissionGroupPojoParams){
+        logger.info("权限组请求参数："+permissionGroupPojoParams);
+        return permissionGroupService.addPermissionGroup(permissionGroupPojoParams);
+    }
+
+
 
 
 }

@@ -63,7 +63,7 @@ layui.use(['form', 'table'], function () {
 
     // 监听添加操作
     $(".data-add-btn").on("click", function () {
-        layer.msg('添加数据');
+        /*top.layui.index.openTabsPage("/xiaosai/PermissionGroupAdd","添加权限组");*/
     });
 
     // 监听删除操作

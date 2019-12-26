@@ -31,4 +31,16 @@
               AND modify_time = #{modifyTime}
           </if>
       </select>
+      <insert id="insertPermissionGroup" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams">
+          INSERT INTO xiaosai_permission_group
+          (group_name,group_type,access_level,create_time,modify_time)
+          VALUES
+          (#{groupName},#{groupType},#{accessLevel},NOW(),NOW())
+      </insert>
+      <select id="selectPermissionGroupBygroupName" parameterType="string" resultType="int">
+          SELECT COUNT(1) FROM xiaosai_permission_group WHERE group_name=#{groupName}
+      </select>
+      <select id="selectPermissionGroupBygroupType" parameterType="integer" resultType="int">
+          SELECT COUNT(1) FROM xiaosai_permission_group WHERE group_type=#{groupType}
+      </select>
 </mapper>
