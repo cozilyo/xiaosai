@@ -22,6 +22,7 @@ layui
 模板引用于：github:https://github.com/zhongshaofa/layuimini.git
 ```
 ![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/login.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/index.png)
 #有什么问题
 请加入QQ:1877992566
 
