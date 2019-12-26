@@ -1,8 +1,12 @@
 package com.cozi.xiaosai.service.sys.Impl;
 
+import com.cozi.xiaosai.controller.web.userControl.UserController;
 import com.cozi.xiaosai.mapper.dataOrigin.sys.UserMapper;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.service.sys.UserService;
+import com.github.pagehelper.Page;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,8 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -67,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> userListByUser(User user) {
+    public Page<User> userListByUser(User user) {
         return userMapper.selectUserListByUser(user);
     }
 

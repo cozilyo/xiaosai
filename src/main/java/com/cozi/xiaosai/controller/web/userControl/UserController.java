@@ -1,10 +1,16 @@
 package com.cozi.xiaosai.controller.web.userControl;
 
+import com.cozi.xiaosai.annotation.Log1oneAnnotation;
+import com.cozi.xiaosai.common.PageFormatConver;
 import com.cozi.xiaosai.common.R;
+import com.cozi.xiaosai.enums.OperationObjects;
+import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.web.PermissionGroupService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -49,11 +55,14 @@ public class UserController {
      * @param user
      * @return
      */
+    @Log1oneAnnotation(operationType = OperationType.SELECT,operands = OperationObjects.XIAOSAI_USER,uniqueValue = "{{user.userName}}")
     @RequestMapping(value = "/userListData",method = RequestMethod.POST)
     @ResponseBody
     public R getListData(@RequestBody User user){
         logger.info("用户信息请求参数："+user);
-        return R.isOk().data(userService.userListByUser(user));
+        PageHelper.startPage(user.getPage(),user.getLimit(),"id");
+        PageInfo<User> userPageInfo = new PageInfo<>(userService.userListByUser(user));
+        return new PageFormatConver(userPageInfo).isOK();
     }
 
     /**
@@ -79,7 +88,9 @@ public class UserController {
     @ResponseBody
     public R getPermissionGroupListData(@RequestBody PermissionGroupPojo  permissionGroupPojo){
         logger.info("权限组请求参数："+permissionGroupPojo);
-        return R.isOk().data(permissionGroupService.getPermissionGroup(permissionGroupPojo));
+        PageHelper.startPage(permissionGroupPojo.getPage(),permissionGroupPojo.getLimit(),"id");
+        PageInfo<PermissionGroupPojo> permissionGroupPojoPageInfo = new PageInfo<>(permissionGroupService.getPermissionGroup(permissionGroupPojo));
+        return new PageFormatConver(permissionGroupPojoPageInfo).isOK();
     }
 
 

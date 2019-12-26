@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.service.web;
 
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface PermissionGroupService {
      * @param permissionGroupPojo 权限组信息
      * @return 权限组集合
      */
-    List<PermissionGroupPojo> getPermissionGroup(PermissionGroupPojo permissionGroupPojo);
+    Page<PermissionGroupPojo> getPermissionGroup(PermissionGroupPojo permissionGroupPojo);
 }

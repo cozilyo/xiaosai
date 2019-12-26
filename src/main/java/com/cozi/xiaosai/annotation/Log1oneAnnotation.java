@@ -33,5 +33,5 @@ public @interface Log1oneAnnotation {
 
     OperationObjects operands()default OperationObjects.UNKNOWN;//操作对象
 
-    String msg()default "";//操作描述
+    String uniqueValue()default "";//操作描述
 }

@@ -8,6 +8,7 @@ import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.service.tool.Log1oneService;
 import com.cozi.xiaosai.util.IpUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -43,7 +44,7 @@ public class LogAspect {
 
     // 前置通知
     @Before("cut()")
-    public void BeforeCall(ProceedingJoinPoint joinPoint) {
+    public void BeforeCall(JoinPoint joinPoint) {
     }
 
     // 环绕通知
@@ -133,7 +134,7 @@ public class LogAspect {
 
         logInfo.setOperationType(annotation.operationType().getValue());
         logInfo.setOperands(annotation.operands().getValue());
-        logInfo.setOperationContent(annotation.msg());
+        logInfo.setOperationContent(annotation.uniqueValue());
 
         log1oneService.addLog(logInfo);
 

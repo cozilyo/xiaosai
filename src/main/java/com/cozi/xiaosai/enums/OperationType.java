@@ -15,6 +15,7 @@ public enum OperationType {
     INSERT("insert"),
     DELETE("delete"),
     UPDATE("update"),
+    SELECT("select"),
     AUDIT("audit"),
     BATHCHAUDIT("bathchaudit"),
     IMPORT("import"),

@@ -21,9 +21,9 @@ layui.use(['form','layer', 'table'], function () {
             {field: 'mail', title: '邮箱', minWidth: 80},
             {field: 'idNum', minWidth: 80, title: '身份证号'},
             {field: 'gender', width: 50, title: '性别',templet:function (d) {
-                    if(d.gender=2){
+                    if(d.gender==2){
                         return "男";
-                    }else if(d.gender=1){
+                    }else if(d.gender==1){
                         return "女";
                     }else {
                         return "保密";

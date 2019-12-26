@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.service.sys;
 
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -58,7 +59,7 @@ public interface UserService {
      * @param user 用户信息
      * @return 用户list
      */
-    List<User> userListByUser(User user);
+    Page<User> userListByUser(User user);
 
     /**
      * 通过userid批量删除用户

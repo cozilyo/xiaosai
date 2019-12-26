@@ -22,6 +22,7 @@ public class R<T> implements Serializable {
 
     private String msg = "";
 
+    private long count = 0 ;
     //APIS
     public static R isOk() {
         return new R().code(OK);
@@ -66,6 +67,12 @@ public class R<T> implements Serializable {
         return this;
     }
 
+    public R count(long count){
+        this.setCount(count);
+        return this;
+    }
+
+
 
     //Constructors
     public R() {
@@ -104,6 +111,14 @@ public class R<T> implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
+        this.count = count;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.mapper.dataOrigin.sys;
 
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public interface UserMapper {
     User userByUserName(@Param(value = "userName")String userName);
 
     //通过用户信息查找
-    List<User> selectUserListByUser(User user);
+    Page<User> selectUserListByUser(User user);
 
     //通过userid批量删除用户
     void delBatchUser(@Param(value = "userIds") String userIds) throws Exception;

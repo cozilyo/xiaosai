@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.mapper.dataOrigin.web;
 
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface PermissionGroupMapper {
      * @param permissionGroupPojo 权限组信息
      * @return 权限组集合
      */
-    List<PermissionGroupPojo> selectPermissionGroupByInfo(PermissionGroupPojo permissionGroupPojo);
+    Page<PermissionGroupPojo> selectPermissionGroupByInfo(PermissionGroupPojo permissionGroupPojo);
 }

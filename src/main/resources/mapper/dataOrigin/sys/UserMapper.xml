@@ -127,8 +127,8 @@
     <select id="userByUserName" parameterType="string" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.User">
          SELECT * FROM xiaosai_user WHERE user_name=#{userName}
     </select>
-    <select id="selectUserListByUser" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.User" resultMap="result_map">
-         SELECT id,user_id,name,user_name,age,gender,telephone,mail,id_num,create_time,modify_time FROM xiaosai_user WHERE 1=1
+    <select id="selectUserListByUser" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.User" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.User">
+         SELECT id,user_id userId,name,user_name userName,age,gender,telephone,mail,id_num idNum,create_time createTime,modify_time modifyTime FROM xiaosai_user WHERE 1=1
          <if test="name != null and name != ''">
              AND name LIKE CONCAT('%',#{name},'%')
          </if>

@@ -10,8 +10,8 @@
           <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
           <result column="modify_time" property="modifyTime" jdbcType="VARCHAR"/>
       </resultMap>
-      <select id="selectPermissionGroupByInfo" parameterType="com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo" resultMap="result_map">
-          SELECT * FROM xiaosai_permission_group WHERE 1=1
+      <select id="selectPermissionGroupByInfo" parameterType="com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo" resultType="com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo">
+          SELECT id,group_name groupName,group_type groupType,access_level accessLevel,create_time createTime,modify_time modifyTime FROM xiaosai_permission_group WHERE 1=1
           <if test="id != null and id != ''">
               AND id = #{id}
           </if>
