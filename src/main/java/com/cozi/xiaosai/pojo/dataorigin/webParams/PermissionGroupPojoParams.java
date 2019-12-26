@@ -1,4 +1,4 @@
-package com.cozi.xiaosai.pojo.dataorigin.web;
+package com.cozi.xiaosai.pojo.dataorigin.webParams;
 
 import com.cozi.xiaosai.common.PageModel;
 
@@ -10,7 +10,7 @@ import com.cozi.xiaosai.common.PageModel;
  * @describe
  */
 
-public class PermissionGroupPojo{
+public class PermissionGroupPojoParams extends PageModel {
     private Integer id;
     private String groupName;
     private Integer groupType;

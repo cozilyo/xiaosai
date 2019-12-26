@@ -1,4 +1,4 @@
-package com.cozi.xiaosai.pojo.dataorigin.sys;
+package com.cozi.xiaosai.pojo.dataorigin.sysParams;
 
 /**
  * @Author xiaosai
@@ -11,7 +11,7 @@ import com.cozi.xiaosai.common.PageModel;
 /**
  * 用户信息
  */
-public class User {
+public class UserParams extends PageModel {
     private Integer id;
     private String userId;
     private String name;
@@ -27,10 +27,10 @@ public class User {
     private String createTime;
     private String modifyTime;
 
-    public User(){
+    public UserParams(){
     }
 
-    public User(String name,Integer gender,String telephone){
+    public UserParams(String name, Integer gender, String telephone){
         this.name=name;
         this.gender=gender;
         this.telephone=telephone;

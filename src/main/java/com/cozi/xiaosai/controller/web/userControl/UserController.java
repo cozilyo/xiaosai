@@ -6,7 +6,9 @@ import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.enums.OperationObjects;
 import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserParams;
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
+import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.web.PermissionGroupService;
 import com.github.pagehelper.PageHelper;
@@ -52,16 +54,16 @@ public class UserController {
 
     /**
      * 用户列表
-     * @param user
+     * @param userParams
      * @return
      */
-    @Log1oneAnnotation(operationType = OperationType.SELECT,operands = OperationObjects.XIAOSAI_USER,uniqueValue = "{{user.userName}}")
+    //@Log1oneAnnotation(operationType = OperationType.SELECT,operands = OperationObjects.XIAOSAI_USER,uniqueValue = "{{user.userName}}")
     @RequestMapping(value = "/userListData",method = RequestMethod.POST)
     @ResponseBody
-    public R getListData(@RequestBody User user){
-        logger.info("用户信息请求参数："+user);
-        PageHelper.startPage(user.getPage(),user.getLimit(),"id");
-        PageInfo<User> userPageInfo = new PageInfo<>(userService.userListByUser(user));
+    public R getListData(@RequestBody UserParams userParams){
+        logger.info("用户信息请求参数："+userParams);
+        PageHelper.startPage(userParams.getPage(),userParams.getLimit(),"id");
+        PageInfo<User> userPageInfo = new PageInfo<>(userService.userListByUser(userParams));
         return new PageFormatConver(userPageInfo).isOK();
     }
 
@@ -81,15 +83,15 @@ public class UserController {
 
     /**
      * 权限组列表
-     * @param permissionGroupPojo
+     * @param permissionGroupPojoParams
      * @return
      */
     @RequestMapping(value = "/PermissionGroupListData",method = RequestMethod.POST)
     @ResponseBody
-    public R getPermissionGroupListData(@RequestBody PermissionGroupPojo  permissionGroupPojo){
-        logger.info("权限组请求参数："+permissionGroupPojo);
-        PageHelper.startPage(permissionGroupPojo.getPage(),permissionGroupPojo.getLimit(),"id");
-        PageInfo<PermissionGroupPojo> permissionGroupPojoPageInfo = new PageInfo<>(permissionGroupService.getPermissionGroup(permissionGroupPojo));
+    public R getPermissionGroupListData(@RequestBody PermissionGroupPojoParams permissionGroupPojoParams){
+        logger.info("权限组请求参数："+permissionGroupPojoParams);
+        PageHelper.startPage(permissionGroupPojoParams.getPage(),permissionGroupPojoParams.getLimit(),"id");
+        PageInfo<PermissionGroupPojo> permissionGroupPojoPageInfo = new PageInfo<>(permissionGroupService.getPermissionGroup(permissionGroupPojoParams));
         return new PageFormatConver(permissionGroupPojoPageInfo).isOK();
     }
 

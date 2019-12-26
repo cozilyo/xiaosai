@@ -14,6 +14,7 @@ commons-lang3
 mail
 redis
 redisTemplare
+pagehelper
 ```
 ```
 前端

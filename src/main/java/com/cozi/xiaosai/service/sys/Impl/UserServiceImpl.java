@@ -3,6 +3,7 @@ package com.cozi.xiaosai.service.sys.Impl;
 import com.cozi.xiaosai.controller.web.userControl.UserController;
 import com.cozi.xiaosai.mapper.dataOrigin.sys.UserMapper;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserParams;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.github.pagehelper.Page;
 import org.slf4j.Logger;
@@ -73,8 +74,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> userListByUser(User user) {
-        return userMapper.selectUserListByUser(user);
+    public Page<User> userListByUser(UserParams userParams) {
+        return userMapper.selectUserListByUser(userParams);
     }
 
     @Override
