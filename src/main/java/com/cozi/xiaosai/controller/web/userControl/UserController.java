@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,6 +56,13 @@ public class UserController {
     @RequestMapping("/PermissionGroupAdd")
     public String getPermissionGroupAdd(){
         return "web/userControl/permissionGroupAdd";
+    }
+
+    @RequestMapping("/PermissionGroupEdit")
+    public String getPermissionGroupEdit(@RequestParam(value = "id") Integer id, Model model){
+        logger.info("id:"+id);
+        model.addAttribute("id",id);
+        return "web/userControl/permissionGroupEdit";
     }
 
     /**
@@ -110,6 +118,30 @@ public class UserController {
     public R addPermissionGroup(@RequestBody PermissionGroupPojoParams permissionGroupPojoParams){
         logger.info("权限组请求参数："+permissionGroupPojoParams);
         return permissionGroupService.addPermissionGroup(permissionGroupPojoParams);
+    }
+
+    /**
+     * 权限组编辑回显
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/editPermissionGroupEcho",method = RequestMethod.POST)
+    @ResponseBody
+    public R editPermissionGroupEcho(@RequestParam(value = "id") Integer id){
+        logger.info("id:"+id);
+        return R.isOk().data(permissionGroupService.editPermissionGroupEcho(id));
+    }
+
+    /**
+     * 权限组编辑
+     * @param permissionGroupPojoParams
+     * @return
+     */
+    @RequestMapping(value = "/editPermissionGroup",method = RequestMethod.POST)
+    @ResponseBody
+    public R editPermissionGroup(@RequestBody PermissionGroupPojoParams permissionGroupPojoParams){
+        logger.info("权限组编辑参数："+permissionGroupPojoParams);
+        return permissionGroupService.editPermissionGroup(permissionGroupPojoParams);
     }
 
 

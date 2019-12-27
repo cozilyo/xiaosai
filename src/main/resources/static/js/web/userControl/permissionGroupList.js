@@ -74,14 +74,15 @@ layui.use(['form', 'table'], function () {
     });
 
     //监听表格复选框选择
-    table.on('checkbox(currentTableFilter)', function (obj) {
+    /*table.on('checkbox(currentTableFilter)', function (obj) {
         console.log(obj)
-    });
+    });*/
 
+    //监听表格编辑和删除
     table.on('tool(currentTableFilter)', function (obj) {
         var data = obj.data;
         if (obj.event === 'edit') {
-            layer.alert('编辑行：<br>' + JSON.stringify(data))
+            window.location = "/xiaosai/PermissionGroupEdit?id="+data.id;
         } else if (obj.event === 'delete') {
             layer.confirm('真的删除行么', function (index) {
                 obj.del();

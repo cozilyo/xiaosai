@@ -25,6 +25,22 @@ public interface PermissionGroupService {
     /**
      * 权限组添加
      * @param permissionGroupPojoParams
+     * @return
      */
     R addPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams);
+
+
+    /**
+     * 权限组编辑回显
+     * @param id
+     * @return
+     */
+    PermissionGroupPojo editPermissionGroupEcho(Integer id);
+
+    /**
+     * 权限组编辑
+     * @param permissionGroupPojoParams
+     * @return
+     */
+    R editPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams);
 }

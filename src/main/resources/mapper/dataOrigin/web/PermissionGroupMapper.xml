@@ -38,9 +38,34 @@
           (#{groupName},#{groupType},#{accessLevel},NOW(),NOW())
       </insert>
       <select id="selectPermissionGroupBygroupName" parameterType="string" resultType="int">
-          SELECT COUNT(1) FROM xiaosai_permission_group WHERE group_name=#{groupName}
+          SELECT COUNT(1) FROM xiaosai_permission_group
+          WHERE 1=1
+          <if test="id == null or id == '' or id == 0">
+              AND group_name=#{groupName}
+          </if>
+          <if test="id != null and id != '' and id != 0">
+              AND group_name=#{groupName} AND id != #{id}
+          </if>
       </select>
       <select id="selectPermissionGroupBygroupType" parameterType="integer" resultType="int">
-          SELECT COUNT(1) FROM xiaosai_permission_group WHERE group_type=#{groupType}
+          SELECT COUNT(1) FROM xiaosai_permission_group
+          WHERE 1=1
+          <if test="id == null or id == '' or id == 0">
+              AND group_type=#{groupType}
+          </if>
+          <if test="id != null and id != '' and id != 0">
+              AND group_type=#{groupType} AND id != #{id}
+          </if>
       </select>
+      <select id="selectPermissionGroupById" parameterType="integer" resultType="com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo">
+          SELECT id,group_name groupName,group_type groupType,access_level accessLevel,create_time createTime,modify_time modifyTime FROM xiaosai_permission_group WHERE id=#{id}
+      </select>
+      <update id="updatePermissionGroup" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams">
+          UPDATE xiaosai_permission_group SET
+          group_name=#{groupName},
+          group_type=#{groupType},
+          access_level=#{accessLevel},
+          modify_time=NOW()
+          WHERE id=#{id}
+      </update>
 </mapper>

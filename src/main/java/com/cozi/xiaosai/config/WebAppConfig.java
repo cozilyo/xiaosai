@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * springboot2.x之后，最低支持jdk8,拦截只需要保留@Configuration
  */
-//@Configuration
+@Configuration
 public class WebAppConfig implements WebMvcConfigurer {
 
     //
@@ -32,7 +32,7 @@ public class WebAppConfig implements WebMvcConfigurer {
         //对于静态文件，直接放过
 //        List<String> list = new ArrayList<>();
 //        list.add("/static/**");
-        registry.addInterceptor(new XsHandlerInterceptor()).excludePathPatterns("/layuimini/**");
+        registry.addInterceptor(new XsHandlerInterceptor()).excludePathPatterns("/layuimini/**").excludePathPatterns("/js/**").excludePathPatterns("/css/**");
     }
 
     //资源
@@ -40,6 +40,8 @@ public class WebAppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/layuimini/");
         registry.addResourceHandler("/layuimini/**").addResourceLocations("classpath:/static/layuimini/");
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
     }
 
     @Override

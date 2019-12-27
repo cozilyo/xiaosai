@@ -88,41 +88,45 @@ layui.use(['form','layer', 'table'], function () {
     // 监听删除操作
     $(".data-delete-btn").on("click", function () {
         var checkStatus = table.checkStatus('tableReload'), data = checkStatus.data;
-        var paramsList = new Array();
-        for(var i=0;i<data.length;i++){
-            paramsList.push(data[i].userId);
-        }
-        // console.log(JSON.stringify(paramsList))
-        $.ajax({
-            async: false,
-            type: 'post',
-            url: '/xiaosai/batchDelUser',
-            dataType: "json",
-            data: {
-                userIds: JSON.stringify(paramsList)
-            },
-            success: function (result) {
-                if (result.code == 0) {
-                    layer.msg('用户删除成功')
-                    //执行重载
-                    table.reload('tableReload', {
-                        url:"/xiaosai/userListData",
-                        where: {
-                            name:'',
-                            userName:'',
-                            telephone:'',
-                            mail:'',
-                            address:''
-                        },
-                        page:{
-                            curr: 1
-                        }
-                    });
-                } else {
-                    layer.msg('用户删除失败！')
-                }
+        if(data.length>0){
+            var paramsList = new Array();
+            for(var i=0;i<data.length;i++){
+                paramsList.push(data[i].userId);
             }
-        })
+            // console.log(JSON.stringify(paramsList))
+            $.ajax({
+                async: false,
+                type: 'post',
+                url: '/xiaosai/batchDelUser',
+                dataType: "json",
+                data: {
+                    userIds: JSON.stringify(paramsList)
+                },
+                success: function (result) {
+                    if (result.code == 0) {
+                        layer.msg('用户删除成功')
+                        //执行重载
+                        table.reload('tableReload', {
+                            url:"/xiaosai/userListData",
+                            where: {
+                                name:'',
+                                userName:'',
+                                telephone:'',
+                                mail:'',
+                                address:''
+                            },
+                            page:{
+                                curr: 1
+                            }
+                        });
+                    } else {
+                        layer.msg('用户删除失败！')
+                    }
+                }
+            })
+        }else {
+            layer.msg('请选择！')
+        }
 
     });
 
