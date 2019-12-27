@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cozi.xiaosai.mapper.dataOrigin.sys.DistributionMapper">
+    <select id="selectNavigationBar" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.NavigationBarPojo">
+        SELECT id,navigation_bar_name navigationBarName,navigation_bar_index navigationBarIndex,create_time createTime,modify_time modifyTime FROM xiaosai_navigation_bar
+        ORDER BY navigationBarIndex
+    </select>
+    <select id="selectSidebar" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.SidebarPojo">
+        SELECT id,title,href,icon,target,parent_id parentId,nav_id navId,create_time createTime,modify_time modifyTime FROM xiaosai_sidebar
+        WHERE 1=1
+        <if test="parentId != null">
+            AND parent_id = #{parentId}
+        </if>
+        <if test="navId != null and navId != ''">
+            AND nav_id = #{navId}
+        </if>
+    </select>
+
+</mapper>

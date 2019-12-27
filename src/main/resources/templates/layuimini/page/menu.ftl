@@ -47,7 +47,7 @@
             treeIdName: 'authorityId',
             treePidName: 'parentId',
             elem: '#munu-table',
-            url: '../api/menus.json',
+            url: '../layuimini/api/menus.json',
             page: false,
             cols: [[
                 {type: 'numbers'},

@@ -52,9 +52,14 @@ layui.define(["element", "jquery"], function (exports) {
                     layuimini.initHome(data.homeInfo);
                     layuimini.initLogo(data.logoInfo);
                     layuimini.initClear(data.clearInfo);
-                    layuimini.initMenu(data.menuInfo);
+                    //layuimini.initMenu(data.menuInfo);
                     layuimini.initTab();
                 }
+            }).fail(function () {
+                layuimini.msg_error('菜单接口有误');
+            });
+            $.getJSON("/xiaosai/bar",function (result,status) {
+                layuimini.initMenu(result.data);
             }).fail(function () {
                 layuimini.msg_error('菜单接口有误');
             });
@@ -146,45 +151,50 @@ layui.define(["element", "jquery"], function (exports) {
                 leftMenuHtml = '',
                 headerMenuCheckDefault = 'layui-this',
                 leftMenuCheckDefault = 'layui-this';
-            window.menuParameId = 1;
+                window.menuParameId = 1;
 
-            $.each(data, function (key, val) {
-                headerMenuHtml += '<li class="layui-nav-item ' + headerMenuCheckDefault + '" id="' + key + 'HeaderId" data-menu="' + key + '"> <a href="javascript:;"><i class="' + val.icon + '"></i> ' + val.title + '</a> </li>\n';
-                headerMobileMenuHtml += '<dd><a href="javascript:;" id="' + key + 'HeaderId" data-menu="' + key + '"><i class="' + val.icon + '"></i> ' + val.title + '</a></dd>\n';
-                leftMenuHtml += '<ul class="layui-nav layui-nav-tree layui-left-nav-tree ' + leftMenuCheckDefault + '" id="' + key + '">\n';
-                var menuList = val.child;
-                $.each(menuList, function (index, menu) {
-                    leftMenuHtml += '<li class="layui-nav-item">\n';
-                    if (menu.child != undefined && menu.child != []) {
-                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.title + '</span> </a>';
-                        var buildChildHtml = function (html, child, menuParameId) {
-                            html += '<dl class="layui-nav-child">\n';
-                            $.each(child, function (childIndex, childMenu) {
-                                html += '<dd>\n';
-                                if (childMenu.child != undefined && childMenu.child != []) {
-                                    html += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>';
-                                    html = buildChildHtml(html, childMenu.child, menuParameId);
+                $.each(data, function (key, val_top) {
+                        $.each(val_top,function (index_top,val) {
+                            headerMenuHtml += '<li class="layui-nav-item ' + headerMenuCheckDefault + '" id="' + key + 'HeaderId" data-menu="' + key + '"> <a href="javascript:;"><i class="' + val.icon + '"></i> ' + val.title + '</a> </li>\n';
+                            headerMobileMenuHtml += '<dd><a href="javascript:;" id="' + key + 'HeaderId" data-menu="' + key + '"><i class="' + val.icon + '"></i> ' + val.title + '</a></dd>\n';
+                            leftMenuHtml += '<ul class="layui-nav layui-nav-tree layui-left-nav-tree ' + leftMenuCheckDefault + '" id="' + key + '">\n';
+                            var menuList = val.child;
+                            $.each(menuList, function (index, menu) {
+                                leftMenuHtml += '<li class="layui-nav-item">\n';
+                                if (menu.child != undefined && menu.child.length !=0) {
+                                    leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.title + '</span> </a>';
+                                    var buildChildHtml = function (html, child, menuParameId) {
+                                        html += '<dl class="layui-nav-child">\n';
+                                        $.each(child, function (childIndex, childMenu) {
+                                            html += '<dd>\n';
+                                            if (childMenu.child != undefined && childMenu.child.length !=0) {
+                                                html += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>';
+                                                html = buildChildHtml(html, childMenu.child, menuParameId);
+                                            } else {
+                                                html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.href + '" target="' + childMenu.target + '"><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>\n';
+                                                menuParameId++;
+                                                window.menuParameId = menuParameId;
+                                            }
+                                            html += '</dd>\n';
+                                        });
+                                        html += '</dl>\n';
+                                        return html;
+                                    };
+                                    leftMenuHtml = buildChildHtml(leftMenuHtml, menu.child, menuParameId);
                                 } else {
-                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.href + '" target="' + childMenu.target + '"><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>\n';
+                                    leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips"  data-type="tabAdd" data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + menu.href + '" target="' + menu.target + '"><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.title + '</span></a>\n';
                                     menuParameId++;
-                                    window.menuParameId = menuParameId;
                                 }
-                                html += '</dd>\n';
+                                leftMenuHtml += '</li>\n';
                             });
-                            html += '</dl>\n';
-                            return html;
-                        };
-                        leftMenuHtml = buildChildHtml(leftMenuHtml, menu.child, menuParameId);
-                    } else {
-                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips"  data-type="tabAdd" data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + menu.href + '" target="' + menu.target + '"><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.title + '</span></a>\n';
-                        menuParameId++;
-                    }
-                    leftMenuHtml += '</li>\n';
+
+                            leftMenuHtml += '</ul>\n';
+                            headerMenuCheckDefault = '';
+                            leftMenuCheckDefault = 'layui-hide';
+                        })
+
                 });
-                leftMenuHtml += '</ul>\n';
-                headerMenuCheckDefault = '';
-                leftMenuCheckDefault = 'layui-hide';
-            });
+
             $('.layui-header-pc-menu').html(headerMenuHtml); //电脑
             $('.layui-header-mini-menu').html(headerMobileMenuHtml); //手机
             $('.layui-left-menu').html(leftMenuHtml);
