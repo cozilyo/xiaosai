@@ -29,8 +29,8 @@ import java.time.LocalDateTime;
  * @describe
  */
 
-@Order(Ordered.HIGHEST_PRECEDENCE)
-@Component
+//@Order(Ordered.HIGHEST_PRECEDENCE)
+//@Component
 public class ErrorInfoBuilder implements HandlerExceptionResolver, Ordered {
 
     private final Logger logger = LoggerFactory.getLogger(ErrorInfoBuilder.class);

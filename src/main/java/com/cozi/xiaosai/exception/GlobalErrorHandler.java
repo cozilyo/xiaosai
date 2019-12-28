@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @describe
  */
 
-@ControllerAdvice
+//@ControllerAdvice
 public class GlobalErrorHandler {
     private final static String DEFAULT_ERROR_VIEW = "error";//错误信息页
 

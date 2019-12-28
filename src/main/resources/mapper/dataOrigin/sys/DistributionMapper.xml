@@ -16,5 +16,15 @@
             AND nav_id = #{navId}
         </if>
     </select>
+    <select id="selectMenuInfoList" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo">
+        SELECT a.id,a.title,a.href,a.icon,a.target,a.parent_id parentId,a.nav_id navId,a.is_menu isMenu,b.navigation_bar_name navigationBarName,b.navigation_bar_index navigationBarIndex,a.create_time createTime,a.modify_time modifyTime
+        FROM xiaosai_sidebar a,xiaosai_navigation_bar b
+        WHERE a.nav_id = b.id
+    </select>
+    <select id="selectmenuEditData" parameterType="integer" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo">
+        SELECT a.id,a.title,a.href,a.icon,a.target,a.parent_id parentId,a.nav_id navId,a.is_menu isMenu,b.navigation_bar_name navigationBarName,b.navigation_bar_index navigationBarIndex,a.create_time createTime,a.modify_time modifyTime
+        FROM xiaosai_sidebar a,xiaosai_navigation_bar b
+        WHERE a.nav_id = b.id AND a.id = #{id}
+    </select>
 
 </mapper>

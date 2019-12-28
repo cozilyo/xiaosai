@@ -40,8 +40,8 @@ public class NumberUtil {
             createRandomCharData(20);*/
 
         //createRandomCharData(6);
-        //getStringRandom(6);
-        createData(6);
+        System.out.println(getStringRandom(32));
+        //createData(6);
     }
 
 

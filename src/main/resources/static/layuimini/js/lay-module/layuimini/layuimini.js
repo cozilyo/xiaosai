@@ -153,7 +153,8 @@ layui.define(["element", "jquery"], function (exports) {
                 leftMenuCheckDefault = 'layui-this';
                 window.menuParameId = 1;
 
-                $.each(data, function (key, val_top) {
+                $.each(data,function (index_nav,menu_nav) {
+                    $.each(menu_nav, function (key, val_top) {
                         $.each(val_top,function (index_top,val) {
                             headerMenuHtml += '<li class="layui-nav-item ' + headerMenuCheckDefault + '" id="' + key + 'HeaderId" data-menu="' + key + '"> <a href="javascript:;"><i class="' + val.icon + '"></i> ' + val.title + '</a> </li>\n';
                             headerMobileMenuHtml += '<dd><a href="javascript:;" id="' + key + 'HeaderId" data-menu="' + key + '"><i class="' + val.icon + '"></i> ' + val.title + '</a></dd>\n';
@@ -193,7 +194,8 @@ layui.define(["element", "jquery"], function (exports) {
                             leftMenuCheckDefault = 'layui-hide';
                         })
 
-                });
+                    });
+                })
 
             $('.layui-header-pc-menu').html(headerMenuHtml); //电脑
             $('.layui-header-mini-menu').html(headerMobileMenuHtml); //手机

@@ -51,10 +51,10 @@ public class PermissionGroupServiceImpl implements PermissionGroupService {
     @Override
     public R editPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams) {
         if(StringUtils.isEmpty(permissionGroupPojoParams.getGroupName())
-                &&permissionGroupMapper.selectPermissionGroupBygroupName(permissionGroupPojoParams.getGroupName(),permissionGroupPojoParams.getId())>0){
+                ||permissionGroupMapper.selectPermissionGroupBygroupName(permissionGroupPojoParams.getGroupName(),permissionGroupPojoParams.getId())>0){
             return R.isFail().msg("权限组编辑失败，名称不能为空或重复！");
         }
-        if(permissionGroupPojoParams.getGroupType().intValue()>0&&permissionGroupMapper.selectPermissionGroupBygroupType(permissionGroupPojoParams.getGroupType(),permissionGroupPojoParams.getId())>0){
+        if(permissionGroupPojoParams.getGroupType().intValue()<=0||permissionGroupMapper.selectPermissionGroupBygroupType(permissionGroupPojoParams.getGroupType(),permissionGroupPojoParams.getId())>0){
             return R.isFail().msg("权限组编辑失败，代号不能为空或重复！");
         }
         try {

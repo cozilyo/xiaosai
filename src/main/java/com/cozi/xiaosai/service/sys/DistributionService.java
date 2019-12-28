@@ -1,6 +1,8 @@
 package com.cozi.xiaosai.service.sys;
 
 import com.cozi.xiaosai.common.R;
+import com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo;
+import org.springframework.data.relational.core.sql.In;
 
 /**
  * @author xiaosai
@@ -13,4 +15,10 @@ import com.cozi.xiaosai.common.R;
 public interface DistributionService {
 
     R getSidebarInfo();
+
+    R getMenuInfo();
+
+    MenuInfoPojo getmenuEditData(Integer id);
+
+    R editMenuData(MenuInfoPojo menuInfoPojo);
 }
