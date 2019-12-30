@@ -50,29 +50,33 @@ public class LogAspect {
     // 环绕通知
     @Around(value = "cut()")
     public Object AroundCall(ProceedingJoinPoint joinPoint) throws Throwable {
-        //执行目标方法，并获得对应方法的返回值.如果不是R<T>则
-        R r = null;
-        try {
-            r = (R)joinPoint.proceed();
-        }catch (Exception e){
-            return addLog(joinPoint);
-        }
-        //模块名称
-        logInfo.setOperationModule(getModule(joinPoint));
-
 
         // 获取参数
         Object[] arguments = joinPoint.getArgs();
-        /*for(Object o:arguments){
-            if(o instanceof HttpServletRequest){
+        for(Object o:arguments){
+            /*if(o instanceof HttpServletRequest){
                 String ipAddr = IpUtil.getIpAddr((HttpServletRequest) o);
                 logInfo.setIp(ipAddr);
                 String token = ((HttpServletRequest) o).getHeaders("token").toString();
                 HttpSession session = ((HttpServletRequest) o).getSession();
                 User user = (User)session.getAttribute("user");
                 logInfo.setOperator(user.getUserName());
-            }
-        }*/
+            }*/
+
+            System.out.println(o);
+            System.out.println("前置执行");
+        }
+
+        //执行目标方法，并获得对应方法的返回值.如果不是R<T>则
+        R r = null;
+        try {
+            r = (R)joinPoint.proceed();
+            System.out.println("执行目标方法");
+        }catch (Exception e){
+            //return addLog(joinPoint);
+        }
+        //模块名称
+        //logInfo.setOperationModule(getModule(joinPoint));
 
         //获取RequestAttributes
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
@@ -84,12 +88,13 @@ public class LogAspect {
         String token = (request).getHeaders("token").toString();
         HttpSession session = (request).getSession();
         User user = (User)session.getAttribute("user");
-        logInfo.setOperator(user.getUserName());
+        //logInfo.setOperator(user.getUserName());
 
 
-        if(StringUtils.isEmpty(logInfo.getIp())||StringUtils.isEmpty(logInfo.getOperator())){
+        /*if(StringUtils.isEmpty(logInfo.getIp())||StringUtils.isEmpty(logInfo.getOperator())){
             return r;
-        }
+        }*/
+
 
         //获取注解方法的注解值
         MethodSignature ms = (MethodSignature)joinPoint.getSignature();
@@ -98,7 +103,7 @@ public class LogAspect {
 
         logInfo.setOperationType(annotation.operationType().getValue());
         logInfo.setOperands(annotation.operands().getValue());
-        logInfo.setOperationContent(r.getMsg());
+        logInfo.setOperationContent(annotation.uniqueValue());
 
         log1oneService.addLog(logInfo);
 
@@ -111,7 +116,7 @@ public class LogAspect {
         String typeName = joinPoint.getTarget().getClass().getName();
 
         //模块名称
-        logInfo.setOperationModule(getModule(joinPoint));
+        //logInfo.setOperationModule(getModule(joinPoint));
 
 
         // 获取参数
@@ -138,7 +143,7 @@ public class LogAspect {
 
         log1oneService.addLog(logInfo);
 
-        return joinPoint.proceed();
+        return R.isOk();
 
     }
 

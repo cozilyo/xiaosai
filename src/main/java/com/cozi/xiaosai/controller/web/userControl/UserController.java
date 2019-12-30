@@ -3,12 +3,16 @@ package com.cozi.xiaosai.controller.web.userControl;
 import com.cozi.xiaosai.annotation.Log1oneAnnotation;
 import com.cozi.xiaosai.common.PageFormatConver;
 import com.cozi.xiaosai.common.R;
+import com.cozi.xiaosai.common.SetAnnotationValue;
+import com.cozi.xiaosai.domain.LogInfo;
+import com.cozi.xiaosai.enums.OperationModule;
 import com.cozi.xiaosai.enums.OperationObjects;
 import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserParams;
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
 import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams;
+import com.cozi.xiaosai.publistener.LogBehaviorPublistener;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.web.PermissionGroupService;
 import com.github.pagehelper.PageHelper;
@@ -43,6 +47,9 @@ public class UserController {
     @Autowired
     private PermissionGroupService permissionGroupService;
 
+    @Autowired
+    private LogBehaviorPublistener logBehaviorPublistener;
+
     @RequestMapping("/userList")
     public String getUserList(){
         return "web/userControl/userList";
@@ -70,11 +77,12 @@ public class UserController {
      * @param userParams
      * @return
      */
-    //@Log1oneAnnotation(operationType = OperationType.SELECT,operands = OperationObjects.XIAOSAI_USER,uniqueValue = "{{user.userName}}")
+    //@Log1oneAnnotation(operationType = OperationType.SELECT,operands = OperationObjects.XIAOSAI_USER)
     @RequestMapping(value = "/userListData",method = RequestMethod.POST)
     @ResponseBody
     public R getListData(@RequestBody UserParams userParams){
         logger.info("用户信息请求参数："+userParams);
+        logBehaviorPublistener.publish(new LogInfo(0, OperationModule.TONGYONGPINGTAI.getModule(),OperationType.SELECT.getValue(),OperationObjects.XIAOSAI_USER.getValue(),userParams.toString()));
         PageHelper.startPage(userParams.getPage(),userParams.getLimit(),"id");
         PageInfo<User> userPageInfo = new PageInfo<>(userService.userListByUser(userParams));
         return new PageFormatConver(userPageInfo).isOK();

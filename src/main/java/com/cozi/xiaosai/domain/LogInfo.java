@@ -7,11 +7,11 @@ package com.cozi.xiaosai.domain;
  */
 
 public class LogInfo {
-    private int id;
+    private Integer id;
 //    操作者
     private String operator;
 //    操作模块
-    private String operationModule;
+    private Integer operationModule;
 //    操作类型
     private String operationType;
 //    操作对象
@@ -28,19 +28,23 @@ public class LogInfo {
     public LogInfo(){
     }
 
-    public LogInfo(int id,String operator,String operationModule,
-                   String operationType,String operands,String operationTime,String ip,String operationContent){
+    /**
+     *
+     * @param id
+     * @param operationModule 操作模块
+     * @param operationType 操作类型
+     * @param operands 对象
+     */
+    public LogInfo(Integer id,Integer operationModule,
+                   String operationType,String operands,String operationContent){
         this.id = id;
-        this.operator = operator;
         this.operationModule = operationModule;
         this.operationType = operationType;
         this.operands = operands;
-        this.operationTime = operationTime;
-        this.ip = ip;
         this.operationContent = operationContent;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -56,11 +60,11 @@ public class LogInfo {
         this.operator = operator;
     }
 
-    public String getOperationModule() {
+    public Integer getOperationModule() {
         return operationModule;
     }
 
-    public void setOperationModule(String operationModule) {
+    public void setOperationModule(Integer operationModule) {
         this.operationModule = operationModule;
     }
 

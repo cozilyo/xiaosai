@@ -1,12 +1,15 @@
 package com.cozi.xiaosai.controller.layuimini;
 
 import com.cozi.xiaosai.annotation.Log1oneAnnotation;
+import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.enums.OperationObjects;
 import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,11 +31,13 @@ public class layuiminiController {
         return "layuimini/page/user-setting";
     }
 
-    @Log1oneAnnotation(operationType = OperationType.UPDATE,operands = OperationObjects.XIAOSAI_USER,uniqueValue = "{{user.id}}")
+    //@Log1oneAnnotation(operationType = OperationType.UPDATE,operands = OperationObjects.XIAOSAI_USER,uniqueValue = "#{id}")
     @RequestMapping(value = "/userPassword",method = RequestMethod.GET)
+    @ResponseBody
     public String getUserPassword(User user){
 //        return R.isOk().data("layuimini/page/user-password").msg("修改密码").operands("xiaosai_user");
-        return "layuimini/page/user-password";
+        System.out.println("方法执行"+user);
+        return "";
     }
 
     @RequestMapping(value = "/welcome",method = RequestMethod.GET)
