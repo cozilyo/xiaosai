@@ -103,4 +103,14 @@ public class DistributionController {
         return distributionService.addMenuData(menuInfoPojo);
     }
 
+    /**
+     * 获取导航栏信息
+     * @return
+     */
+    @RequestMapping(value = "/navBarInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public R getNavBarInfo(){
+        return distributionService.getNavBarInfo();
+    }
+
 }

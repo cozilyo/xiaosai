@@ -57,10 +57,11 @@
                 {field: 'icon', title: '图标名称'},
                 {field: 'target', title: '目标'},
                 {field: 'navigationBarName', title: '导航标识'},
+                {field: 'id', title: '菜单id'},
                 {field: 'parentId', title: '父级id'},
                 {field: 'navId', title: '导航id'},
                 {field: 'navigationBarIndex', title: '导航排序'},
-                {field: 'authorityId', width: 80, align: 'center', title: '排序号'},
+                // {field: 'authorityId', width: 80, align: 'center', title: '排序号'},
                 {
                     field: 'isMenu', width: 80, align: 'center', templet: function (d) {
                         if (d.isMenu == 1) {

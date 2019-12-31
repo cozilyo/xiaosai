@@ -38,58 +38,71 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">目标</label>
-                <div class="layui-input-block">
-                    <input type="text" name="target" placeholder="请输入" autocomplete="off" class="layui-input">
+                <div class="layui-input-inline">
+                    <input type="text" id="target" name="target" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                    <select id="target_so" name="target_so" lay-filter="target_so">
+                        <option value="">请选择</option>
+                        <option value="_self">_self</option>
+                        <option value="_blank">_blank</option>
+                        <option value="_parent">_parent</option>
+                        <option value="_top">_top</option>
+                        <option value="framename">framename</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">导航标识</label>
-                <div class="layui-input-block">
-                    <input type="text" name="navigationBarName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                <div class="layui-input-inline">
+                    <input type="text" id="navigationBarName" name="navigationBarName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                    <select id="navigationBarName_so" name="navigationBarName_so" lay-filter="navigationBarName_so">
+                        <option value="">请选择</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">导航排序</label>
-                <div class="layui-input-block">
-                    <input type="text" name="navigationBarIndex" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                <div class="layui-input-inline">
+                    <input type="text" id="navigationBarIndex" name="navigationBarIndex" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                    <select id="navigationBarIndex_so" name="navigationBarIndex_so" lay-filter="navigationBarIndex_so">
+                        <option value="">请选择</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">导航id</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="navId" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" id="navId" name="navId" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
-                    <select name="interest" lay-filter="aihao">
-                        <option value=""></option>
-                        <option value="0">写作</option>
-                        <option value="1" selected="">阅读</option>
-                        <option value="2">游戏</option>
-                        <option value="3">音乐</option>
-                        <option value="4">旅行</option>
+                    <select id="navId_so" name="navId_so" lay-filter="navId_so">
+                        <option value="">请选择</option>
                     </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">父级id</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="parentId" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" id="parentId" name="parentId" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
-                    <select name="interest" lay-filter="aihao">
-                        <option value=""></option>
-                        <option value="0">写作</option>
-                        <option value="1" selected="">阅读</option>
-                        <option value="2">游戏</option>
-                        <option value="3">音乐</option>
-                        <option value="4">旅行</option>
+                    <select id="parentId_so" class="parentId_so" name="parentId_so" lay-filter="parentId_so">
+                        <option value="">请选择</option>
                     </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">是否按钮</label>
                 <div class="layui-input-block">
-                    <input type="text" name="isMenu" lay-verify="required" placeholder="1-是，其他不是" autocomplete="off" class="layui-input">
+<#--                    <input type="text" name="isMenu" lay-verify="required" placeholder="1-是，其他不是" autocomplete="off" class="layui-input">-->
+                    <input type="radio" name="isMenu" value="1" title="是" checked="">
+                    <input type="radio" name="isMenu" value="2" title="否">
+                    <input type="radio" name="isMenu" value="3" title="其他">
                 </div>
             </div>
             <div class="layui-form-item">

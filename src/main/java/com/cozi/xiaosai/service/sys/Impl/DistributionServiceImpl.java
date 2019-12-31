@@ -36,6 +36,11 @@ public class DistributionServiceImpl implements DistributionService {
     private List<MenuInfoPojo> listMenu = new ArrayList<>();
 
     @Override
+    public R getNavBarInfo() {
+        return R.isOk().data(distributionMapper.selectNavigationBar());
+    }
+
+    @Override
     public R getSidebarInfo() {
         Gson gson = new Gson();
         //如果缓存中存在，直接从缓存中获取
@@ -116,7 +121,10 @@ public class DistributionServiceImpl implements DistributionService {
             menuInfoPojo.setNavId(menuInfoPojo.getId());
             distributionMapper.insertSidebar(menuInfoPojo);
         }
-        return null;
+
+        //删除缓存
+        redisUtils.del(RedisPrefix.BAR.getPrefix());
+        return R.isOk();
     }
 
     /**
