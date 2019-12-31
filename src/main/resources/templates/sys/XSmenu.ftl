@@ -20,6 +20,7 @@
             <div class="layui-btn-group">
                 <button class="layui-btn" id="btn-expand">全部展开</button>
                 <button class="layui-btn" id="btn-fold">全部折叠</button>
+                <a class="layui-btn data-add-btn layui-menu-tips" href="/xiaosai/menuAdd" target="_self">添&#x3000;&#x3000;加</a>
             </div>
             <table id="munu-table" class="layui-table" lay-filter="munu-table"></table>
         </div>
@@ -56,6 +57,8 @@
                 {field: 'icon', title: '图标名称'},
                 {field: 'target', title: '目标'},
                 {field: 'navigationBarName', title: '导航标识'},
+                {field: 'parentId', title: '父级id'},
+                {field: 'navId', title: '导航id'},
                 {field: 'navigationBarIndex', title: '导航排序'},
                 {field: 'authorityId', width: 80, align: 'center', title: '排序号'},
                 {

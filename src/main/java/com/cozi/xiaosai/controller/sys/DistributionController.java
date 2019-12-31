@@ -4,6 +4,7 @@ import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.controller.web.userControl.UserController;
 import com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo;
 import com.cozi.xiaosai.service.sys.DistributionService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,11 @@ public class DistributionController {
         logger.info("id:"+id);
         model.addAttribute("id",id);
         return "sys/XSmenuEdit";
+    }
+
+    @RequestMapping(value = "/menuAdd",method = RequestMethod.GET)
+    public String getMenuAddHtml(){
+        return "sys/XSmenuAdd";
     }
 
     /**
@@ -83,6 +89,18 @@ public class DistributionController {
     public R editMenuData(@RequestBody MenuInfoPojo menuInfoPojo){
         logger.info("菜单管理编辑："+menuInfoPojo);
         return distributionService.editMenuData(menuInfoPojo);
+    }
+
+    /**
+     * 菜单管理添加
+     * @param menuInfoPojo
+     * @return
+     */
+    @RequestMapping(value = "/addMenuData",method = RequestMethod.POST)
+    @ResponseBody
+    public R addMenuData(@RequestBody MenuInfoPojo menuInfoPojo){
+        logger.info("菜单管理添加："+menuInfoPojo);
+        return distributionService.addMenuData(menuInfoPojo);
     }
 
 }

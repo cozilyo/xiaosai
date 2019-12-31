@@ -24,5 +24,20 @@ public interface DistributionMapper {
 
     MenuInfoPojo selectmenuEditData(@Param(value = "id") Integer id);
 
+    /**
+     * type为1，查导航栏记录表。为2，查侧边栏记录表 is为2，id为不等。 is为1，id为等
+     * @param menuInfoPojo
+     * @param type
+     * @param is
+     * @return
+     */
+    int selectCountByMenuInfoPojo(MenuInfoPojo menuInfoPojo,@Param(value = "type") Integer type,@Param(value = "is") Integer is);
+
+    int insertNavigationBar(MenuInfoPojo menuInfoPojo);
+
+    void insertSidebar(MenuInfoPojo menuInfoPojo);
+
+    int selectMixIndex();
+
 
 }

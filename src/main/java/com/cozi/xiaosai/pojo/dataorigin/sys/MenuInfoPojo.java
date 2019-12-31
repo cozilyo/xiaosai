@@ -27,6 +27,27 @@ public class MenuInfoPojo {
     private String createTime;
     private String modifyTime;
 
+    public MenuInfoPojo() {
+    }
+
+    public MenuInfoPojo(String navigationBarName) {
+        this.navigationBarName = navigationBarName;
+    }
+
+    public MenuInfoPojo(Integer navId, String navigationBarName) {
+        this.navId = navId;
+        this.navigationBarName = navigationBarName;
+    }
+
+    public MenuInfoPojo(Integer navigationBarIndex) {
+        this.navigationBarIndex = navigationBarIndex;
+    }
+
+    public MenuInfoPojo(String title, Integer parentId) {
+        this.title = title;
+        this.parentId = parentId;
+    }
+
     public Integer getId() {
         return id;
     }

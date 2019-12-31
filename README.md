@@ -1,6 +1,6 @@
 # xiaosai
 springboot+druid 多数据源
-#技术特色
+# 技术特色
 ```
 后端
 spring boot 2.2.1
@@ -15,6 +15,7 @@ mail
 redis
 redisTemplare
 pagehelper
+日志自定义监听事件
 ```
 ```
 前端
@@ -23,6 +24,6 @@ layui
 ```
 ![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/login.png)
 ![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/index.png)
-#有什么问题
+# 有什么问题
 请加入QQ:1877992566
 

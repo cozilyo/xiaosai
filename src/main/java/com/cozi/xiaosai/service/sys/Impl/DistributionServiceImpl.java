@@ -95,6 +95,30 @@ public class DistributionServiceImpl implements DistributionService {
         return R.isOk().msg("菜单管理编辑成功");
     }
 
+    @Override
+    public R addMenuData(MenuInfoPojo menuInfoPojo) {
+        if(StringUtils.isEmpty(menuInfoPojo.getNavigationBarName())||distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavigationBarName()),1,2)>0){
+            if(menuInfoPojo.getNavId().intValue()<=0||distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavId(),menuInfoPojo.getNavigationBarName()),1,1)<=0){
+                R.isFail().msg("导航id无效或与导航标识不一致！");
+            }
+        }
+        if(StringUtils.isEmpty(menuInfoPojo.getTitle())||distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getTitle(),menuInfoPojo.getParentId()),2,1)>0){
+            return R.isFail().msg("侧边栏名称不能为空或同级重复!");
+        }
+
+        //导航栏已存在
+        if(StringUtils.isNotEmpty(menuInfoPojo.getNavigationBarName())&&distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavigationBarName()),1,2)>0){
+            distributionMapper.insertSidebar(menuInfoPojo);
+        //导航不存在
+        }else {
+            menuInfoPojo.setNavigationBarIndex(distributionMapper.selectMixIndex()+1);
+            distributionMapper.insertNavigationBar(menuInfoPojo);
+            menuInfoPojo.setNavId(menuInfoPojo.getId());
+            distributionMapper.insertSidebar(menuInfoPojo);
+        }
+        return null;
+    }
+
     /**
      *构造菜单结构信息
      * @param list 所有数据

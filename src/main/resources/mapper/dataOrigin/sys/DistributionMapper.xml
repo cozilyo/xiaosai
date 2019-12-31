@@ -7,7 +7,8 @@
         ORDER BY navigationBarIndex
     </select>
     <select id="selectSidebar" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.SidebarPojo">
-        SELECT id,title,href,icon,target,parent_id parentId,nav_id navId,create_time createTime,modify_time modifyTime FROM xiaosai_sidebar
+        SELECT id,title,href,icon,target,parent_id parentId,nav_id navId,create_time createTime,modify_time modifyTime
+        FROM xiaosai_sidebar
         WHERE 1=1
         <if test="parentId != null">
             AND parent_id = #{parentId}
@@ -21,10 +22,65 @@
         FROM xiaosai_sidebar a,xiaosai_navigation_bar b
         WHERE a.nav_id = b.id
     </select>
-    <select id="selectmenuEditData" parameterType="integer" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo">
+    <select id="selectmenuEditData" parameterType="integer"
+            resultType="com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo">
         SELECT a.id,a.title,a.href,a.icon,a.target,a.parent_id parentId,a.nav_id navId,a.is_menu isMenu,b.navigation_bar_name navigationBarName,b.navigation_bar_index navigationBarIndex,a.create_time createTime,a.modify_time modifyTime
         FROM xiaosai_sidebar a,xiaosai_navigation_bar b
         WHERE a.nav_id = b.id AND a.id = #{id}
+    </select>
+    <select id="selectCountByMenuInfoPojo" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo"
+            resultType="int">
+        SELECT COUNT(1) FROM
+        <if test="type !=null and type==1">
+            xiaosai_navigation_bar
+            WHERE 1=1
+            <if test="navId != null and navId != '' and is ==1">
+                AND id=#{navId}
+            </if>
+            <if test="navId != null and navId != '' and is ==2">
+                AND id != #{navId}
+            </if>
+            <if test="navigationBarName !=null and navigationBarName != ''">
+                AND navigation_bar_name = #{navigationBarName}
+            </if>
+            <if test="navigationBarIndex !=null and navigationBarIndex != ''">
+                AND navigation_bar_index = #{navigationBarIndex}
+            </if>
+        </if>
+        <if test="type !=null and type==2">
+            xiaosai_sidebar
+            WHERE 1=1
+            <if test="parentId != null and is ==1">
+                AND parent_id = #{parentId}
+            </if>
+            <if test="parentId != null and is ==2">
+                AND parent_id != #{parentId}
+            </if>
+            <if test="title != null and title != ''">
+                AND title = #{title}
+            </if>
+            <if test="href !=null and href != ''">
+                AND href = #{href}
+            </if>
+            <if test="icon != null and icon != ''">
+                AND icon = #{icon}
+            </if>
+            <if test="target != null and target != ''">
+                AND target = #{target}
+            </if>
+        </if>
+
+    </select>
+    <insert id="insertNavigationBar" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo" useGeneratedKeys="true" keyProperty="id">
+         INSERT INTO xiaosai_navigation_bar (navigation_bar_name,navigation_bar_index,create_time,modify_time) VALUES
+         (#{navigationBarName},#{navigationBarIndex},NOW(),NOW())
+    </insert>
+    <insert id="insertSidebar" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo">
+         INSERT INTO xiaosai_sidebar (title,href,icon,target,is_menu,parent_id,nav_id,create_time,modify_time) VALUES
+         (#{title},#{href},#{icon},#{target},#{isMenu},#{parentId},#{navId},NOW(),NOW())
+    </insert>
+    <select id="selectMixIndex" resultType="int">
+        SELECT MAX(navigation_bar_index) FROM xiaosai_navigation_bar
     </select>
 
 </mapper>
