@@ -24,6 +24,8 @@ layui
 ```
 ![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/login.png)
 ![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/index.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/userList.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/userpermission.png)
 ![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/menu.png)
 ![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/menuadd.png)
 # 有什么问题
