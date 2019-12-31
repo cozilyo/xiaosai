@@ -1,9 +1,7 @@
 package com.cozi.xiaosai.controller.web.userControl;
 
-import com.cozi.xiaosai.annotation.Log1oneAnnotation;
 import com.cozi.xiaosai.common.PageFormatConver;
 import com.cozi.xiaosai.common.R;
-import com.cozi.xiaosai.common.SetAnnotationValue;
 import com.cozi.xiaosai.domain.LogInfo;
 import com.cozi.xiaosai.enums.OperationModule;
 import com.cozi.xiaosai.enums.OperationObjects;
@@ -17,7 +15,6 @@ import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.web.PermissionGroupService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Spliterator;
 
 /**
  * @Author xiaosai

@@ -1,10 +1,8 @@
 package com.cozi.xiaosai.controller.sys;
 
 import com.cozi.xiaosai.common.R;
-import com.cozi.xiaosai.controller.web.userControl.UserController;
 import com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo;
 import com.cozi.xiaosai.service.sys.DistributionService;
-import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
