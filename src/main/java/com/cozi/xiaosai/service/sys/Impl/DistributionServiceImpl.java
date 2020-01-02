@@ -6,6 +6,8 @@ import com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo;
 import com.cozi.xiaosai.pojo.dataorigin.sys.NavigationBarPojo;
 import com.cozi.xiaosai.pojo.dataorigin.sys.SidebarPojo;
 import com.cozi.xiaosai.service.sys.DistributionService;
+import com.cozi.xiaosai.util.redis.RedisKey;
+import com.cozi.xiaosai.util.redis.RedisUtils;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +43,7 @@ public class DistributionServiceImpl implements DistributionService {
     public R getSidebarInfo() {
         Gson gson = new Gson();
         //如果缓存中存在，直接从缓存中获取
-        List<Map<String, Object>> Listdata = (List<Map<String, Object>>)gson.fromJson((String) redisUtils.get(RedisPrefix.BAR.getPrefix(), 2),List.class);
+        List<Map<String, Object>> Listdata = (List<Map<String, Object>>)redisUtils.get(RedisKey.BAR.getKey());
         if(Listdata!=null&&Listdata.size()>0){
             return R.isOk().data(Listdata);
         }
@@ -54,18 +56,18 @@ public class DistributionServiceImpl implements DistributionService {
             list.add(sideBar);
         }
         //缓存侧边栏信息
-        redisUtils.set(RedisPrefix.BAR.getPrefix(),gson.toJson(list),2);
+        redisUtils.set(RedisKey.BAR.getKey(),list);
 
         return R.isOk().data(list);
     }
 
     @Override
     public R getMenuInfo() {
-       /* Gson gson = new Gson();
-        List<MenuInfoPojo> listCache = gson.fromJson((String)redisUtils.get(RedisPrefix.MENU.getPrefix(), 2),List.class);
+        Gson gson = new Gson();
+        List<MenuInfoPojo> listCache = (List<MenuInfoPojo>) redisUtils.get(RedisKey.MENU.getKey());
         if(listCache!=null&&listCache.size()>0){
             return R.isOk().data(listCache);
-        }*/
+        }
 
         //每次重新获取，清空集合
         listMenu.clear();
@@ -82,7 +84,7 @@ public class DistributionServiceImpl implements DistributionService {
             }
         }
 
-        //redisUtils.set(RedisPrefix.MENU.getPrefix(),gson.toJson(listMenu),2);
+        redisUtils.set(RedisKey.MENU.getKey(),listMenu);
 
         return R.isOk().data(listMenu).count(listMenu.size());
     }
@@ -121,7 +123,7 @@ public class DistributionServiceImpl implements DistributionService {
         /*}*/
 
         //删除缓存
-        redisUtils.del(RedisPrefix.BAR.getPrefix());
+        //redisUtils.del(RedisPrefix.BAR.getPrefix());
         return R.isOk();
     }
 

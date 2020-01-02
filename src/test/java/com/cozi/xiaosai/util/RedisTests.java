@@ -1,5 +1,6 @@
 package com.cozi.xiaosai.util;
 
+import com.cozi.xiaosai.util.redis.RedisUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,9 +18,6 @@ public class RedisTests {
     @Autowired
     private RedisUtils redisUtils;
 
-    @Autowired
-    private RedisTemplate redisTemplate;
-
     @Test
     public void test(){
        /* List<Map<String,Object>> list = new ArrayList<>();
@@ -29,9 +27,8 @@ public class RedisTests {
         list.add(map);
         redisUtils.set("dffa",list,3);*/
 
-        System.out.println(RedisPrefix.BAR.getPrefix());
-        /*redisUtils.del(RedisPrefix.BAR.getPrefix());*/
-        redisTemplate.delete(RedisPrefix.BAR.getPrefix());
+       //redisUtils.set("fdsaf","fdsafdsjgoijweqij结防斯卡迪甲方开具收款富士达福建师大看见了看见就分手了打卡健康减肥连锁店看快捷方式打了卡jlkdsjafjsalk jlk");
+        redisUtils.del("fdsaf");
 
     }
 

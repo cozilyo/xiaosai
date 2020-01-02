@@ -9,6 +9,7 @@ import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.tool.MailSendService;
 import com.cozi.xiaosai.util.NumberUtil;
 import com.cozi.xiaosai.util.RandomValidateCodeUtil;
+import com.cozi.xiaosai.util.redis.RedisUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +76,7 @@ public class LoginController {
             response.setDateHeader("Expire", 0);
             //随机生成验证码，并放入redis中
             String stringRandom = NumberUtil.getStringRandom(5);
-            redisUtils.set(stringRandom.toUpperCase(),"登入验证码",30L,1);
+            redisUtils.set(stringRandom.toUpperCase(),"登入验证码",30L);
             RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
             randomValidateCode.getRandcode(request, response,stringRandom);
             //输出验证码图片方法
@@ -87,7 +88,7 @@ public class LoginController {
     @RequestMapping(value = "/checkVerify")
     @ResponseBody
     public Map<String,Object> checkVerify(@RequestParam(value = "verifyInput") String verifyInput){
-        if(redisUtils.get(verifyInput.toUpperCase(), 1)!=null&&StaticValues.verify_code.equals(redisUtils.get(verifyInput.toUpperCase(), 1).toString())){
+        if(redisUtils.get(verifyInput.toUpperCase())!=null&&StaticValues.verify_code.equals(redisUtils.get(verifyInput.toUpperCase()).toString())){
             return ReturnMap.successResponse();
         }else {
             return ReturnMap.failureResponse();
@@ -159,7 +160,7 @@ public class LoginController {
         }
         logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
         //验证码有效
-        if(redisUtils.get(captcha.toUpperCase(), 1)!=null&&StaticValues.verify_code.equals(redisUtils.get(captcha.toUpperCase(), 1).toString())){
+        if(redisUtils.get(captcha.toUpperCase())!=null&&StaticValues.verify_code.equals(redisUtils.get(captcha.toUpperCase()).toString())){
             Map<String, Object> map = loginService.userLogin(user, captcha,request, response);
             if(map.get("return_code").equals(1)){
                 return "redirect:/xiaosai/index";
