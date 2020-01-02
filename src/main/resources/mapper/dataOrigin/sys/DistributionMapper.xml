@@ -34,10 +34,10 @@
         <if test="type !=null and type==1">
             xiaosai_navigation_bar
             WHERE 1=1
-            <if test="navId != null and navId != '' and is ==1">
+            <if test="navId != null and navId != '' and navId != 0 and is ==1">
                 AND id=#{navId}
             </if>
-            <if test="navId != null and navId != '' and is ==2">
+            <if test="navId != null and navId != '' and navId != 0 and is ==2">
                 AND id != #{navId}
             </if>
             <if test="navigationBarName !=null and navigationBarName != ''">

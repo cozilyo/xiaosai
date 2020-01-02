@@ -35,7 +35,12 @@ public class MenuInfoPojo {
     }
 
     public MenuInfoPojo(Integer navId, String navigationBarName) {
-        this.navId = navId;
+        if(navId!=null){
+            this.navId = navId;
+        }else {
+            this.navId = 0;
+        }
+
         this.navigationBarName = navigationBarName;
     }
 

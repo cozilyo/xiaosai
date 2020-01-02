@@ -9,7 +9,6 @@ import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.tool.MailSendService;
 import com.cozi.xiaosai.util.NumberUtil;
 import com.cozi.xiaosai.util.RandomValidateCodeUtil;
-import com.cozi.xiaosai.util.redis.RedisUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

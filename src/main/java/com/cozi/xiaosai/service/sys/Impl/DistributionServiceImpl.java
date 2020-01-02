@@ -6,10 +6,7 @@ import com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo;
 import com.cozi.xiaosai.pojo.dataorigin.sys.NavigationBarPojo;
 import com.cozi.xiaosai.pojo.dataorigin.sys.SidebarPojo;
 import com.cozi.xiaosai.service.sys.DistributionService;
-import com.cozi.xiaosai.util.redis.RedisPrefix;
-import com.cozi.xiaosai.util.redis.RedisUtils;
 import com.google.gson.Gson;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,25 +99,26 @@ public class DistributionServiceImpl implements DistributionService {
 
     @Override
     public R addMenuData(MenuInfoPojo menuInfoPojo) {
-        if(StringUtils.isEmpty(menuInfoPojo.getNavigationBarName())||distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavigationBarName()),1,2)>0){
+        /*if(StringUtils.isEmpty(menuInfoPojo.getNavigationBarName())||distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavigationBarName()),1,2)>0){
             if(menuInfoPojo.getNavId().intValue()<=0||distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavId(),menuInfoPojo.getNavigationBarName()),1,1)<=0){
                 R.isFail().msg("导航id无效或与导航标识不一致！");
             }
-        }
-        if(StringUtils.isEmpty(menuInfoPojo.getTitle())||distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getTitle(),menuInfoPojo.getParentId()),2,1)>0){
+        }*/
+        /*if(StringUtils.isEmpty(menuInfoPojo.getTitle())||distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getTitle(),menuInfoPojo.getParentId()),2,1)>0){
             return R.isFail().msg("侧边栏名称不能为空或同级重复!");
-        }
+        }*/
 
+        System.out.println(new MenuInfoPojo(menuInfoPojo.getNavigationBarName()));
         //导航栏已存在
-        if(StringUtils.isNotEmpty(menuInfoPojo.getNavigationBarName())&&distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavigationBarName()),1,2)>0){
+        /*if(StringUtils.isNotEmpty(menuInfoPojo.getNavigationBarName())&&distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavigationBarName()),1,2)>0){
             distributionMapper.insertSidebar(menuInfoPojo);
         //导航不存在
-        }else {
+        }else {*/
             menuInfoPojo.setNavigationBarIndex(distributionMapper.selectMixIndex()+1);
             distributionMapper.insertNavigationBar(menuInfoPojo);
             menuInfoPojo.setNavId(menuInfoPojo.getId());
             distributionMapper.insertSidebar(menuInfoPojo);
-        }
+        /*}*/
 
         //删除缓存
         redisUtils.del(RedisPrefix.BAR.getPrefix());

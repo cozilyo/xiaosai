@@ -27,13 +27,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">菜单地址</label>
                 <div class="layui-input-block">
-                    <input type="text" name="href" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="href" placeholder="请输入" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">图标名称</label>
                 <div class="layui-input-block">
-                    <input type="text" name="icon" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="icon" lay-verify="required" placeholder="请输入" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -55,7 +55,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">导航标识</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="navigationBarName" name="navigationBarName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" id="navigationBarName" name="navigationBarName" lay-verify="required" placeholder="请输入" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
                     <select id="navigationBarName_so" name="navigationBarName_so" lay-filter="navigationBarName_so">
@@ -77,7 +77,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">导航id</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="navId" name="navId" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" id="navId" name="navId" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
                     <select id="navId_so" name="navId_so" lay-filter="navId_so">
