@@ -38,6 +38,7 @@ public class LogBehaviorListener {
             String ipAddr = IpUtil.getIpAddr(request);
 
             logInfo.setIp(ipAddr);
+
             logInfo.setOperator("admin");
 
             log1oneService.addLog(logInfo);
