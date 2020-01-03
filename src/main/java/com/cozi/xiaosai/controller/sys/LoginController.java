@@ -52,11 +52,20 @@ public class LoginController {
     @Autowired
     private RedisUtils redisUtils;
 
+    /**
+     * 登录页
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String getLoginHtml(Model model){
         return "sys/XSlogin";
     }
 
+    /**
+     * 注册页
+     * @return
+     */
     @RequestMapping(value = "/regis",method = RequestMethod.GET)
     public String getRegisterHtml(){
         return "sys/XSregister";

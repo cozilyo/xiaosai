@@ -95,7 +95,21 @@
             var layEvent = obj.event;
 
             if (layEvent === 'del') {
-                layer.msg('删除' + data.id);
+                $.ajax({
+                    async: false,
+                    type: 'POST',
+                    url: '/xiaosai/delBarInfo',
+                    data:{
+                        id: data.id
+                    },
+                    success: function (val) {
+                        if (val.code == 0) {
+                            window.location = "/xiaosai/menuList";
+                        }else {
+                            layer.msg(val.msg);
+                        }
+                    }
+                });
             } else if (layEvent === 'edit') {
                 window.location = "/xiaosai/menuEdit?id="+data.id;
             }

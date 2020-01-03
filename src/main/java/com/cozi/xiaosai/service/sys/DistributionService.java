@@ -42,4 +42,6 @@ public interface DistributionService {
     R editMenuData(MenuInfoPojo menuInfoPojo);
 
     R addMenuData(MenuInfoPojo menuInfoPojo);
+
+    R delBarInfo(Integer id);
 }

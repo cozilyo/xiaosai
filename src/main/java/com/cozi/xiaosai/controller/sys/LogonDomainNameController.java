@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class LogonDomainNameController {
+
+    /**
+     *可通过域名加端口访问
+     * @return
+     */
+
     @RequestMapping("/")
     public String getLogin(){
         return "sys/XSlogin";

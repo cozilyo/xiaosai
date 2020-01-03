@@ -28,45 +28,53 @@
         FROM xiaosai_sidebar a,xiaosai_navigation_bar b
         WHERE a.nav_id = b.id AND a.id = #{id}
     </select>
+    <update id="updatemenuinfo" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo">
+        UPDATE xiaosai_sidebar SET
+        title = #{title},
+        href = #{href},
+        icon = #{icon},
+        target = #{target}
+        WHERE id = #{id}
+    </update>
     <select id="selectCountByMenuInfoPojo" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo"
             resultType="int">
         SELECT COUNT(1) FROM
         <if test="type !=null and type==1">
             xiaosai_navigation_bar
             WHERE 1=1
-            <if test="navId != null and navId != '' and navId != 0 and is ==1">
-                AND id=#{navId}
+            <if test="mi.navId != null and mi.navId != '' and mi.navId != 0 and is ==1">
+                AND id=#{mi.navId}
             </if>
-            <if test="navId != null and navId != '' and navId != 0 and is ==2">
-                AND id != #{navId}
+            <if test="mi.navId != null and mi.navId != '' and mi.navId != 0 and is ==2">
+                AND id != #{mi.navId}
             </if>
-            <if test="navigationBarName !=null and navigationBarName != ''">
-                AND navigation_bar_name = #{navigationBarName}
+            <if test="mi.navigationBarName !=null and mi.navigationBarName != ''">
+                AND navigation_bar_name = #{mi.navigationBarName}
             </if>
-            <if test="navigationBarIndex !=null and navigationBarIndex != ''">
-                AND navigation_bar_index = #{navigationBarIndex}
+            <if test="mi.navigationBarIndex !=null and mi.navigationBarIndex != ''">
+                AND navigation_bar_index = #{mi.navigationBarIndex}
             </if>
         </if>
         <if test="type !=null and type==2">
             xiaosai_sidebar
             WHERE 1=1
-            <if test="parentId != null and is ==1">
-                AND parent_id = #{parentId}
+            <if test="mi.parentId != null and is ==1">
+                AND parent_id = #{mi.parentId}
             </if>
-            <if test="parentId != null and is ==2">
-                AND parent_id != #{parentId}
+            <if test="mi.parentId != null and is ==2">
+                AND parent_id != #{mi.parentId}
             </if>
-            <if test="title != null and title != ''">
-                AND title = #{title}
+            <if test="mi.title != null and mi.title != ''">
+                AND title = #{mi.title}
             </if>
-            <if test="href !=null and href != ''">
-                AND href = #{href}
+            <if test="mi.href !=null and mi.href != ''">
+                AND href = #{mi.href}
             </if>
-            <if test="icon != null and icon != ''">
-                AND icon = #{icon}
+            <if test="mi.icon != null and mi.icon != ''">
+                AND icon = #{mi.icon}
             </if>
-            <if test="target != null and target != ''">
-                AND target = #{target}
+            <if test="mi.target != null and mi.target != ''">
+                AND target = #{mi.target}
             </if>
         </if>
 
@@ -82,5 +90,12 @@
     <select id="selectMixIndex" resultType="int">
         SELECT MAX(navigation_bar_index) FROM xiaosai_navigation_bar
     </select>
+    <delete id="deleteBar" parameterType="integer">
+        DELETE FROM xiaosai_navigation_bar WHERE id = #{navId}
+        DELETE FROM xiaosai_sidebar WHERE nav_id = #{navId}
+    </delete>
+    <delete id="deleteBarByidAndnavid" parameterType="string">
+        DELETE FROM xiaosai_sidebar WHERE id IN (${ids})
+    </delete>
 
 </mapper>

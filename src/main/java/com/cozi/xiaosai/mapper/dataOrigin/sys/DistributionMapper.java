@@ -22,7 +22,18 @@ public interface DistributionMapper {
 
     List<MenuInfoPojo> selectMenuInfoList();
 
+    /**
+     * 通过id查出边栏信息
+     * @param id
+     * @return
+     */
     MenuInfoPojo selectmenuEditData(@Param(value = "id") Integer id);
+
+    /**
+     * 更新边栏信息
+     * @param menuInfoPojo
+     */
+    void updatemenuinfo(MenuInfoPojo menuInfoPojo);
 
     /**
      * type为1，查导航栏记录表。为2，查侧边栏记录表 is为2，id为不等。 is为1，id为等
@@ -31,13 +42,17 @@ public interface DistributionMapper {
      * @param is
      * @return
      */
-    int selectCountByMenuInfoPojo(MenuInfoPojo menuInfoPojo,@Param(value = "type") Integer type,@Param(value = "is") Integer is);
+    int selectCountByMenuInfoPojo(@Param(value = "mi") MenuInfoPojo menuInfoPojo,@Param(value = "type") Integer type,@Param(value = "is") Integer is);
 
     int insertNavigationBar(MenuInfoPojo menuInfoPojo);
 
     void insertSidebar(MenuInfoPojo menuInfoPojo);
 
     int selectMixIndex();
+
+    void deleteBar(@Param(value = "navId") Integer navId);
+
+    void deleteBarByidAndnavid(@Param(value = "ids") String ids);
 
 
 }

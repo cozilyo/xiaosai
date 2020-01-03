@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/xiaosai")
 public class TimeManageController {
 
+    /**
+     * 时间管理列表页
+     * @return
+     */
     @RequestMapping("/timeList")
     public String getTimeListHtml(){
         return "web/timemanage/timeList";

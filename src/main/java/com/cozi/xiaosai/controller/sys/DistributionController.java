@@ -26,12 +26,22 @@ public class DistributionController {
     @Autowired
     private DistributionService distributionService;
 
+    /**
+     * 菜单管理列表页
+     * @return
+     */
     @RequestMapping(value = "/menuList",method = RequestMethod.GET)
     public String getMenuHTML(){
 
         return "sys/XSmenu";
     }
 
+    /**
+     * 菜单编辑页
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/menuEdit",method = RequestMethod.GET)
     public String getMenuEditHtml(@RequestParam(value = "id") Integer id, Model model){
         logger.info("id:"+id);
@@ -39,6 +49,10 @@ public class DistributionController {
         return "sys/XSmenuEdit";
     }
 
+    /**
+     * 菜单管理添加页
+     * @return
+     */
     @RequestMapping(value = "/menuAdd",method = RequestMethod.GET)
     public String getMenuAddHtml(){
         return "sys/XSmenuAdd";
@@ -109,6 +123,17 @@ public class DistributionController {
     @ResponseBody
     public R getNavBarInfo(){
         return distributionService.getNavBarInfo();
+    }
+
+    /**
+     * 删除导航栏或侧边栏信息
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/delBarInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public R delBarInfo(@RequestParam(value = "id") Integer id){
+        return distributionService.delBarInfo(id);
     }
 
 }

@@ -44,21 +44,39 @@ public class UserController {
     @Autowired
     private LogBehaviorPublistener logBehaviorPublistener;
 
+    /**
+     * 用户列表页
+     * @return
+     */
     @RequestMapping("/userList")
     public String getUserList(){
         return "web/userControl/userList";
     }
 
+    /**
+     * 权限组列表页
+     * @return
+     */
     @RequestMapping("/PermissionGroupList")
     public String getPermissionGroupList(){
         return "web/userControl/permissionGroupList";
     }
 
+    /**
+     * 权限组添加页
+     * @return
+     */
     @RequestMapping("/PermissionGroupAdd")
     public String getPermissionGroupAdd(){
         return "web/userControl/permissionGroupAdd";
     }
 
+    /**
+     * 权限组编辑页
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("/PermissionGroupEdit")
     public String getPermissionGroupEdit(@RequestParam(value = "id") Integer id, Model model){
         logger.info("id:"+id);
