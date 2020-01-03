@@ -25,27 +25,27 @@
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户名</label>
+                            <label class="layui-form-label">昵称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="userName" autocomplete="off" class="layui-input">
+                                <input type="text" name="nickname" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">手机号</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="telephone" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">邮箱</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="mail" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">住址</label>
+                            <label class="layui-form-label">地点</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="address" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">事件</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="incident" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="createTime" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -58,7 +58,8 @@
         </fieldset>
 
         <div class="layui-btn-group">
-            <button class="layui-btn data-add-btn">添加</button>
+<#--            <button class="layui-btn data-add-btn">添加</button>-->
+            <a class="layui-btn data-add-btn layui-menu-tips" href="/xiaosai/timeManageAdd" target="_self">添加</a>
             <button class="layui-btn layui-btn-danger data-delete-btn" style="margin-left: 10px !important;">批量删除</button>
         </div>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
@@ -69,7 +70,7 @@
     </div>
 </div>
 <script src="../layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
-<script src="../js/web/userControl/userList.js" ></script>
+<script src="../js/web/timemanage/timeList.js" ></script>
 
 </body>
 </html>

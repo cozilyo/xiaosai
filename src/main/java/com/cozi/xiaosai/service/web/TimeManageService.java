@@ -1,5 +1,7 @@
 package com.cozi.xiaosai.service.web;
 
+import com.cozi.xiaosai.common.R;
+
 /**
  * @author xiaosai
  * @version 1.0
@@ -8,4 +10,5 @@ package com.cozi.xiaosai.service.web;
  */
 
 public interface TimeManageService {
+    R getTimeList();
 }

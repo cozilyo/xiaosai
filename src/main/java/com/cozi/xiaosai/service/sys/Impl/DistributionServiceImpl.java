@@ -175,8 +175,7 @@ public class DistributionServiceImpl implements DistributionService {
 
 
     /**
-     * 查找所有下级id
-     *
+     * 查找所有下级id-递归
      * @param menuInfoPojos
      * @param id
      * @return

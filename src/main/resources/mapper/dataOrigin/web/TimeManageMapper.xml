@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cozi.xiaosai.mapper.dataOrigin.web.TimeManageMapper">
+      <select id="selectTimeManage" resultType="com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo">
+          SELECT id,name,nickname,address,incident,accomplishment,step_do stepDo,start_time startTime,end_time endTime,create_time createTime,modify_time modifyTime FROM xiaosai_time_manage
+      </select>
+</mapper>
