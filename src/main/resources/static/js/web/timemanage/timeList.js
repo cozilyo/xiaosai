@@ -75,9 +75,9 @@ layui.use(['form','layer', 'table'], function () {
 
 
     // 监听添加操作
-    $(".data-add-btn").on("click", function () {
-        layer.msg('用户添加请前往注册');
-    });
+    // $(".data-add-btn").on("click", function () {
+    //     layer.msg('用户添加请前往注册');
+    // });
 
     // 监听删除操作
     $(".data-delete-btn").on("click", function () {
@@ -114,12 +114,14 @@ layui.use(['form','layer', 'table'], function () {
                             }
                         });
                     } else {
-                        layer.msg('用户删除失败！')
+                        // layer.msg('用户删除失败！')
+                        Swal.fire('用户删除失败！');
                     }
                 }
             })
         }else {
-            layer.msg('请选择！')
+            // layer.msg('请选择！')
+            Swal.fire('请选择！');
         }
 
     });
@@ -132,7 +134,7 @@ layui.use(['form','layer', 'table'], function () {
     table.on('tool(currentTableFilter)', function (obj) {
         var data = obj.data;
         if (obj.event === 'edit') {
-            layer.alert('编辑行：<br>' + JSON.stringify(data))
+            window.location = "/xiaosai/timeManageEdit?id="+data.id;
         } else if (obj.event === 'delete') {
             layer.confirm('真的删除行么', function (index) {
                 obj.del();

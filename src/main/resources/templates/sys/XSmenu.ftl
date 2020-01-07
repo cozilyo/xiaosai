@@ -5,6 +5,8 @@
     <title>menu</title>
     <link rel="stylesheet" href="../layuimini/lib/layui-v2.5.4/css/layui.css" media="all">
     <link rel="stylesheet" href="../layuimini/css/public.css" media="all">
+<#--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>-->
+
     <style>
         .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
             height: 34px;
@@ -34,6 +36,7 @@
 
 <script src="../layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../layuimini/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../js/sweetalert2.9.5.4.all.js"></script>
 <script src="../js/sys/menu.js"></script>
 </body>
 </html>

@@ -26,7 +26,6 @@ import java.util.List;
 //@Configuration
 public class WebAppConfig implements WebMvcConfigurer {
 
-    //
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //对于静态文件，直接放过
@@ -35,7 +34,10 @@ public class WebAppConfig implements WebMvcConfigurer {
         registry.addInterceptor(new XsHandlerInterceptor()).excludePathPatterns("/layuimini/**").excludePathPatterns("/js/**").excludePathPatterns("/css/**");
     }
 
-    //资源
+    /**
+     * 资源
+     * @param registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/layuimini/");

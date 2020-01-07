@@ -82,7 +82,8 @@ layui.use(['form','layer', 'table'], function () {
 
     // 监听添加操作
     $(".data-add-btn").on("click", function () {
-        layer.msg('用户添加请前往注册');
+        // layer.msg('用户添加请前往注册');
+        Swal.fire('用户添加请前往注册');
     });
 
     // 监听删除操作
@@ -104,7 +105,6 @@ layui.use(['form','layer', 'table'], function () {
                 },
                 success: function (result) {
                     if (result.code == 0) {
-                        layer.msg('用户删除成功')
                         //执行重载
                         table.reload('tableReload', {
                             url:"/xiaosai/userListData",
@@ -120,12 +120,14 @@ layui.use(['form','layer', 'table'], function () {
                             }
                         });
                     } else {
-                        layer.msg('用户删除失败！')
+                        // layer.msg('用户删除失败！')
+                        Swal.fire('用户删除失败！');
                     }
                 }
             })
         }else {
-            layer.msg('请选择！')
+            // layer.msg('请选择！')
+            Swal.fire('请选择！');
         }
 
     });

@@ -5,4 +5,25 @@
       <select id="selectTimeManage" resultType="com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo">
           SELECT id,name,nickname,address,incident,accomplishment,step_do stepDo,start_time startTime,end_time endTime,create_time createTime,modify_time modifyTime FROM xiaosai_time_manage
       </select>
+      <insert id="insertTimeManage" parameterType="com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo">
+          INSERT INTO xiaosai_time_manage (name,nickname,address,incident,accomplishment,step_do,start_time,end_time,create_time,modify_time)
+          VALUES (#{name},#{nickname},#{address},#{incident},#{accomplishment},#{stepDo},#{startTime},#{endTime},NOW(),NOW())
+      </insert>
+      <select id="selectTimeManById" parameterType="integer" resultType="com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo">
+          SELECT id,name,nickname,address,incident,accomplishment,step_do stepDo,start_time startTime,end_time endTime,create_time createTime,modify_time modifyTime FROM xiaosai_time_manage
+          WHERE id = #{id}
+      </select>
+      <select id="updateTimeManage" parameterType="com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo">
+          UPDATE xiaosai_time_manage SET
+          name=#{name},
+          nickname=#{nickname},
+          address=#{address},
+          incident=#{incident},
+          accomplishment = #{accomplishment},
+          step_do=#{stepDo},
+          start_time=#{startTime},
+          end_time=#{endTime}
+          WHERE id =#{id}
+      </select>
+
 </mapper>

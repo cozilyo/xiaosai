@@ -17,7 +17,7 @@
             <legend>时间管理添加</legend>
         </fieldset>
 
-        <form class="layui-form" action="">
+        <form class="layui-form" action="" lay-filter="pg">
             <div class="layui-form-item">
                 <label class="layui-form-label">姓名</label>
                 <div class="layui-input-block">
@@ -66,18 +66,6 @@
                     <input type="text" id="endTime" name="endTime" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <#--<div class="layui-form-item">
-                <label class="layui-form-label">创建时间</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="createTime" name="createTime" placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">修改时间</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="modifyTime" name="modifyTime" placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
-            </div>-->
             <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button class="layui-btn" lay-submit="" lay-filter="data-submit-btn">立即保存</button>
@@ -89,8 +77,10 @@
     </div>
 </div>
 
+<input type="hidden" id="timeManageId" value="${id}">
+
 <script src="../layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
-<script src="../js/web/timemanage/timeManageAdd.js"></script>
+<script src="../js/web/timemanage/timeManageEdit.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
 </body>

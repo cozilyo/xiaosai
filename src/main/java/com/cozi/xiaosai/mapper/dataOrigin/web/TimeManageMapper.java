@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.mapper.dataOrigin.web;
 
 import com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,4 +18,14 @@ public interface TimeManageMapper {
      * @return
      */
     List<TimeManagePojo> selectTimeManage();
+
+    /**
+     * 添加时间管理
+     * @param timeManagePojo
+     */
+    void insertTimeManage(TimeManagePojo timeManagePojo);
+
+    TimeManagePojo selectTimeManById(@Param(value = "id") Integer id);
+
+    void updateTimeManage(TimeManagePojo timeManagePojo);
 }

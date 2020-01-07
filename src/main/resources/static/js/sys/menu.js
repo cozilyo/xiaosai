@@ -59,21 +59,38 @@ layui.use(['table', 'treetable'], function () {
     table.on('tool(munu-table)', function (obj) {
         var data = obj.data;
         var layEvent = obj.event;
-
+        console.log(data)
         if (layEvent === 'del') {
-            $.ajax({
-                async: false,
-                type: 'POST',
-                url: '/xiaosai/delBarInfo',
-                data:{
-                    id: data.id
-                },
-                success: function (val) {
-                    if (val.code == 0) {
-                        window.location = "/xiaosai/menuList";
-                    }else {
-                        layer.msg(val.msg);
-                    }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "是否删除--“"+data.title+"”",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        async: false,
+                        type: 'POST',
+                        url: '/xiaosai/delBarInfo',
+                        data:{
+                            id: data.id
+                        },
+                        success: function (val) {
+                            if (val.code == 0) {
+                                /*Swal.fire(
+                                    'Deleted!',
+                                    '您已经删除了“'+data.title+'”菜单项！',
+                                    'success'
+                                )*/
+                                window.location = "/xiaosai/menuList";
+                            }else {
+                                layer.msg(val.msg);
+                            }
+                        }
+                    });
                 }
             });
         } else if (layEvent === 'edit') {

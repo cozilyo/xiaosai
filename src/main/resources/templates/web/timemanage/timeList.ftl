@@ -70,6 +70,7 @@
     </div>
 </div>
 <script src="../layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script src="../js/sweetalert2.9.5.4.all.js"></script>
 <script src="../js/web/timemanage/timeList.js" ></script>
 
 </body>

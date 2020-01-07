@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../layuimini/lib/layui-v2.5.4/css/layui.css" media="all">
     <link rel="stylesheet" href="../layuimini/css/public.css" media="all">
+<#--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>-->
 </head>
 <body>
 <div class="layuimini-container">
@@ -70,6 +71,7 @@
 </div>
 <script src="../layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../js/web/userControl/userList.js" ></script>
+<script src="../js/sweetalert2.9.5.4.all.js"></script>
 
 </body>
 </html>

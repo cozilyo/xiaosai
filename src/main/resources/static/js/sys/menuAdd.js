@@ -79,11 +79,11 @@ layui.use(['form', 'layedit', 'laydate'], function () {
             data: JSON.stringify(params),
             success: function (val) {
                 if (val.code == 0) {
-                    layer.msg(val.msg);
                     //执行重载
                     window.location = "/xiaosai/menuList";
                 } else {
-                    layer.msg(val.msg);
+                    /*layer.msg(val.msg);*/
+                    Swal.fire(val.msg);
                 }
             }
         })
