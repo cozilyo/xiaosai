@@ -282,37 +282,31 @@
                             <tr>
                                 <td>框架名称</td>
                                 <td>
-                                    layuimini
+
                                 </td>
                             </tr>
                             <tr>
                                 <td>当前版本</td>
-                                <td>v1.0.4</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>主要特色</td>
-                                <td>零门槛 / 响应式 / 清爽 / 极简</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>演示地址</td>
                                 <td>
-                                    iframe版：<a href="http://layuimini.99php.cn/" target="_blank">点击查看</a><br>
-                                    单页版：<a href="http://layuimini-onepage.99php.cn" target="_blank">点击查看</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>下载地址</td>
                                 <td>
-                                    iframe版：<a href="https://github.com/zhongshaofa/layuimini" target="_blank">github</a> / <a href="https://gitee.com/zhongshaofa/layuimini" target="_blank">gitee</a><br>
-                                    单页版：<a href="https://github.com/zhongshaofa/layuimini/tree/onepage" target="_blank">github</a> / <a href="https://gitee.com/zhongshaofa/layuimini/tree/onepage" target="_blank">gitee</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Gitee</td>
                                 <td style="padding-bottom: 0;">
                                     <div class="layui-btn-container">
-                                        <a href="https://gitee.com/zhongshaofa/layuimini" target="_blank" style="margin-right: 15px"><img src="https://gitee.com/zhongshaofa/layuimini/badge/star.svg?theme=dark" alt="star"></a>
-                                        <a href="https://gitee.com/zhongshaofa/layuimini" target="_blank"><img src="https://gitee.com/zhongshaofa/layuimini/badge/fork.svg?theme=dark" alt="fork"></a>
                                     </div>
                                 </td>
                             </tr>
@@ -320,8 +314,6 @@
                                 <td>Github</td>
                                 <td style="padding-bottom: 0;">
                                     <div class="layui-btn-container">
-                                        <iframe src="https://ghbtns.com/github-btn.html?user=zhongshaofa&repo=layuimini&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
-                                        <iframe src="https://ghbtns.com/github-btn.html?user=zhongshaofa&repo=layuimini&type=fork&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
                                     </div>
                                 </td>
                             </tr>
@@ -331,12 +323,8 @@
                 </div>
 
                 <div class="layui-card">
-                    <div class="layui-card-header"><i class="fa fa-paper-plane-o icon"></i>作者心语</div>
+                    <div class="layui-card-header"><i class="fa fa-paper-plane-o icon"></i>作者：小噻</div>
                     <div class="layui-card-body layui-text layadmin-text">
-                        <p>本模板基于layui2.5.4以及font-awesome-4.7.0进行实现。layui开发文档地址：<a class="layui-btn layui-btn-xs layui-btn-danger" target="_blank" href="http://www.layui.com/doc">layui文档</a></p>
-                        <p>技术交流<a target="_blank" href=""></a></p>
-                        <p></p>
-                        <p class="layui-red"></p>
                     </div>
                 </div>
 
@@ -377,7 +365,7 @@
                 success: function (layero) {
                     var btn = layero.find('.layui-layer-btn');
                     btn.find('.layui-layer-btn0').attr({
-                        href: 'https://gitee.com/zhongshaofa/layuimini',
+                        href: 'https://github.com/cozilyo/xiaosai',
                         target: '_blank'
                     });
                 }
