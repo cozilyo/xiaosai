@@ -1,6 +1,8 @@
 package com.cozi.xiaosai.service.sys;
 
+import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserEditParams;
 import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserParams;
 import com.github.pagehelper.Page;
 
@@ -34,6 +36,19 @@ public interface UserService {
      * @param user 用户信息
      */
     void editUser(User user);
+
+    /**
+     * 通过UserEditParams为参数修改
+     * @param userEditParams
+     */
+    void editUserByUserEditParams(UserEditParams userEditParams) throws Exception;
+
+    /**
+     * 修改密码
+     * @param user
+     * @return
+     */
+    R userPasswordEdit(User user);
 
     /**
      * 删除user

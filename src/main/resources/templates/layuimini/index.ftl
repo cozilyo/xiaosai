@@ -51,10 +51,10 @@
                 <a href="javascript:;"><p class="user_account"></p></a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" data-iframe-tab="/xiaosai/userSetting" data-title="基本资料" data-icon="fa fa-gears">基本资料</a>
+                        <a href="javascript:;" data-iframe-tab="/xiaosai/userInfoEdit?userName=${userName}" data-title="基本资料" data-icon="fa fa-gears">基本资料</a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" data-iframe-tab="/xiaosai/userPassword" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
+                        <a href="javascript:;" data-iframe-tab="/xiaosai/userPasswordEdit?userName=${userName}" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
                     </dd>
                     <dd>
                         <a href="javascript:;" class="login-out">退出登录</a>
@@ -92,7 +92,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <!--百度统计代码-开始 正式使用请删除-->

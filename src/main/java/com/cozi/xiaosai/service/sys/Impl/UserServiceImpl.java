@@ -1,11 +1,16 @@
 package com.cozi.xiaosai.service.sys.Impl;
 
+import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.controller.web.userControl.UserController;
 import com.cozi.xiaosai.mapper.dataOrigin.sys.UserMapper;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserEditParams;
 import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserParams;
 import com.cozi.xiaosai.service.sys.UserService;
+import com.cozi.xiaosai.util.aes.AES;
+import com.cozi.xiaosai.util.aes.AesKey;
 import com.github.pagehelper.Page;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +56,35 @@ public class UserServiceImpl implements UserService {
             userMapper.updateUser(user);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void editUserByUserEditParams(UserEditParams userEditParams) throws Exception {
+        userMapper.updateUserByUP(userEditParams);
+    }
+
+    @Override
+    public R userPasswordEdit(User user) {
+        if(StringUtils.isEmpty(user.getUserName())||userMapper.userCountByUserName(user.getUserName())<=0){
+            return R.isFail().msg("用户不存在！");
+        }
+        if(StringUtils.isEmpty(user.getPassword())||StringUtils.isEmpty(user.getPasswords())){
+            return R.isFail().msg("新旧密码不允许为空！");
+        }
+        User user1 = userMapper.userByUserName(user.getUserName());
+        if(AES.decryptFromBase64(user1.getPassword(), AesKey.AES_KEY).equals(user.getPassword())){
+            //执行修改密码
+            user1.setPassword(AES.encryptToBase64(user.getPasswords(), AesKey.AES_KEY));
+            try {
+                userMapper.updatePassword(user1);
+                return R.isOk().msg("密码修改成功，请重新登录");
+            } catch (Exception e) {
+                e.printStackTrace();
+                return R.isFail().msg("密码修改失败！");
+            }
+        }else {
+            return R.isFail().msg("旧密码错误，请重新输入!");
         }
     }
 

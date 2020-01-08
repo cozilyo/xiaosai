@@ -7,6 +7,7 @@ import com.cozi.xiaosai.enums.OperationModule;
 import com.cozi.xiaosai.enums.OperationObjects;
 import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserEditParams;
 import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserParams;
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
 import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams;
@@ -22,6 +23,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @Author xiaosai
@@ -51,6 +55,26 @@ public class UserController {
     @RequestMapping("/userList")
     public String getUserList(){
         return "web/userControl/userList";
+    }
+
+    /**
+     * 用户信息修改页
+     * @return
+     */
+    @RequestMapping("/userInfoEdit")
+    public String getUserInfoEdit(@RequestParam String userName, Model model){
+        model.addAttribute("userName",userName);
+        return "web/userControl/userInfoEdit";
+    }
+
+    /**
+     * 修改密码页
+     * @return
+     */
+    @RequestMapping("/userPasswordEdit")
+    public String getuserPasswordFtl(@RequestParam String userName, Model model){
+        model.addAttribute("userName",userName);
+        return "web/userControl/userPassword";
     }
 
     /**
@@ -98,6 +122,63 @@ public class UserController {
         PageHelper.startPage(userParams.getPage(),userParams.getLimit(),"id");
         PageInfo<User> userPageInfo = new PageInfo<>(userService.userListByUser(userParams));
         return new PageFormatConver(userPageInfo).isOK();
+    }
+
+    /**
+     * 通过用户名获取用户信息
+     * @param userName
+     * @return
+     */
+    @RequestMapping(value = "/userEditEcho",method = RequestMethod.POST)
+    @ResponseBody
+    public R userEditEcho(@RequestParam(value = "userName") String userName){
+        User user = userService.userByUserName(userName);
+        user.setPassword("");
+        if(user!=null){
+            return R.isOk().data(user);
+        }else {
+            return R.isFail().msg("用户信息获取失败！");
+        }
+    }
+
+    /**
+     * 用户信息编辑
+     * @param userEditParams
+     * @return
+     */
+    @RequestMapping(value = "/userEditData",method = RequestMethod.POST)
+    @ResponseBody
+    public R userEditData(@RequestBody UserEditParams userEditParams){
+        if(userEditParams.getId().intValue()<=0){
+            return R.isFail().msg("id无效！");
+        }
+        if(StringUtils.isEmpty(userEditParams.getUserName())){
+            return R.isFail().msg("用户名不能为空!");
+        }
+        try {
+            userService.editUserByUserEditParams(userEditParams);
+            return R.isOk().msg("基本资料编辑成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return R.isFail().msg("基本资料编辑失败！");
+        }
+    }
+
+    /**
+     * 修改密码
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/userPasswordEditData",method = RequestMethod.POST)
+    @ResponseBody
+    public R userPasswordEditData(@RequestBody User user, HttpServletRequest request){
+        logger.info("修改密码参数："+user);
+        R r = userService.userPasswordEdit(user);
+        if(r.getCode()==0){
+            HttpSession session = request.getSession();
+            session.invalidate();
+        }
+        return r;
     }
 
     /**

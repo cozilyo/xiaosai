@@ -27,13 +27,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">昵称</label>
                 <div class="layui-input-block">
-                    <input type="text" name="nickname" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="nickname" placeholder="请输入" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">地点</label>
                 <div class="layui-input-block">
-                    <input type="text" name="address" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="address" lay-verify="required" placeholder="请输入" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -45,7 +45,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">完成量</label>
                 <div class="layui-input-block">
-                    <input type="text" name="accomplishment" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="accomplishment" lay-verify="required" placeholder="请输入" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">

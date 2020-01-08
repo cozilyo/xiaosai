@@ -114,9 +114,39 @@
             <if test="idNum!=null and idNum!=''">
                 id_num=#{idNum},
             </if>
+            <if test="address!=null and address!=''">
+                address=#{address},
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark=#{remark},
+            </if>
             modify_time=NOW(),
         </trim>
         WHERE user_id=#{userId}
+    </update>
+    <update id="updateUserByUP" parameterType="com.cozi.xiaosai.pojo.dataorigin.sysParams.UserEditParams">
+        UPDATE xiaosai_user SET
+        <trim suffixOverrides=",">
+            <if test="userName!=null and userName!=''">
+                user_name=#{userName},
+            </if>
+            <if test="telephone!=null and telephone!=''">
+                telephone=#{telephone},
+            </if>
+            <if test="mail!=null and mail!=''">
+                mail=#{mail},
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark=#{remark},
+            </if>
+            modify_time=NOW(),
+        </trim>
+        WHERE id=#{id}
+    </update>
+    <update id="updatePassword" parameterType="com.cozi.xiaosai.pojo.dataorigin.sys.User">
+        UPDATE xiaosai_user SET
+        password=#{password}
+        WHERE id=#{id}
     </update>
     <delete id="deleteUser" parameterType="string">
          DELETE FROM xiaosai_user WHERE user_id=#{userId}
@@ -125,7 +155,7 @@
          SELECT COUNT(id) FROM xiaosai_user WHERE user_name=#{userName}
     </select>
     <select id="userByUserName" parameterType="string" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.User">
-         SELECT * FROM xiaosai_user WHERE user_name=#{userName}
+         SELECT id,user_id userId,name,user_name userName,password,age,gender,telephone,mail,id_num idNum,address,remark,create_time createTime,modify_time modifyTime FROM xiaosai_user WHERE user_name=#{userName}
     </select>
     <select id="selectUserListByUser" parameterType="com.cozi.xiaosai.pojo.dataorigin.sysParams.UserParams" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.User">
          SELECT id,user_id userId,name,user_name userName,age,gender,telephone,mail,id_num idNum,create_time createTime,modify_time modifyTime FROM xiaosai_user WHERE 1=1

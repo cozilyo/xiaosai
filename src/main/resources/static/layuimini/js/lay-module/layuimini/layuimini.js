@@ -71,6 +71,7 @@ layui.define(["element", "jquery"], function (exports) {
                 if(data==null){
                     layuimini.msg_error('暂无用户信息');
                 }else {
+                    console.log(data)
                     $(".user_account").html(data.userName);
                 }
             }).fail(function () {

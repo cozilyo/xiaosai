@@ -24,6 +24,7 @@ public class User {
     private String mail;
     private String idNum;
     private String address;
+    private String remark;
     private String createTime;
     private String modifyTime;
 
@@ -146,6 +147,14 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     @Override

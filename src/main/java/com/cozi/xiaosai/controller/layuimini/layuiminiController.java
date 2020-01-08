@@ -6,6 +6,7 @@ import com.cozi.xiaosai.enums.OperationObjects;
 import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/xiaosai")
 public class layuiminiController {
+
     @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public String getIndex(HttpServletRequest request){
+    public String getIndex(@RequestParam(value = "userName") String userName, Model model,HttpServletRequest request){
+        model.addAttribute("userName",userName);
         return "layuimini/index";
     }
 
