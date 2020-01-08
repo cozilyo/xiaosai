@@ -15,6 +15,15 @@
 
         <fieldset class="layui-elem-field layuimini-search">
             <legend>BOLG主页</legend>
+            <div class="layui-inline">
+                <video width="200px" height="150px"></video>
+                <canvas width="200px" height="150px"></canvas>
+                <p>
+                    <button id="start" class="layui-btn">打开摄像头</button>
+                    <button id="snap" class="layui-btn layui-btn-normal">截取图像</button>
+                    <button id="close" class="layui-btn layui-btn-danger">关闭摄像头</button>
+                </p>
+            </div>
             <div style="margin: 10px 10px 10px 10px">
 
                     <p style="margin-top: 50px;margin-bottom: 20px;">登录页</p>
@@ -37,6 +46,55 @@
             form = layui.form,
             table = layui.table;
     });
+    window.onload = function () {
+        var canvas = document.getElementsByTagName('canvas')[0],
+            context = canvas.getContext('2d'),
+            video = document.getElementsByTagName("video")[0],
+            snap = document.getElementById("snap"),
+            close = document.getElementById("close"),
+            start = document.getElementById("start"),
+            MediaStreamTrack;
+        start.addEventListener('click', function () {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: true
+                }).then(function (stream) {
+                    MediaStreamTrack=typeof stream.stop==='function'?stream:stream.getTracks()[1];
+                    // video.src=(window.URL).createObjectURL(stream);
+                    try{
+                        video.srcObject = stream;
+                    }catch (e) {
+                        video.src=(window.URL).createObjectURL(stream);
+                    }
+                    video.play();
+                }).catch(function(err){
+                    console.log(err);
+                });
+            }else if(navigator.getMedia){
+                navigator.getMedia({
+                    video: true
+                }).then(function (stream) {
+                    MediaStreamTrack=stream.getTracks()[1];
+                    // video.src=(window.webkitURL).createObjectURL(stream);
+                    try{
+                        video.srcObject = stream;
+                    }catch (e) {
+                        video.src=(window.URL).createObjectURL(stream);
+                    }
+                    video.play();
+                }).catch(function(err){
+                    console.log(err);
+                });
+            }
+        });
+        snap.addEventListener('click', function () {
+            context.drawImage(video, 0, 0,200,150);
+        });
+        close.addEventListener('click', function () {
+            MediaStreamTrack && MediaStreamTrack.stop();
+        });
+    }
 </script>
 
 </body>

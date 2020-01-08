@@ -167,7 +167,7 @@ public class LoginController {
         if(StringUtils.isEmpty(user.getPassword())){
             ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
         }
-        logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName()+":"+user);
+        logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
         //验证码有效
         if(redisUtils.get(captcha.toUpperCase())!=null&&StaticValues.verify_code.equals(redisUtils.get(captcha.toUpperCase()).toString())){
             Map<String, Object> map = loginService.userLogin(user, captcha,request, response);
