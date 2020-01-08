@@ -1,5 +1,6 @@
 package com.cozi.xiaosai.controller.sys;
 
+import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.common.ReturnMap;
 import com.cozi.xiaosai.common.StaticValues;
 import com.cozi.xiaosai.common.UUID;
@@ -16,10 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -159,26 +157,32 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/checkUser",method = RequestMethod.POST)
-    public String userLogin(User user, @RequestParam(value = "captcha") String captcha, HttpServletRequest request,
-                            HttpServletResponse response, Model model){
+    @ResponseBody
+    public R userLogin(@RequestBody User user,HttpServletRequest request,
+                       HttpServletResponse response, Model model){
         if(StringUtils.isEmpty(user.getUserName())){
-            ReturnMap.failureResponse(StaticValues.LOGIN_USERNAME_ISEMPTY);
+            return R.isFail().msg(StaticValues.LOGIN_USERNAME_ISEMPTY);
+            //ReturnMap.failureResponse(StaticValues.LOGIN_USERNAME_ISEMPTY);
         }
         if(StringUtils.isEmpty(user.getPassword())){
-            ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
+            return R.isFail().msg(StaticValues.LOGIN_PASSWORD_ISEMPTY);
+            //ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
         }
         logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
         //验证码有效
-        if(redisUtils.get(captcha.toUpperCase())!=null&&StaticValues.verify_code.equals(redisUtils.get(captcha.toUpperCase()).toString())){
-            Map<String, Object> map = loginService.userLogin(user, captcha,request, response);
+        if(redisUtils.get(user.getCaptcha().toUpperCase())!=null&&StaticValues.verify_code.equals(redisUtils.get(user.getCaptcha().toUpperCase()).toString())){
+            Map<String, Object> map = loginService.userLogin(user, user.getCaptcha(),request, response);
             if(map.get("return_code").equals(1)){
-                return "redirect:/xiaosai/index?userName="+user.getUserName();
+                return R.isOk().data(user.getUserName()).msg("登录成功");
+                //return "redirect:/xiaosai/index?userName="+user.getUserName();
             }else {
-                return "sys/XSlogin";
+                return R.isFail().msg("密码不正确，请重新登录！");
+                //return "sys/XSlogin";
             }
         //验证码失效
         }else{
-            return "sys/XSlogin";
+            return R.isFail().msg("验证码不正确或失效！");
+            //return "sys/XSlogin";
         }
     }
 

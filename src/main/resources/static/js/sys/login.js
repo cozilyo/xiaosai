@@ -24,9 +24,9 @@ layui.use(['form'], function () {
     $(".captcha_Pic").on("click", function() {
         $(".captcha_Pic").attr("src", '/xiaosai/getVerify?' + Math.random());//jquery方式
     });
+
     $("#captcha_id").on("input propertychange",function () {
         var value = $("#captcha_id").val();
-        // alert(value);
         $.ajax({
             async: false,
             type: 'get',
@@ -36,7 +36,6 @@ layui.use(['form'], function () {
                 verifyInput: value
             },
             success: function (result) {
-                console.log(result);
                 if (result.return_code == 1) {
                     $("#verify_msg").html("<p style='color: #008000;'>验证成功</p>");
                     $("#submit_id").removeAttr("disabled");
@@ -46,4 +45,28 @@ layui.use(['form'], function () {
             }
         })
     });
+
+    form.on('submit(loginBtn)',function (data) {
+        var result = data.field;
+        var params ={
+            userName: result.userName,
+            password: result.password,
+            captcha: result.captcha
+        }
+        $.ajax({
+            async: false,
+            type: 'POST',
+            url: '/xiaosai/checkUser',
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(params),
+            success: function (val) {
+                if (val.code == 0) {
+                    window.location = "/xiaosai/index?userName="+val.data;
+                } else {
+                    Swal.fire(val.msg);
+                }
+            }
+        })
+    })
 });

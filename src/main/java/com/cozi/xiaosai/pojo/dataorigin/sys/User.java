@@ -11,7 +11,7 @@ import com.cozi.xiaosai.common.PageModel;
 /**
  * 用户信息
  */
-public class User {
+public class User extends CaptchaPojo{
     private Integer id;
     private String userId;
     private String name;

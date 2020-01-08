@@ -35,7 +35,8 @@
 <div class="layui-container">
     <div class="admin-login-background">
         <div class="layui-form login-form">
-            <form class="layui-form" action="/xiaosai/checkUser" method="post">
+<#--            <form class="layui-form" action="/xiaosai/checkUser" method="post">-->
+<#--            <form class="layui-form" >-->
                 <div class="layui-form-item logo-title">
                     <h1>XIAOSAI登录</h1>
                 </div>
@@ -60,21 +61,20 @@
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
                 </div>
                 <div class="layui-form-item">
-                    <button id="submit_id" class="layui-btn layui-btn-fluid" type="submit" disabled>登 入</button>
+                    <button id="submit_id" class="layui-btn layui-btn-fluid" lay-submit lay-filter="loginBtn" disabled>登 入</button>
+<#--                    <button id="submit_id" class="layui-btn layui-btn-fluid" type="submit" disabled>登 入</button>-->
                 </div>
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid xs_register" type="button">注 册 </button>
                 </div>
-            </form>
+<#--            </form>-->
         </div>
     </div>
 </div>
 <script src="../layuimini/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
 <script src="../layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../layuimini/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
-<script src="../js/sys/login.js" charset="utf-8"/>
-<script>
-
-</script>
+<script src="../js/sweetalert2.9.5.4.all.js"></script>
+<script src="../js/sys/login.js" charset="utf-8"></script>
 </body>
 </html>
