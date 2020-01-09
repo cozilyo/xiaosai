@@ -3,6 +3,7 @@ package com.cozi.xiaosai.controller.web.userControl;
 import com.cozi.xiaosai.common.PageFormatConver;
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.domain.LogInfo;
+import com.cozi.xiaosai.enums.CueWordsEnum;
 import com.cozi.xiaosai.enums.OperationModule;
 import com.cozi.xiaosai.enums.OperationObjects;
 import com.cozi.xiaosai.enums.OperationType;
@@ -150,17 +151,17 @@ public class UserController {
     @ResponseBody
     public R userEditData(@RequestBody UserEditParams userEditParams){
         if(userEditParams.getId().intValue()<=0){
-            return R.isFail().msg("id无效！");
+            return R.isFail().msg(CueWordsEnum.USER_FAILED_ID.getValue());
         }
         if(StringUtils.isEmpty(userEditParams.getUserName())){
-            return R.isFail().msg("用户名不能为空!");
+            return R.isFail().msg(CueWordsEnum.USER_FAILED__USERNAME.getValue());
         }
         try {
             userService.editUserByUserEditParams(userEditParams);
-            return R.isOk().msg("基本资料编辑成功");
+            return R.isOk().msg(CueWordsEnum.BASICS_INFO_SUCCESS.getValue());
         } catch (Exception e) {
             e.printStackTrace();
-            return R.isFail().msg("基本资料编辑失败！");
+            return R.isFail().msg(CueWordsEnum.BASICS_INFO_FAILED.getValue());
         }
     }
 

@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.service.web.Impl;
 
 import com.cozi.xiaosai.common.R;
+import com.cozi.xiaosai.enums.CueWordsEnum;
 import com.cozi.xiaosai.mapper.dataOrigin.web.PermissionGroupMapper;
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
 import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams;
@@ -33,14 +34,14 @@ public class PermissionGroupServiceImpl implements PermissionGroupService {
     @Override
     public R addPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams) {
         if(StringUtils.isEmpty(permissionGroupPojoParams.getGroupName())||permissionGroupMapper.selectPermissionGroupBygroupName(permissionGroupPojoParams.getGroupName(),0)>0){
-            return R.isFail().msg("权限组添加失败，名称不能为空或重复！");
+            return R.isFail().msg(CueWordsEnum.PGROUP_FAILED_ADD_NAME.getValue());
         }
         if(permissionGroupPojoParams.getGroupType().intValue()<=0||permissionGroupMapper.selectPermissionGroupBygroupType(permissionGroupPojoParams.getGroupType(),0)>0){
-            return R.isFail().msg("权限组添加失败，代号不能为空或重复！");
+            return R.isFail().msg(CueWordsEnum.PGROUP_FAILED_ADD_TYPE.getValue());
         }
 
         permissionGroupMapper.insertPermissionGroup(permissionGroupPojoParams);
-        return R.isOk().msg("权限组添加成功");
+        return R.isOk().msg(CueWordsEnum.PGROUP_SUCCESS_ADD.getValue());
     }
 
     @Override
@@ -52,17 +53,17 @@ public class PermissionGroupServiceImpl implements PermissionGroupService {
     public R editPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams) {
         if(StringUtils.isEmpty(permissionGroupPojoParams.getGroupName())
                 ||permissionGroupMapper.selectPermissionGroupBygroupName(permissionGroupPojoParams.getGroupName(),permissionGroupPojoParams.getId())>0){
-            return R.isFail().msg("权限组编辑失败，名称不能为空或重复！");
+            return R.isFail().msg(CueWordsEnum.PGROUP_FAILED_EDIT_NAME.getValue());
         }
         if(permissionGroupPojoParams.getGroupType().intValue()<=0||permissionGroupMapper.selectPermissionGroupBygroupType(permissionGroupPojoParams.getGroupType(),permissionGroupPojoParams.getId())>0){
-            return R.isFail().msg("权限组编辑失败，代号不能为空或重复！");
+            return R.isFail().msg(CueWordsEnum.PGROUP_FAILED_EDIT_TYPE.getValue());
         }
         try {
             permissionGroupMapper.updatePermissionGroup(permissionGroupPojoParams);
-            return R.isOk().msg("权限组编辑成功");
+            return R.isOk().msg(CueWordsEnum.PGROUP_SUCCESS_EDTI.getValue());
         } catch (Exception e) {
             e.printStackTrace();
-            return R.isFail().msg("权限组编辑失败！");
+            return R.isFail().msg(CueWordsEnum.PGROUP_FAILED_EDIT.getValue());
         }
     }
 }

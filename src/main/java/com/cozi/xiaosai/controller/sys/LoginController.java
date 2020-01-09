@@ -4,6 +4,7 @@ import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.common.ReturnMap;
 import com.cozi.xiaosai.common.StaticValues;
 import com.cozi.xiaosai.common.UUID;
+import com.cozi.xiaosai.enums.CueWordsEnum;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.service.sys.LoginService;
 import com.cozi.xiaosai.service.sys.UserService;
@@ -83,7 +84,7 @@ public class LoginController {
             response.setDateHeader("Expire", 0);
             //随机生成验证码，并放入redis中
             String stringRandom = NumberUtil.getStringRandom(5);
-            redisUtils.set(stringRandom.toUpperCase(),"登入验证码",30L);
+            redisUtils.set(stringRandom.toUpperCase(), CueWordsEnum.LOGIN_VERIFY.getValue(),30L);
             RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
             randomValidateCode.getRandcode(request, response,stringRandom);
             //输出验证码图片方法
@@ -171,13 +172,13 @@ public class LoginController {
         if(redisUtils.get(user.getCaptcha().toUpperCase())!=null&&StaticValues.verify_code.equals(redisUtils.get(user.getCaptcha().toUpperCase()).toString())){
             Map<String, Object> map = loginService.userLogin(user, user.getCaptcha(),request, response);
             if(map.get("return_code").equals(1)){
-                return R.isOk().data(user.getUserName()).msg("登录成功");
+                return R.isOk().data(user.getUserName()).msg(CueWordsEnum.LOGIN_SUCCESS.getValue());
             }else {
-                return R.isFail().msg("密码不正确，请重新登录！");
+                return R.isFail().msg(CueWordsEnum.LOGIN_FAILED_PASSWORD_ERROR.getValue());
             }
         //验证码失效
         }else{
-            return R.isFail().msg("验证码不正确或失效！");
+            return R.isFail().msg(CueWordsEnum.LOGIN_FAILED_VERIFY_ERROR.getValue());
         }
     }
 

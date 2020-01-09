@@ -2,6 +2,7 @@ package com.cozi.xiaosai.service.sys.Impl;
 
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.controller.web.userControl.UserController;
+import com.cozi.xiaosai.enums.CueWordsEnum;
 import com.cozi.xiaosai.mapper.dataOrigin.sys.UserMapper;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserEditParams;
@@ -67,10 +68,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public R userPasswordEdit(User user) {
         if(StringUtils.isEmpty(user.getUserName())||userMapper.userCountByUserName(user.getUserName())<=0){
-            return R.isFail().msg("用户不存在！");
+            return R.isFail().msg(CueWordsEnum.USER_FAILED_INEXISTENCE.getValue());
         }
         if(StringUtils.isEmpty(user.getPassword())||StringUtils.isEmpty(user.getPasswords())){
-            return R.isFail().msg("新旧密码不允许为空！");
+            return R.isFail().msg(CueWordsEnum.USER_FAILED_OLDANDNEW_PASSWORD.getValue());
         }
         User user1 = userMapper.userByUserName(user.getUserName());
         if(AES.decryptFromBase64(user1.getPassword(), AesKey.AES_KEY).equals(user.getPassword())){
@@ -78,13 +79,13 @@ public class UserServiceImpl implements UserService {
             user1.setPassword(AES.encryptToBase64(user.getPasswords(), AesKey.AES_KEY));
             try {
                 userMapper.updatePassword(user1);
-                return R.isOk().msg("密码修改成功，请重新登录");
+                return R.isOk().msg(CueWordsEnum.USER_SUCCESS_EDIT_PASSWORD.getValue());
             } catch (Exception e) {
                 e.printStackTrace();
-                return R.isFail().msg("密码修改失败！");
+                return R.isFail().msg(CueWordsEnum.USER_FAILED_EDIT_PASSWORD.getValue());
             }
         }else {
-            return R.isFail().msg("旧密码错误，请重新输入!");
+            return R.isFail().msg(CueWordsEnum.USER_FAILED_OLD_PASSWORD.getValue());
         }
     }
 

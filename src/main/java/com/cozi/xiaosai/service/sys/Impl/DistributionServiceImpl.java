@@ -2,6 +2,7 @@ package com.cozi.xiaosai.service.sys.Impl;
 
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.controller.sys.DistributionController;
+import com.cozi.xiaosai.enums.CueWordsEnum;
 import com.cozi.xiaosai.mapper.dataOrigin.sys.DistributionMapper;
 import com.cozi.xiaosai.pojo.dataorigin.sys.*;
 import com.cozi.xiaosai.pojo.dataorigin.sysParams.LogoIconParams;
@@ -84,9 +85,9 @@ public class DistributionServiceImpl implements DistributionService {
             return R.isOk().data(logoIconPojo);
         }else {
             //设置默认值
-            logoIconPojo.setTitle("小噻科技");
-            logoIconPojo.setImage("../layuimini/images/personal-01.png");
-            logoIconPojo.setHref("/xiaosai/index");
+            logoIconPojo.setTitle(CueWordsEnum.LOGO_ICON_DEFAULT_TITLE.getValue());
+            logoIconPojo.setImage(CueWordsEnum.LOGO_ICON_DEFAULT_IMAGE.getValue());
+            logoIconPojo.setHref(CueWordsEnum.LOGO_ICON_DEFAULT_HREF.getValue());
             logoIconPojo.setIsAlter(0);
             return R.isOk().data(logoIconPojo);
         }
@@ -104,7 +105,7 @@ public class DistributionServiceImpl implements DistributionService {
             map.put("pojos",distributionMapper.selectLogoIconList());
             return R.isOk().data(map);
         }else {
-            return R.isFail().msg("数据获取失败！");
+            return R.isFail().msg(CueWordsEnum.LOGO_ICON_FAILED_POJO.getValue());
         }
 
     }
@@ -113,14 +114,14 @@ public class DistributionServiceImpl implements DistributionService {
     public R editLogoIconData(LogoIconParams logoIconParams) {
         //TODO:现在只做了普通用户，只有超级用户才能修改logo的主题和href
         if(StringUtils.isEmpty(logoIconParams.getUserName())){
-            return R.isFail().msg("用户名不能为空，修改失败！");
+            return R.isFail().msg(CueWordsEnum.LOGO_ICON_FAILED_USERNAME.getValue());
         }
         try {
             distributionMapper.updateLogoIconId(logoIconParams);
-            return R.isOk().msg("设置成功");
+            return R.isOk().msg(CueWordsEnum.LOGO_ICON_SUCCESS.getValue());
         } catch (Exception e) {
             e.printStackTrace();
-            return R.isFail().msg("设置失败！");
+            return R.isFail().msg(CueWordsEnum.LOGO_ICON_FAILED.getValue());
         }
     }
 
@@ -163,18 +164,18 @@ public class DistributionServiceImpl implements DistributionService {
         //删除缓存
         redisUtils.del(RedisKey.MENU.getKey());
         redisUtils.del(RedisKey.BAR.getKey());
-        return R.isOk().msg("菜单管理编辑成功");
+        return R.isOk().msg(CueWordsEnum.MENU_MANAGE_EDIT_SUCCESS.getValue());
     }
 
     @Override
     public R addMenuData(MenuInfoPojo menuInfoPojo) {
         if (StringUtils.isEmpty(menuInfoPojo.getNavigationBarName()) || distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavigationBarName()), 1, 2) > 0) {
             if (menuInfoPojo.getNavId().intValue() <= 0 || distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getNavId(), menuInfoPojo.getNavigationBarName()), 1, 1) <= 0) {
-                R.isFail().msg("导航id无效或与导航标识不一致！");
+                R.isFail().msg(CueWordsEnum.MENU_MANAGE_NAV_NAVID.getValue());
             }
         }
         if (StringUtils.isEmpty(menuInfoPojo.getTitle()) || distributionMapper.selectCountByMenuInfoPojo(new MenuInfoPojo(menuInfoPojo.getTitle(), menuInfoPojo.getParentId()), 2, 1) > 0) {
-            return R.isFail().msg("侧边栏名称不能为空或同级重复!");
+            return R.isFail().msg(CueWordsEnum.MENU_MANAGE_SIDEBAR_TITLE.getValue());
         }
 
         //导航栏已存在
@@ -217,12 +218,12 @@ public class DistributionServiceImpl implements DistributionService {
                 //删除缓存
                 redisUtils.del(RedisKey.MENU.getKey());
                 redisUtils.del(RedisKey.BAR.getKey());
-                return R.isOk().msg("删除成功");
+                return R.isOk().msg(CueWordsEnum.MENU_MANAGE_SUCCESS_DELETE.getValue());
             } else {
-                return R.isFail().msg("id不存在");
+                return R.isFail().msg(CueWordsEnum.MENU_MANAGE_FAILED_ID.getValue());
             }
         } else {
-            return R.isFail().msg("id无效");
+            return R.isFail().msg(CueWordsEnum.MENU_MANAGE_UNVALID_ID.getValue());
         }
     }
 

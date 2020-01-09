@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.service.web.Impl;
 
 import com.cozi.xiaosai.common.R;
+import com.cozi.xiaosai.enums.CueWordsEnum;
 import com.cozi.xiaosai.mapper.dataOrigin.web.TimeManageMapper;
 import com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo;
 import com.cozi.xiaosai.service.web.TimeManageService;
@@ -28,16 +29,16 @@ public class TimeManageServiceImpl implements TimeManageService {
     @Override
     public R addTimeManage(TimeManagePojo timeManagePojo) {
         if(StringUtils.isEmpty(timeManagePojo.getName())){
-            return R.isFail().msg("姓名不能为空！");
+            return R.isFail().msg(CueWordsEnum.TIME_MANAGE_FAILED_NAME.getValue());
         }
         if(StringUtils.isEmpty(timeManagePojo.getIncident())){
-            return R.isFail().msg("事件不能为空！");
+            return R.isFail().msg(CueWordsEnum.TIME_MANAGE_FAILED_INCIDENT.getValue());
         }
         if(StringUtils.isEmpty(timeManagePojo.getAccomplishment())){
-            return R.isFail().msg("完成量不能为空！");
+            return R.isFail().msg(CueWordsEnum.TIME_MANAGE_FAILED_ACCOMPLISHMENT.getValue());
         }
         timeManageMapper.insertTimeManage(timeManagePojo);
-        return R.isOk().msg("时间管理添加成功");
+        return R.isOk().msg(CueWordsEnum.TIME_MANAGE_SUCCESS_ADD.getValue());
     }
 
     @Override
@@ -45,12 +46,12 @@ public class TimeManageServiceImpl implements TimeManageService {
         if(id.intValue()>0){
             return R.isOk().data(timeManageMapper.selectTimeManById(id));
         }
-        return R.isFail().msg("未能找到数据！");
+        return R.isFail().msg(CueWordsEnum.TIME_MANAGE_FAILED_ERROR.getValue());
     }
 
     @Override
     public R editTimeManage(TimeManagePojo timeManagePojo) {
         timeManageMapper.updateTimeManage(timeManagePojo);
-        return R.isOk().msg("时间管理编辑成功");
+        return R.isOk().msg(CueWordsEnum.TIME_MANAGE_SUCCESS_EDIT.getValue());
     }
 }
