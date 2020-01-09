@@ -50,7 +50,7 @@ layui.define(["element", "jquery"], function (exports) {
                     layuimini.msg_error('暂无菜单信息');
                 } else {
                     layuimini.initHome(data.homeInfo);
-                    layuimini.initLogo(data.logoInfo);
+                    //layuimini.initLogo(data.logoInfo);
                     layuimini.initClear(data.clearInfo);
                     //layuimini.initMenu(data.menuInfo);
                     layuimini.initTab();
@@ -58,11 +58,21 @@ layui.define(["element", "jquery"], function (exports) {
             }).fail(function () {
                 layuimini.msg_error('菜单接口有误');
             });
+
+            //初始化导航栏和侧边栏
             $.getJSON("/xiaosai/bar",function (result,status) {
                 layuimini.initMenu(result.data);
             }).fail(function () {
                 layuimini.msg_error('菜单接口有误');
             });
+
+            //初始化logo图标
+            $.getJSON("/xiaosai/logoIcon",function (result,status) {
+                layuimini.initLogo(result.data);
+            }).fail(function () {
+                layuimini.msg_error('菜单接口有误');
+            });
+
             layer.close(loading);
         };
 
@@ -71,7 +81,6 @@ layui.define(["element", "jquery"], function (exports) {
                 if(data==null){
                     layuimini.msg_error('暂无用户信息');
                 }else {
-                    console.log(data)
                     $(".user_account").html(data.userName);
                 }
             }).fail(function () {

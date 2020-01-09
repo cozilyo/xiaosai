@@ -1,8 +1,10 @@
 package com.cozi.xiaosai.mapper.dataOrigin.sys;
 
+import com.cozi.xiaosai.pojo.dataorigin.sys.LogoIconPojo;
 import com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo;
 import com.cozi.xiaosai.pojo.dataorigin.sys.NavigationBarPojo;
 import com.cozi.xiaosai.pojo.dataorigin.sys.SidebarPojo;
+import com.cozi.xiaosai.pojo.dataorigin.sysParams.LogoIconParams;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,6 +19,12 @@ import java.util.List;
 public interface DistributionMapper {
 
     List<NavigationBarPojo> selectNavigationBar();
+
+    LogoIconPojo selectLogoIcon(@Param(value = "userName") String userName);
+
+    List<LogoIconPojo> selectLogoIconList();
+
+    void updateLogoIconId(LogoIconParams logoIconParams) throws Exception;
 
     List<SidebarPojo> selectSidebar(@Param(value = "parentId") Integer parentId,@Param(value = "navId") Integer navId);
 

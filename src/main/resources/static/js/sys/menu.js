@@ -97,4 +97,17 @@ layui.use(['table', 'treetable'], function () {
             window.location = "/xiaosai/menuEdit?id="+data.id;
         }
     });
+
+    $("#btn-logo").click(function () {
+        //iframe层-父子操作
+        layer.open({
+            type: 2,
+            area: ['800px', '500px'],
+            fixed: false, //不固定
+            maxmin: true,
+            title:"设置图标",
+            content: '/xiaosai/logoIconAdd'
+        });
+    });
+
 });

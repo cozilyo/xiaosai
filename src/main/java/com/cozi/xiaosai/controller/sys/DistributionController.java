@@ -2,6 +2,7 @@ package com.cozi.xiaosai.controller.sys;
 
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo;
+import com.cozi.xiaosai.pojo.dataorigin.sysParams.LogoIconParams;
 import com.cozi.xiaosai.service.sys.DistributionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 页面布局
@@ -32,7 +36,6 @@ public class DistributionController {
      */
     @RequestMapping(value = "/menuList",method = RequestMethod.GET)
     public String getMenuHTML(){
-
         return "sys/XSmenu";
     }
 
@@ -59,6 +62,15 @@ public class DistributionController {
     }
 
     /**
+     * logo图标添加页
+     * @return
+     */
+    @RequestMapping("/logoIconAdd")
+    public String getLogoIconAdd(){
+        return "sys/XSlogoIcon";
+    }
+
+    /**
      * 获取侧边栏信息
      * @return
      */
@@ -66,6 +78,41 @@ public class DistributionController {
     @ResponseBody
     public R getSidebarInfo(){
         return distributionService.getSidebarInfo();
+    }
+
+    /**
+     * 获取logo信息
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("/logoIcon")
+    @ResponseBody
+    public R getLogoIcon(HttpServletRequest request, HttpServletResponse response){
+        return distributionService.getLogoIcon(request);
+    }
+
+    /**
+     * 当前操作人logo信息
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("/logoIconEcho")
+    @ResponseBody
+    public R editLogoIconEcho(HttpServletRequest request, HttpServletResponse response){
+        return distributionService.getLogoIconEcho(request);
+    }
+
+    /**
+     * 修改logo信息
+     * @param logoIconParams
+     * @return
+     */
+    @RequestMapping(value = "/editLogoIconData",method = RequestMethod.POST)
+    @ResponseBody
+    public R editLogoIconData(@RequestBody LogoIconParams logoIconParams){
+        return distributionService.editLogoIconData(logoIconParams);
     }
 
     /**

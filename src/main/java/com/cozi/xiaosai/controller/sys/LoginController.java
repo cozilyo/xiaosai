@@ -162,11 +162,9 @@ public class LoginController {
                        HttpServletResponse response, Model model){
         if(StringUtils.isEmpty(user.getUserName())){
             return R.isFail().msg(StaticValues.LOGIN_USERNAME_ISEMPTY);
-            //ReturnMap.failureResponse(StaticValues.LOGIN_USERNAME_ISEMPTY);
         }
         if(StringUtils.isEmpty(user.getPassword())){
             return R.isFail().msg(StaticValues.LOGIN_PASSWORD_ISEMPTY);
-            //ReturnMap.failureResponse(StaticValues.LOGIN_PASSWORD_ISEMPTY);
         }
         logger.info("^-^ enter into LoginController userLogin() user:"+user.getUserName());
         //验证码有效
@@ -174,15 +172,12 @@ public class LoginController {
             Map<String, Object> map = loginService.userLogin(user, user.getCaptcha(),request, response);
             if(map.get("return_code").equals(1)){
                 return R.isOk().data(user.getUserName()).msg("登录成功");
-                //return "redirect:/xiaosai/index?userName="+user.getUserName();
             }else {
                 return R.isFail().msg("密码不正确，请重新登录！");
-                //return "sys/XSlogin";
             }
         //验证码失效
         }else{
             return R.isFail().msg("验证码不正确或失效！");
-            //return "sys/XSlogin";
         }
     }
 

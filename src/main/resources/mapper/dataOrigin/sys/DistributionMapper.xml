@@ -6,6 +6,18 @@
         SELECT id,navigation_bar_name navigationBarName,navigation_bar_index navigationBarIndex,create_time createTime,modify_time modifyTime FROM xiaosai_navigation_bar
         ORDER BY navigationBarIndex
     </select>
+    <select id="selectLogoIcon" parameterType="string" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.LogoIconPojo">
+        SELECT a.id,a.title,a.image,a.href,a.is_checked isChecked,a.is_alter isAlter FROM xiaosai_logo_icon a,xiaosai_user b
+        WHERE a.id = b.logo_icon_id AND b.user_name = #{userName}
+    </select>
+    <select id="selectLogoIconList" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.LogoIconPojo">
+        SELECT * FROM xiaosai_logo_icon
+    </select>
+    <update id="updateLogoIconId" parameterType="com.cozi.xiaosai.pojo.dataorigin.sysParams.LogoIconParams">
+        UPDATE xiaosai_user SET
+        logo_icon_id=#{imageId}
+        WHERE user_name=#{userName}
+    </update>
     <select id="selectSidebar" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.SidebarPojo">
         SELECT id,title,href,icon,target,parent_id parentId,nav_id navId,create_time createTime,modify_time modifyTime
         FROM xiaosai_sidebar

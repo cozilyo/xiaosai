@@ -23,11 +23,13 @@
                 <button class="layui-btn" id="btn-expand">全部展开</button>
                 <button class="layui-btn" id="btn-fold">全部折叠</button>
                 <a class="layui-btn data-add-btn layui-menu-tips" href="/xiaosai/menuAdd" target="_self">添&#x3000;&#x3000;加</a>
+                <button class="layui-btn" id="btn-logo">设置图标</button>
             </div>
             <table id="munu-table" class="layui-table" lay-filter="munu-table"></table>
         </div>
     </div>
 </div>
+
 <!-- 操作列 -->
 <script type="text/html" id="auth-state">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>

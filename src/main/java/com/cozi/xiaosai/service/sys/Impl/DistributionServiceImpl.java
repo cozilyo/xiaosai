@@ -3,9 +3,8 @@ package com.cozi.xiaosai.service.sys.Impl;
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.controller.sys.DistributionController;
 import com.cozi.xiaosai.mapper.dataOrigin.sys.DistributionMapper;
-import com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo;
-import com.cozi.xiaosai.pojo.dataorigin.sys.NavigationBarPojo;
-import com.cozi.xiaosai.pojo.dataorigin.sys.SidebarPojo;
+import com.cozi.xiaosai.pojo.dataorigin.sys.*;
+import com.cozi.xiaosai.pojo.dataorigin.sysParams.LogoIconParams;
 import com.cozi.xiaosai.service.sys.DistributionService;
 import com.cozi.xiaosai.util.redis.RedisKey;
 import com.cozi.xiaosai.util.redis.RedisUtils;
@@ -16,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,6 +70,58 @@ public class DistributionServiceImpl implements DistributionService {
         redisUtils.set(RedisKey.BAR.getKey(), list);
 
         return R.isOk().data(list);
+    }
+
+    @Override
+    public R getLogoIcon(HttpServletRequest request) {
+        //通过session获取用户信息
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        logger.info("logoIcon获取参数："+user);
+        LogoIconPojo logoIconPojo = new LogoIconPojo();
+        if(user!=null){
+            logoIconPojo = distributionMapper.selectLogoIcon(user.getUserName());
+            return R.isOk().data(logoIconPojo);
+        }else {
+            //设置默认值
+            logoIconPojo.setTitle("小噻科技");
+            logoIconPojo.setImage("../layuimini/images/personal-01.png");
+            logoIconPojo.setHref("/xiaosai/index");
+            logoIconPojo.setIsAlter(0);
+            return R.isOk().data(logoIconPojo);
+        }
+    }
+
+    @Override
+    public R getLogoIconEcho(HttpServletRequest request) {
+        Map<String,Object> map = new HashMap<>();
+        //通过session获取用户信息
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        if(user!=null){
+            map.put("userName",user.getUserName());
+            map.put("pojo",distributionMapper.selectLogoIcon(user.getUserName()));
+            map.put("pojos",distributionMapper.selectLogoIconList());
+            return R.isOk().data(map);
+        }else {
+            return R.isFail().msg("数据获取失败！");
+        }
+
+    }
+
+    @Override
+    public R editLogoIconData(LogoIconParams logoIconParams) {
+        //TODO:现在只做了普通用户，只有超级用户才能修改logo的主题和href
+        if(StringUtils.isEmpty(logoIconParams.getUserName())){
+            return R.isFail().msg("用户名不能为空，修改失败！");
+        }
+        try {
+            distributionMapper.updateLogoIconId(logoIconParams);
+            return R.isOk().msg("设置成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return R.isFail().msg("设置失败！");
+        }
     }
 
     @Override

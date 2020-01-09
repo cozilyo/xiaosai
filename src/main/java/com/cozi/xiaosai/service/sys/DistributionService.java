@@ -2,7 +2,10 @@ package com.cozi.xiaosai.service.sys;
 
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.pojo.dataorigin.sys.MenuInfoPojo;
+import com.cozi.xiaosai.pojo.dataorigin.sysParams.LogoIconParams;
 import org.springframework.data.relational.core.sql.In;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author xiaosai
@@ -25,6 +28,12 @@ public interface DistributionService {
      * @return
      */
     R getSidebarInfo();
+
+    R getLogoIcon(HttpServletRequest request);
+
+    R getLogoIconEcho(HttpServletRequest request);
+
+    R editLogoIconData(LogoIconParams logoIconParams);
 
     /**
      * 获取菜单管理信息
