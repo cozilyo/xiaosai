@@ -120,30 +120,30 @@
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" data-iframe-tab="page/setting.html" data-title="系统设置" data-icon="fa fa-gears">
+                                            <a href="javascript:;" data-iframe-tab="/xiaosai/userList" data-title="用户列表" data-icon="fa fa-gears">
                                                 <i class="fa fa-gears"></i>
-                                                <cite>系统设置</cite>
+                                                <cite>用户列表</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" data-iframe-tab="page/table.html" data-title="表格示例" data-icon="fa fa-file-text">
+                                            <a href="javascript:;" data-iframe-tab="/xiaosai/PermissionGroupList" data-title="用户权限" data-icon="fa fa-file-text">
                                                 <i class="fa fa-file-text"></i>
-                                                <cite>表格示例</cite>
+                                                <cite>用户权限</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" data-iframe-tab="page/icon.html" data-title="图标列表" data-icon="fa fa-dot-circle-o">
+                                            <a href="javascript:;" data-iframe-tab="/xiaosai/timeList" data-title="时间管理" data-icon="fa fa-dot-circle-o">
                                                 <i class="fa fa-dot-circle-o"></i>
-                                                <cite>图标列表</cite>
+                                                <cite>时间管理</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" data-iframe-tab="page/form.html" data-title="表单示例" data-icon="fa fa-calendar">
+                                            <a href="javascript:;" data-iframe-tab="/xiaosai/mainPage" data-title="blog" data-icon="fa fa-calendar">
                                                 <i class="fa fa-calendar"></i>
-                                                <cite>表单示例</cite>
+                                                <cite>blog</cite>
                                             </a>
                                         </div>
-                                        <div class="layui-col-xs3 layuimini-qiuck-module">
+                                        <#--<div class="layui-col-xs3 layuimini-qiuck-module">
                                             <a href="javascript:;" data-iframe-tab="page/404.html" data-title="404页面" data-icon="fa fa-hourglass-end">
                                                 <i class="fa fa-hourglass-end"></i>
                                                 <cite>404页面</cite>
@@ -160,7 +160,7 @@
                                                 <i class="fa fa-shield"></i>
                                                 <cite>弹出层</cite>
                                             </a>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -371,66 +371,69 @@
                 }
             });
         });
+        var echartsRecords;
 
-        /**
-         * 报表功能
-         */
-        var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
-        var optionRecords = {
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            toolbox: {
-                feature: {
-                    saveAsImage: {}
-                }
-            },
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: ['周一','周二','周三','周四','周五','周六','周日']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    name:'邮件营销',
-                    type:'line',
-                    data:[120, 132, 101, 134, 90, 230, 210]
+        $(function () {
+            /**
+             * 报表功能
+             */
+            echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+            var optionRecords = {
+                tooltip: {
+                    trigger: 'axis'
                 },
-                {
-                    name:'联盟广告',
-                    type:'line',
-                    data:[220, 182, 191, 234, 290, 330, 310]
+                legend: {
+                    data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
                 },
-                {
-                    name:'视频广告',
-                    type:'line',
-                    data:[150, 232, 201, 154, 190, 330, 410]
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
                 },
-                {
-                    name:'直接访问',
-                    type:'line',
-                    data:[320, 332, 301, 334, 390, 330, 320]
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
                 },
-                {
-                    name:'搜索引擎',
-                    type:'line',
-                    data:[820, 932, 901, 934, 1290, 1330, 1320]
-                }
-            ]
-        };
-        echartsRecords.setOption(optionRecords);
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['周一','周二','周三','周四','周五','周六','周日']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name:'邮件营销',
+                        type:'line',
+                        data:[120, 132, 101, 134, 90, 230, 210]
+                    },
+                    {
+                        name:'联盟广告',
+                        type:'line',
+                        data:[220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name:'视频广告',
+                        type:'line',
+                        data:[150, 232, 201, 154, 190, 330, 410]
+                    },
+                    {
+                        name:'直接访问',
+                        type:'line',
+                        data:[320, 332, 301, 334, 390, 330, 320]
+                    },
+                    {
+                        name:'搜索引擎',
+                        type:'line',
+                        data:[820, 932, 901, 934, 1290, 1330, 1320]
+                    }
+                ]
+            };
+            echartsRecords.setOption(optionRecords);
+        })
 
         // echarts 窗口缩放自适应
         window.onresize = function(){

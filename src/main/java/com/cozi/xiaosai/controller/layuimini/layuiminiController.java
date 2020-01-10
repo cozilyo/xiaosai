@@ -5,6 +5,7 @@ import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.enums.OperationObjects;
 import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @Author xiaosai
@@ -24,7 +26,15 @@ import javax.servlet.http.HttpServletRequest;
 public class layuiminiController {
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public String getIndex(@RequestParam(value = "userName") String userName, Model model,HttpServletRequest request){
+    public String getIndex(@RequestParam(value = "userName",defaultValue = "") String userName, Model model,HttpServletRequest request){
+        //如果未能取到参数
+        if(StringUtils.isEmpty(userName)){
+            HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("user");
+            if(user!=null){
+                userName=user.getUserName();
+            }
+        }
         model.addAttribute("userName",userName);
         return "layuimini/index";
     }

@@ -44,9 +44,9 @@
             <li class="layui-nav-item">
                 <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
             </li>
-            <li class="layui-nav-item">
+            <#--<li class="layui-nav-item">
                 <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
-            </li>
+            </li>-->
             <li class="layui-nav-item layuimini-setting">
                 <a href="javascript:;"><p class="user_account"></p></a>
                 <dl class="layui-nav-child">

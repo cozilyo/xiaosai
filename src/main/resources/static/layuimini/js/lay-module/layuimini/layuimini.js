@@ -1,6 +1,6 @@
 /**
  * date:2019/06/10
- * author:Mr.Chung
+ * author:xiaosai
  * description:layuimini 框架扩展
  */
 
@@ -50,9 +50,7 @@ layui.define(["element", "jquery"], function (exports) {
                     layuimini.msg_error('暂无菜单信息');
                 } else {
                     layuimini.initHome(data.homeInfo);
-                    //layuimini.initLogo(data.logoInfo);
                     layuimini.initClear(data.clearInfo);
-                    //layuimini.initMenu(data.menuInfo);
                     layuimini.initTab();
                 }
             }).fail(function () {

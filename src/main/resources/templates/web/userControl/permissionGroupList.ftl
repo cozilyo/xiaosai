@@ -59,7 +59,7 @@
 </div>
 <script src="../layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../js/web/userControl/permissionGroupList.js"></script>
-<script src="../layuimini/js/index.js"></script>
+<#--<script src="../layuimini/js/index.js"></script>-->
 
 </body>
 </html>
