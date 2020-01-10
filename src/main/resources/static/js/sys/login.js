@@ -68,5 +68,13 @@ layui.use(['form'], function () {
                 }
             }
         })
-    })
+    });
+
+    //enter键触发提交
+    $(document).on('keydown', function (event) {
+        if (event.keyCode == 13) {
+            $("#submit_id").trigger("click");
+            return false
+        }
+    });
 });

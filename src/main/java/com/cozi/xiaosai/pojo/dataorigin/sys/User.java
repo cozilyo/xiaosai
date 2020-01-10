@@ -14,6 +14,7 @@ import com.cozi.xiaosai.common.PageModel;
 public class User extends CaptchaPojo{
     private Integer id;
     private String userId;
+    private Integer logoIconId;
     private String name;
     private String userName;
     private String password;
@@ -51,6 +52,14 @@ public class User extends CaptchaPojo{
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Integer getLogoIconId() {
+        return logoIconId;
+    }
+
+    public void setLogoIconId(Integer logoIconId) {
+        this.logoIconId = logoIconId;
     }
 
     public String getName() {

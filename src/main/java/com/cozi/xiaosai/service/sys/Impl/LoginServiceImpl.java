@@ -38,8 +38,8 @@ public class LoginServiceImpl implements LoginService {
         String password = user.getPassword();
         //密码加密
         user.setPassword(AES.encryptToBase64(password, AesKey.AES_KEY));
+        user.setLogoIconId(1);
         int i = userService.addUser(user);
-        //System.out.println("返回值："+i);
         if(StringUtils.isNotEmpty(user.getMail())){
             mailSendService.voidSendMail(2,user.getMail(),
                     "You have registered your account in our xiaosai system. " +

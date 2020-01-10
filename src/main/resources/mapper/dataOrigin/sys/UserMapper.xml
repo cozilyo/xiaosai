@@ -26,6 +26,9 @@
             <if test="userId!=null and userId!=''">
                 user_id,
             </if>
+            <if test="logoIconId!=null and logoIconId!=''">
+                logo_icon_id,
+            </if>
             <if test="name!=null and name!=''">
                 name,
             </if>
@@ -56,6 +59,9 @@
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
             <if test="userId!=null and userId!=''">
                 #{userId},
+            </if>
+            <if test="logoIconId!=null and logoIconId!=''">
+                #{logoIconId},
             </if>
             <if test="name!=null and name!=''">
                 #{name},
