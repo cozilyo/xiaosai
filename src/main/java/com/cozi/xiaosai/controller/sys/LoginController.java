@@ -83,7 +83,7 @@ public class LoginController {
             response.setHeader("Cache-Control", "no-cache");
             response.setDateHeader("Expire", 0);
             //随机生成验证码，并放入redis中
-            String stringRandom = NumberUtil.getStringRandom(5);
+            String stringRandom = NumberUtil.getRandomString(5);
             redisUtils.set(stringRandom.toUpperCase(), CueWordsEnum.LOGIN_VERIFY.getValue(),30L);
             RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
             randomValidateCode.getRandcode(request, response,stringRandom);

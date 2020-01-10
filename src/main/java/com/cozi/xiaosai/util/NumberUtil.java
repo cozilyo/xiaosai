@@ -28,6 +28,29 @@ public class NumberUtil {
         return val;
     }
 
+    /**
+     *去掉大写i,小写L,大小写o
+     * @param length
+     * @return
+     */
+    public static String getRandomString(int length){
+        String val = "";
+        Random random = new Random();
+        char[] word = new char[]{'a','A','b','B','c','C','d','D','e','E','f','F','g','G','h','H','i','j','J',
+                'k','K','L','m','M','n','N','p','P','q','Q','r','R','s','S','t','T','u','U','v','V',
+                'w','W','x','X','y','Y','z','Z'};
+        for(int i=0;i<length;i++){
+            String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";
+            //输出字母还是数字
+            if("char".equalsIgnoreCase(charOrNum)){
+                //
+                val += word[random.nextInt(word.length)];
+            }else {
+                val += String.valueOf(random.nextInt(10));
+            }
+        }
+        return val;
+    }
 
     public static void main(String[] args) {
        /* //随机生成纯数字
@@ -38,9 +61,8 @@ public class NumberUtil {
         //生成数字字母
         for(int i=0;i<15;i++)
             createRandomCharData(20);*/
-
+        System.out.println(getRandomString(10));
         //createRandomCharData(6);
-        System.out.println(getStringRandom(32));
         //createData(6);
     }
 
