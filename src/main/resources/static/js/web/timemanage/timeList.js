@@ -39,13 +39,12 @@ layui.use(['form','layer', 'table'], function () {
         var result = data.field;
         //执行搜索重载
         table.reload('tableReload', {
-            url:"/xiaosai/userListData",
+            url:"/xiaosai/timeListData",
             where: {
                 name:result.name,
-                userName:result.userName,
-                telephone:result.telephone,
-                mail:result.mail,
-                address:result.address
+                nickname:result.nickname,
+                address:result.address,
+                incident:result.incident
             },
             page:{
                 curr: 1
@@ -58,13 +57,12 @@ layui.use(['form','layer', 'table'], function () {
     $(".data-reset-btn").on("click",function () {
         //执行重置重载
         table.reload('tableReload', {
-            url:"/xiaosai/userListData",
+            url:"/xiaosai/timeListData",
             where: {
                 name:'',
-                userName:'',
-                telephone:'',
-                mail:'',
-                address:''
+                nickname:'',
+                address:'',
+                incident:''
             },
             page:{
                 curr: 1
@@ -127,9 +125,9 @@ layui.use(['form','layer', 'table'], function () {
     });
 
     //监听表格复选框选择
-    table.on('checkbox(currentTableFilter)', function (obj) {
+    /*table.on('checkbox(currentTableFilter)', function (obj) {
         console.log(obj)
-    });
+    });*/
 
     table.on('tool(currentTableFilter)', function (obj) {
         var data = obj.data;

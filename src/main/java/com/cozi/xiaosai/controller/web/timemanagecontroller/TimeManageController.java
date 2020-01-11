@@ -3,7 +3,9 @@ package com.cozi.xiaosai.controller.web.timemanagecontroller;
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.controller.sys.LoginController;
 import com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo;
+import com.cozi.xiaosai.pojo.dataorigin.webParams.TimeManageParams;
 import com.cozi.xiaosai.service.web.TimeManageService;
+import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +64,8 @@ public class TimeManageController {
      */
     @RequestMapping(value = "/timeListData",method = RequestMethod.POST)
     @ResponseBody
-    public R getTimeList(){
-        return timeManageService.getTimeList();
+    public R getTimeList(@RequestBody(required = false) TimeManageParams timeManageParams){
+        return timeManageService.getTimeList(timeManageParams);
     }
 
     /**

@@ -2,6 +2,7 @@ package com.cozi.xiaosai.service.web;
 
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo;
+import com.cozi.xiaosai.pojo.dataorigin.webParams.TimeManageParams;
 
 /**
  * @author xiaosai
@@ -11,7 +12,8 @@ import com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo;
  */
 
 public interface TimeManageService {
-    R getTimeList();
+
+    R getTimeList(TimeManageParams timeManageParams);
 
     R addTimeManage(TimeManagePojo timeManagePojo);
 

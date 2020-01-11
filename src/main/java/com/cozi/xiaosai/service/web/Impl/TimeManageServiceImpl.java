@@ -1,10 +1,14 @@
 package com.cozi.xiaosai.service.web.Impl;
 
+import com.cozi.xiaosai.common.PageFormatConver;
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.enums.CueWordsEnum;
 import com.cozi.xiaosai.mapper.dataOrigin.web.TimeManageMapper;
 import com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo;
+import com.cozi.xiaosai.pojo.dataorigin.webParams.TimeManageParams;
 import com.cozi.xiaosai.service.web.TimeManageService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +26,9 @@ public class TimeManageServiceImpl implements TimeManageService {
     private TimeManageMapper timeManageMapper;
 
     @Override
-    public R getTimeList() {
-        return R.isOk().data(timeManageMapper.selectTimeManage());
+    public R getTimeList(TimeManageParams timeManageParams) {
+        PageInfo<TimeManagePojo> pojoPageInfo = new PageInfo<>(timeManageMapper.selectTimeManage(timeManageParams));
+        return new PageFormatConver(pojoPageInfo).isOK();
     }
 
     @Override

@@ -117,7 +117,7 @@ public class UserController {
     //@Log1oneAnnotation(operationType = OperationType.SELECT,operands = OperationObjects.XIAOSAI_USER)
     @RequestMapping(value = "/userListData",method = RequestMethod.POST)
     @ResponseBody
-    public R getListData(@RequestBody UserParams userParams){
+    public R getListData(@RequestBody(required = false) UserParams userParams){
         logger.info("用户信息请求参数："+userParams);
         logBehaviorPublistener.publish(new LogInfo(0, OperationModule.TONGYONGPINGTAI.getModule(),OperationType.SELECT.getValue(),OperationObjects.XIAOSAI_USER.getValue(),userParams.toString()));
         PageHelper.startPage(userParams.getPage(),userParams.getLimit(),"id");

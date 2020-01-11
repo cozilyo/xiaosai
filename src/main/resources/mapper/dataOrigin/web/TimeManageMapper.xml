@@ -2,8 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.cozi.xiaosai.mapper.dataOrigin.web.TimeManageMapper">
-      <select id="selectTimeManage" resultType="com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo">
-          SELECT id,name,nickname,address,incident,accomplishment,step_do stepDo,start_time startTime,end_time endTime,create_time createTime,modify_time modifyTime FROM xiaosai_time_manage
+      <select id="selectTimeManage" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.TimeManageParams" resultType="com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo">
+          SELECT id,name,nickname,address,incident,accomplishment,step_do stepDo,start_time startTime,end_time endTime,create_time createTime,modify_time modifyTime
+          FROM xiaosai_time_manage
+          WHERE 1=1
+          <if test="name!=null and name!=''">
+              AND name LIKE CONCAT('%',#{name},'%')
+          </if>
+          <if test="nickname!=null and nickname!=''">
+              AND nickname LIKE CONCAT('%',#{nickname},'%')
+          </if>
+          <if test="address!=null and address!=''">
+              AND address LIKE CONCAT('%',#{address},'%')
+          </if>
+          <if test="incident!=null and incident!=''">
+              AND incident LIKE CONCAT('%',#{incident},'%')
+          </if>
       </select>
       <insert id="insertTimeManage" parameterType="com.cozi.xiaosai.pojo.dataorigin.web.TimeManagePojo">
           INSERT INTO xiaosai_time_manage (name,nickname,address,incident,accomplishment,step_do,start_time,end_time,create_time,modify_time)
