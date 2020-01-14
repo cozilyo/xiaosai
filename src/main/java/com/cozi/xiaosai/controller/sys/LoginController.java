@@ -230,7 +230,7 @@ public class LoginController {
         try {
             //这里没啥操作 就是生成一个UUID插入 数据库的表里
             String uuid = UUID.getUuid();
-            logger.info("UUID:"+uuid);
+            //logger.info("UUID:"+uuid);
             response.setHeader("uuid", uuid);
             // 这里是开源工具类 hutool里的QrCodeUtil
             // 网址：http://hutool.mydoc.io/

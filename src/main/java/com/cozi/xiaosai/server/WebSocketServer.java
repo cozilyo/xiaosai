@@ -43,7 +43,7 @@ public class WebSocketServer {
         //加入set中
         addOnlineCount();
         //在线数加1
-        logger.info("有新窗口开始监听:"+sid+",当前在线人数为" + getOnlineCount());
+        //logger.info("有新窗口开始监听:"+sid+",当前在线人数为" + getOnlineCount());
         this.sid=sid;
         /*try {
             sendMessage("连接成功");
@@ -61,7 +61,7 @@ public class WebSocketServer {
         //从set中删除
         subOnlineCount();
         //在线数减1
-        logger.info("有一连接关闭！当前在线人数为" + getOnlineCount());
+        //logger.info("有一连接关闭！当前在线人数为" + getOnlineCount());
     }
 
     /**

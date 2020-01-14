@@ -74,7 +74,7 @@ public class RandomValidateCodeUtil {
             randomString = drowString(g, randomString, i);
         }*/
         drowString(g,stringRandom,1);
-        logger.info("登入验证码："+stringRandom);
+        //logger.info("登入验证码："+stringRandom);
         //将生成的随机字符串保存到session中
         //session.removeAttribute(RANDOMCODEKEY);
         //session.setAttribute(RANDOMCODEKEY, randomString);
