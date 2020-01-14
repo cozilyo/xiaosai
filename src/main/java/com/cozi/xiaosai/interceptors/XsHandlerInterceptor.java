@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.interceptors;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cozi.xiaosai.enums.CueWordsEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,9 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(XsHandlerInterceptor.class);
 
-    //不需要拦截的地址
+    /**
+     * 不需要拦截的地址
+     */
     private static Set<String> uriSet = new HashSet<>();
 
     static {
@@ -41,17 +44,23 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("^-^The system is accessed at the following address:"+request.getRequestURI());
+        //logger.info("^-^The system is accessed at the following address:"+request.getRequestURI());
         if(uriSet.contains(request.getRequestURI())){
             return true;
         }
         HttpSession session = request.getSession();
-        if(session!=null&&session.getAttribute("user")!=null){
+        //手机端接口控制
+        if(request.getRequestURI().startsWith(CueWordsEnum.INTERCEPTOR_APP_URL_CONTROLLER.getValue())){
             return true;
         }else {
-            //return sessionExpire(response,"请求session失效，请重新登录！");
-            request.getRequestDispatcher("/xiaosai/login").forward(request,response);
-            return false;
+            //web端接口控制
+            if(session!=null&&session.getAttribute(CueWordsEnum.INTERCEPTOR_SESSION_ATTR_KEY.getValue())!=null){
+                return true;
+            }else {
+                //return sessionExpire(response,"请求session失效，请重新登录！");
+                request.getRequestDispatcher(CueWordsEnum.INTERCEPTOR_LOGIN_FORWARD_URL.getValue()).forward(request,response);
+                return false;
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.enums;
 
 /**
+ * 网站所有静态变量值
  * @author xiaosai
  * @version 1.0
  * @date 2019-12-24 15:43
@@ -32,6 +33,7 @@ public enum  CueWordsEnum {
     LOGO_ICON_SUCCESS(15,"设置成功"),
     LOGO_ICON_FAILED(16,"设置失败！"),
 
+    //菜单管理
     MENU_MANAGE_EDIT_SUCCESS(17,"菜单管理编辑成功"),
     MENU_MANAGE_NAV_NAVID(18,"导航id无效或与导航标识不一致！"),
     MENU_MANAGE_SIDEBAR_TITLE(19,"侧边栏名称不能为空或同级重复!"),
@@ -39,12 +41,14 @@ public enum  CueWordsEnum {
     MENU_MANAGE_FAILED_ID(21,"id不存在"),
     MENU_MANAGE_UNVALID_ID(22,"id无效"),
 
+    //密码修改
     USER_FAILED_INEXISTENCE(23,"用户不存在！"),
     USER_FAILED_OLDANDNEW_PASSWORD(24,"新旧密码不允许为空！"),
     USER_SUCCESS_EDIT_PASSWORD(25,"密码修改成功，请重新登录"),
     USER_FAILED_EDIT_PASSWORD(26,"密码修改失败！"),
     USER_FAILED_OLD_PASSWORD(27,"旧密码错误，请重新输入!"),
 
+    //权限组管理
     PGROUP_FAILED_ADD_NAME(28,"权限组添加失败，名称不能为空或重复！"),
     PGROUP_FAILED_ADD_TYPE(29,"权限组添加失败，代号不能为空或重复！"),
     PGROUP_SUCCESS_ADD(30,"权限组添加成功"),
@@ -53,12 +57,19 @@ public enum  CueWordsEnum {
     PGROUP_SUCCESS_EDTI(33,"权限组编辑成功"),
     PGROUP_FAILED_EDIT(34,"权限组编辑失败！"),
 
+    //时间管理
     TIME_MANAGE_FAILED_NAME(35,"姓名不能为空！"),
     TIME_MANAGE_FAILED_INCIDENT(36,"事件不能为空！"),
     TIME_MANAGE_FAILED_ACCOMPLISHMENT(37,"完成量不能为空！"),
     TIME_MANAGE_SUCCESS_ADD(38,"时间管理添加成功"),
     TIME_MANAGE_FAILED_ERROR(39,"未能找到数据！"),
-    TIME_MANAGE_SUCCESS_EDIT(40,"时间管理编辑成功");
+    TIME_MANAGE_SUCCESS_EDIT(40,"时间管理编辑成功"),
+
+    //拦截器
+    INTERCEPTOR_APP_URL_CONTROLLER(41,"/xiaosai/app"),
+    INTERCEPTOR_LOGIN_FORWARD_URL(42,"/xiaosai/login"),
+    INTERCEPTOR_SESSION_ATTR_KEY(43,"user")
+    ;
 
     private Integer key;
     private String value;
