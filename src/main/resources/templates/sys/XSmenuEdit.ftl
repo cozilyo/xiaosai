@@ -45,13 +45,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">导航标识</label>
                 <div class="layui-input-block">
-                    <input type="text" name="navigationBarName" lay-verify="required" placeholder="请输入" readonly autocomplete="off" class="layui-input">
+                    <input type="text" name="navigationBarName" lay-verify="required" placeholder="请输入" disabled autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">导航排序</label>
                 <div class="layui-input-block">
-                    <input type="text" name="navigationBarIndex" lay-verify="required" placeholder="请输入" readonly autocomplete="off" class="layui-input">
+                    <input type="text" name="navigationBarIndex" lay-verify="required" placeholder="请输入" disabled autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">

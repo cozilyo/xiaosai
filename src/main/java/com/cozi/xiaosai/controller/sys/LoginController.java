@@ -1,5 +1,6 @@
 package com.cozi.xiaosai.controller.sys;
 
+import cn.hutool.extra.qrcode.QrCodeUtil;
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.common.ReturnMap;
 import com.cozi.xiaosai.common.StaticValues;
@@ -71,6 +72,15 @@ public class LoginController {
     }
 
     /**
+     * 二维码展示页
+     * @return
+     */
+    @RequestMapping(value = "/qrCode",method = RequestMethod.GET)
+    public String getQRcodeFtl(HttpServletRequest request,Model model){
+        return "sys/QRcode";
+    }
+
+    /**
      * 生成验证码
      */
     @RequestMapping(value = "/getVerify")
@@ -102,9 +112,6 @@ public class LoginController {
             return ReturnMap.failureResponse();
         }
     }
-
-
-
 
     /**
      * 注册接口
@@ -210,6 +217,27 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.invalidate();
         return "sys/XSlogin";
+    }
+
+    @RequestMapping(value = "/getLoginQr",method = RequestMethod.GET)
+    public  void creteQrImg(HttpServletRequest request,HttpServletResponse response){
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+
+        response.setDateHeader("Expires", 0);
+        response.setContentType("image/jpeg");
+
+        try {
+            //这里没啥操作 就是生成一个UUID插入 数据库的表里
+            String uuid = UUID.getUuid();
+            logger.info("UUID:"+uuid);
+            response.setHeader("uuid", uuid);
+            // 这里是开源工具类 hutool里的QrCodeUtil
+            // 网址：http://hutool.mydoc.io/
+            QrCodeUtil.generate(uuid, 300, 300, "jpg",response.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

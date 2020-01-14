@@ -29,6 +29,11 @@
         .captcha {width:60%;display:inline-block;}
         .captcha-img {display:inline-block;width:34%;float:right;}
         .captcha-img img {height:34px;border:1px solid #e6e6e6;height:36px;width:100%;}
+        .login_sys{
+            float: right;
+            margin-right: 20px;
+            color: #00a2d4;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +64,7 @@
                 </div>
                 <div class="layui-form-item">
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
+                    <a class="login_sys" id="login_sys">扫一扫</a>
                 </div>
                 <div class="layui-form-item">
                     <button id="submit_id" class="layui-btn layui-btn-fluid" lay-submit lay-filter="loginBtn" disabled>登 入</button>

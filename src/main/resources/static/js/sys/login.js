@@ -77,4 +77,16 @@ layui.use(['form'], function () {
             return false
         }
     });
+
+    //打开二维码
+    $("#login_sys").on("click",function () {
+        layer.open({
+            type:2,
+            title:"打开app，扫一扫",
+            area:['315px','370px'],
+            scrollbar:false,
+            shadeClose:true,
+            content:"/xiaosai/qrCode"
+        })
+    })
 });

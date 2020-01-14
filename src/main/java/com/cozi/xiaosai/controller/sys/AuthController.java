@@ -1,5 +1,6 @@
 package com.cozi.xiaosai.controller.sys;
 
+import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.common.ReturnMap;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,9 +39,11 @@ public class AuthController {
         }
     }
 
-    @RequestMapping("/ma")
-    public String getString(){
-        return "sss";
+    @RequestMapping(value = "/bindUserIdAndToken",method = RequestMethod.GET)
+    public R bindUserIdAndToken(@RequestParam("token") String token ,
+                                @RequestParam("userId") Integer userId,
+                                @RequestParam(required = false,value = "projId") Integer projId){
+        return R.isOk();
     }
 
 }
