@@ -1,7 +1,6 @@
 package com.cozi.xiaosai.service.sys.Impl;
 
 import com.cozi.xiaosai.common.R;
-import com.cozi.xiaosai.controller.sys.DistributionController;
 import com.cozi.xiaosai.enums.CueWordsEnum;
 import com.cozi.xiaosai.mapper.dataOrigin.sys.DistributionMapper;
 import com.cozi.xiaosai.pojo.dataorigin.sys.*;
