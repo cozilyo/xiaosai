@@ -2,17 +2,25 @@ package com.cozi.xiaosai.interceptors;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cozi.xiaosai.enums.CueWordsEnum;
+import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.cozi.xiaosai.service.sys.UserService;
+import com.cozi.xiaosai.util.redis.RedisKey;
+import com.cozi.xiaosai.util.redis.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -24,6 +32,17 @@ import java.util.Set;
 public class XsHandlerInterceptor implements HandlerInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(XsHandlerInterceptor.class);
+
+    @Autowired
+    private RedisUtils redisUtils;
+
+    public static XsHandlerInterceptor xsHandlerInterceptor;
+
+    @PostConstruct
+    public void init(){
+        xsHandlerInterceptor = this;
+        xsHandlerInterceptor.redisUtils = this.redisUtils;
+    }
 
     /**
      * 不需要拦截的地址
@@ -54,7 +73,23 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
             return true;
         }else {
             //web端接口控制
-            if(session!=null&&session.getAttribute(CueWordsEnum.INTERCEPTOR_SESSION_ATTR_KEY.getValue())!=null){
+            User user = (User) session.getAttribute(CueWordsEnum.INTERCEPTOR_SESSION_ATTR_KEY.getValue());
+            //session验证
+            boolean flag = false;
+            if(session!=null&&user!=null){
+                Map<Object, Object> map = xsHandlerInterceptor.redisUtils.hmget(RedisKey.SESSION.getKey() + user.getUserName());
+                if(map == null){
+                    flag = true;
+                }else {
+                    flag = map.get("sesionId").equals(session.getId())&&System.currentTimeMillis()- Long.parseLong(map.get("validity").toString())<=1000*60*60*30;
+                }
+            }
+            if(flag){
+                //设置session有效性
+                Map<String,Object> map = new HashMap<>();
+                map.put("sesionId",session.getId());
+                map.put("validity", System.currentTimeMillis());
+                xsHandlerInterceptor.redisUtils.hmset(RedisKey.SESSION.getKey()+user.getUserName(),map);
                 return true;
             }else {
                 //return sessionExpire(response,"请求session失效，请重新登录！");
