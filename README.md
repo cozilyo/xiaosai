@@ -44,8 +44,11 @@ sweetalert2 9.5.4
 请加入QQ:1877992566
 
 ## 安装方式
-1.从github上拉取代码
-2.安装数据库
-3.导入sql表
+1. 从github上拉取代码
+2. 安装数据库
+3. 导入sql表
+4. 安装redis
+5. 安装zookeeper
+6. 启动xiaosaiApplication
 
 
