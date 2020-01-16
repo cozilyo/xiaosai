@@ -24,6 +24,7 @@ pagehelper 分页助手
 java设计模式
 kafka
 zookeeper
+基于sesion和redis实现同一账号只能一个在线，并且无操作30分钟session失效
 
 本系统中所有关于app均以APP开头。
 ```

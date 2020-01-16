@@ -81,11 +81,12 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
                 if(map == null){
                     flag = true;
                 }else {
-                    flag = map.get("sesionId").equals(session.getId())&&System.currentTimeMillis()- Long.parseLong(map.get("validity").toString())<=1000*60*60*30;
+                    //session是否相等，和session有效时间
+                    flag = map.get("sesionId").equals(session.getId())&&System.currentTimeMillis()- Long.parseLong(map.get("validity").toString())<=1000*5;
                 }
             }
             if(flag){
-                //设置session有效性
+                //重置session有效性
                 Map<String,Object> map = new HashMap<>();
                 map.put("sesionId",session.getId());
                 map.put("validity", System.currentTimeMillis());
