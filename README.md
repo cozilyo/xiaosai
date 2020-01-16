@@ -35,12 +35,13 @@ layui
 
 sweetalert2 9.5.4
 ```
-![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/login.png)
-![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/index.png)
-![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/userList.png)
-![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/userpermission.png)
-![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/menu.png)
-![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/menuadd.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/login.1.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/index.1.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/user.1.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/permiss.1.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/menu.1.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/time.1.png)
+![image](https://github.com/cozilyo/xiaosai/blob/master/src/main/resources/static/readmeImg/blog.1.png)
 ## 有什么问题
 请加入QQ:1877992566
 
