@@ -81,6 +81,24 @@ public class LoginController {
     }
 
     /**
+     *错误提示页419
+     * @return
+     */
+    @RequestMapping(value = "/p419",method = RequestMethod.GET)
+    public String get419Error(){
+        return "sys/error/419";
+    }
+
+    /**
+     * 错误提示页423
+     * @return
+     */
+    @RequestMapping(value = "/p423",method = RequestMethod.GET)
+    public String get423Error(){
+        return "sys/error/423";
+    }
+
+    /**
      * 生成验证码
      */
     @RequestMapping(value = "/getVerify")

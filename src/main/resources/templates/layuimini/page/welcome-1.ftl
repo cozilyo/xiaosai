@@ -144,7 +144,7 @@
                                             </a>
                                         </div>
                                         <#--<div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" data-iframe-tab="page/404.html" data-title="404页面" data-icon="fa fa-hourglass-end">
+                                            <a href="javascript:;" data-iframe-tab="page/404.ftl" data-title="404页面" data-icon="fa fa-hourglass-end">
                                                 <i class="fa fa-hourglass-end"></i>
                                                 <cite>404页面</cite>
                                             </a>

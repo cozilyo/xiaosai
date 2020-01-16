@@ -56,9 +56,12 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
         uriSet.add("/xiaosai/getVerify");
         uriSet.add("/xiaosai/checkVerify");
         uriSet.add("/xiaosai/login");
+        uriSet.add("/xiaosai/logout");
         uriSet.add("/xiaosai/regis");
         uriSet.add("/xiaosai/addUser");
         uriSet.add("/xiaosai/checkUser");
+        uriSet.add("/xiaosai/p419");
+        uriSet.add("/xiaosai/p423");
     }
 
     @Override
@@ -68,6 +71,7 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
             return true;
         }
         HttpSession session = request.getSession();
+        String host = request.getHeader("Host");
         //手机端接口控制
         if(request.getRequestURI().startsWith(CueWordsEnum.INTERCEPTOR_APP_URL_CONTROLLER.getValue())){
             return true;
@@ -82,7 +86,15 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
                     flag = true;
                 }else {
                     //session是否相等，和session有效时间
-                    flag = map.get("sesionId").equals(session.getId())&&System.currentTimeMillis()- Long.parseLong(map.get("validity").toString())<=1000*5;
+                    //seseion被替换，表示在其他地方登录
+                    if(!map.get("sesionId").equals(session.getId())){
+                        return sessionExpire(response,host,419);
+                    }
+                    //session时间过期
+                    if(System.currentTimeMillis()- Long.parseLong(map.get("validity").toString())>1000*60*30){
+                        return sessionExpire(response,host,423);
+                    }
+                    flag = map.get("sesionId").equals(session.getId())&&System.currentTimeMillis()- Long.parseLong(map.get("validity").toString())<=1000*60*30;
                 }
             }
             if(flag){
@@ -93,7 +105,7 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
                 xsHandlerInterceptor.redisUtils.hmset(RedisKey.SESSION.getKey()+user.getUserName(),map);
                 return true;
             }else {
-                //return sessionExpire(response,"请求session失效，请重新登录！");
+                //return sessionExpire(response,host,419);
                 request.getRequestDispatcher(CueWordsEnum.INTERCEPTOR_LOGIN_FORWARD_URL.getValue()).forward(request,response);
                 return false;
             }
@@ -110,18 +122,21 @@ public class XsHandlerInterceptor implements HandlerInterceptor {
 
     }
 
-    public boolean sessionExpire(HttpServletResponse httpServletResponse, String msg) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("return_code", 416);
-        jsonObject.put("return_msg", msg);
+    public boolean sessionExpire(HttpServletResponse httpServletResponse,String host,Integer status) {
         httpServletResponse.setCharacterEncoding("UTF-8");
-        httpServletResponse.setContentType("application/json; charset=utf-8");
-        try {
+        httpServletResponse.setContentType("text/html;charset=utf-8");
+        httpServletResponse.getHeader("");
+        if(status.equals(419)){
+            httpServletResponse.setHeader("Refresh","2;URL=http://"+host+"/xiaosai/p419");
+        }else if(status.equals(423)){
+            httpServletResponse.setHeader("Refresh","2;URL=http://"+host+"/xiaosai/p423");
+        }
+
+        /*try {
             PrintWriter out = httpServletResponse.getWriter();
-            out.append(jsonObject.toJSONString());
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         return false;
     }
 }

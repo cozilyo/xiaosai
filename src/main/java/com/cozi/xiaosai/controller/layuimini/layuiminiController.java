@@ -1,9 +1,5 @@
 package com.cozi.xiaosai.controller.layuimini;
 
-import com.cozi.xiaosai.annotation.Log1oneAnnotation;
-import com.cozi.xiaosai.common.R;
-import com.cozi.xiaosai.enums.OperationObjects;
-import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -100,7 +96,7 @@ public class layuiminiController {
 
     @RequestMapping(value = "/p404",method = RequestMethod.GET)
     public String getP404(HttpServletRequest request){
-        return "layuimini/page/404";
+        return "404.ftl";
     }
 
     @RequestMapping(value = "/button",method = RequestMethod.GET)
