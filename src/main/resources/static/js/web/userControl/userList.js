@@ -14,7 +14,8 @@ layui.use(['form','layer', 'table'], function () {
         contentType: 'application/json',
         cols: [[
             {type: "checkbox", width: 50, fixed: "left"},
-            {field: 'id', width: 65, title: 'ID', sort: true},
+            {type:"numbers",title:"序号"},
+            // {field: 'id', width: 65, title: 'ID', sort: true},
             {field: 'name', width: 80, title: '姓名'},
             {field: 'userName', width: 100, title: '用户名'},
             {field: 'telephone', width: 120, title: '电话号码'},

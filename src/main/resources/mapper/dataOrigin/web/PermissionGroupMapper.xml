@@ -10,7 +10,7 @@
           <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
           <result column="modify_time" property="modifyTime" jdbcType="VARCHAR"/>
       </resultMap>
-      <select id="selectPermissionGroupByInfo" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams" resultType="com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo">
+      <select id="selectPermissionGroupByInfo" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupParams" resultType="com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo">
           SELECT id,group_name groupName,group_type groupType,access_level accessLevel,create_time createTime,modify_time modifyTime FROM xiaosai_permission_group WHERE 1=1
           <if test="id != null and id != ''">
               AND id = #{id}
@@ -31,7 +31,7 @@
               AND modify_time = #{modifyTime}
           </if>
       </select>
-      <insert id="insertPermissionGroup" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams">
+      <insert id="insertPermissionGroup" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupParams">
           INSERT INTO xiaosai_permission_group
           (group_name,group_type,access_level,create_time,modify_time)
           VALUES
@@ -60,7 +60,7 @@
       <select id="selectPermissionGroupById" parameterType="integer" resultType="com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo">
           SELECT id,group_name groupName,group_type groupType,access_level accessLevel,create_time createTime,modify_time modifyTime FROM xiaosai_permission_group WHERE id=#{id}
       </select>
-      <update id="updatePermissionGroup" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams">
+      <update id="updatePermissionGroup" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupParams">
           UPDATE xiaosai_permission_group SET
           group_name=#{groupName},
           group_type=#{groupType},

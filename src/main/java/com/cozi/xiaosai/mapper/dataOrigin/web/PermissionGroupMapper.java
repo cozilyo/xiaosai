@@ -1,11 +1,9 @@
 package com.cozi.xiaosai.mapper.dataOrigin.web;
 
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
-import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams;
+import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupParams;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * 权限组持久层
@@ -18,16 +16,16 @@ import java.util.List;
 public interface PermissionGroupMapper {
     /**
      * 通过权限组信息查找
-     * @param permissionGroupPojoParams 权限组信息
+     * @param permissionGroupParams 权限组信息
      * @return 权限组集合
      */
-    Page<PermissionGroupPojo> selectPermissionGroupByInfo(PermissionGroupPojoParams permissionGroupPojoParams);
+    Page<PermissionGroupPojo> selectPermissionGroupByInfo(PermissionGroupParams permissionGroupParams);
 
     /**
      * 添加权限组
-     * @param permissionGroupPojoParams
+     * @param permissionGroupParams
      */
-    void insertPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams);
+    void insertPermissionGroup(PermissionGroupParams permissionGroupParams);
 
     /**
      * 通过权限组名称查找，存在多少条数据
@@ -54,8 +52,8 @@ public interface PermissionGroupMapper {
 
     /**
      * 权限组编辑
-     * @param permissionGroupPojoParams
+     * @param permissionGroupParams
      * @exception
      */
-    void updatePermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams) throws Exception;
+    void updatePermissionGroup(PermissionGroupParams permissionGroupParams) throws Exception;
 }

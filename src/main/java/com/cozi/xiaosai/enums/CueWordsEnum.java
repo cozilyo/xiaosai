@@ -68,7 +68,11 @@ public enum  CueWordsEnum {
     //拦截器
     INTERCEPTOR_APP_URL_CONTROLLER(41,"/xiaosai/app"),
     INTERCEPTOR_LOGIN_FORWARD_URL(42,"/xiaosai/login"),
-    INTERCEPTOR_SESSION_ATTR_KEY(43,"user")
+    INTERCEPTOR_SESSION_ATTR_KEY(43,"user"),
+
+    //日志管理
+    LOG_MANAGE_LOGIN_IN(44,"登入系统"),
+    LOG_MANAGE_LOGIN_OUT(45,"登出系统")
     ;
 
     private Integer key;

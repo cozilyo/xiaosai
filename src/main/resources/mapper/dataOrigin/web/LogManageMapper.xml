@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cozi.xiaosai.mapper.dataOrigin.web.LogManageMapper">
+    <insert id="insertLog" parameterType="com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo">
+        INSERT INTO xiaosai_log (operator,operation_module,operation_type,operands,ip,operation_content,operation_time,create_time,modify_time)
+        VALUES (#{operator},#{operationModule},#{operationType},#{operands},#{ip},#{operationContent},NOW(),NOW(),NOW())
+    </insert>
+    <insert id="insertLogHd" parameterType="com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo">
+        INSERT INTO xiaosai_log_handle (operator,operation_module,operation_type,operands,ip,operation_content,operation_time,create_time,modify_time)
+        VALUES (#{operator},#{operationModule},#{operationType},#{operands},#{ip},#{operationContent},NOW(),NOW(),NOW())
+    </insert>
+    <select id="selectLogManageList" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.LogmanageParams" resultType="com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo">
+        SELECT id,operator,operation_module operationModule,operation_type operationType,operands,operation_time operationTime,ip,operation_content operationContent,create_time createTime,modify_time modifyTime
+        FROM xiaosai_log
+        WHERE 1=1
+        <if test="operator!=null and operator!=''">
+
+        </if>
+    </select>
+    <select id="selectLogManageHdList" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.LogmanageParams" resultType="com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo">
+        SELECT id,operator,operation_module operationModule,operation_type operationType,operands,operation_time operationTime,ip,operation_content operationContent,create_time createTime,modify_time modifyTime
+        FROM xiaosai_log_handle
+        WHERE 1=1
+        <if test="operator!=null and operator!=''">
+
+        </if>
+    </select>
+</mapper>

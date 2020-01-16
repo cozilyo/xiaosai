@@ -10,7 +10,7 @@ import com.cozi.xiaosai.common.PageModel;
  * @describe
  */
 
-public class PermissionGroupPojoParams extends PageModel {
+public class PermissionGroupParams extends PageModel {
     private Integer id;
     private String groupName;
     private Integer groupType;

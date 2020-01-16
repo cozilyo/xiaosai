@@ -6,7 +6,12 @@ import com.cozi.xiaosai.common.ReturnMap;
 import com.cozi.xiaosai.common.StaticValues;
 import com.cozi.xiaosai.common.UUID;
 import com.cozi.xiaosai.enums.CueWordsEnum;
+import com.cozi.xiaosai.enums.OperationModule;
+import com.cozi.xiaosai.enums.OperationObjects;
+import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo;
+import com.cozi.xiaosai.publistener.LogBehaviorPublistener;
 import com.cozi.xiaosai.service.sys.LoginService;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.tool.MailSendService;
@@ -51,6 +56,9 @@ public class LoginController {
 
     @Autowired
     private RedisUtils redisUtils;
+
+    @Autowired
+    private LogBehaviorPublistener logBehaviorPublistener;
 
     /**
      * 登录页
@@ -197,6 +205,13 @@ public class LoginController {
         if(redisUtils.get(user.getCaptcha().toUpperCase())!=null&&StaticValues.verify_code.equals(redisUtils.get(user.getCaptcha().toUpperCase()).toString())){
             Map<String, Object> map = loginService.userLogin(user, user.getCaptcha(),request, response);
             if(map.get("return_code").equals(1)){
+                try {
+                    logBehaviorPublistener.publish(
+                            new LogmanagePojo(0, OperationModule.TONGYONGPINGTAI.getModule(), OperationType.SELECT.getValue(),
+                                    OperationObjects.XIAOSAI_USER.getValue(),CueWordsEnum.LOG_MANAGE_LOGIN_IN.getValue()), 0);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 return R.isOk().data(user.getUserName()).msg(CueWordsEnum.LOGIN_SUCCESS.getValue());
             }else {
                 return R.isFail().msg(CueWordsEnum.LOGIN_FAILED_PASSWORD_ERROR.getValue());
@@ -232,6 +247,13 @@ public class LoginController {
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String loginOut(HttpServletRequest request,
                            HttpServletResponse response){
+        try {
+            logBehaviorPublistener.publish(
+                    new LogmanagePojo(0, OperationModule.TONGYONGPINGTAI.getModule(), OperationType.SELECT.getValue(),
+                            OperationObjects.XIAOSAI_USER.getValue(),CueWordsEnum.LOG_MANAGE_LOGIN_OUT.getValue()), 0);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         HttpSession session = request.getSession();
         session.invalidate();
         return "sys/XSlogin";

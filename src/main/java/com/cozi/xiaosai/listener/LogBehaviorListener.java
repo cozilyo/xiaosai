@@ -3,7 +3,9 @@ package com.cozi.xiaosai.listener;
 import com.cozi.xiaosai.domain.LogInfo;
 import com.cozi.xiaosai.event.LogBehaviorEvent;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
+import com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo;
 import com.cozi.xiaosai.service.tool.Log1oneService;
+import com.cozi.xiaosai.service.web.LogManageService;
 import com.cozi.xiaosai.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -27,10 +29,13 @@ public class LogBehaviorListener {
     @Autowired
     private Log1oneService log1oneService;
 
+    @Autowired
+    private LogManageService logManageService;
+
     @EventListener
     public void onLogBehaviorEvent(LogBehaviorEvent logBehaviorEvent){
         if(logBehaviorEvent!=null){
-            LogInfo logInfo = logBehaviorEvent.getLogInfo();
+            LogmanagePojo logmanagePojo = logBehaviorEvent.getLogmanagePojo();
 
             //获取RequestAttributes
             RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
@@ -43,15 +48,20 @@ public class LogBehaviorListener {
 
             //获取ip地址
             String ipAddr = IpUtil.getIpAddr(request);
-            logInfo.setIp(ipAddr);
+            logmanagePojo.setIp(ipAddr);
 
             if(user!=null){
-                logInfo.setOperator(user.getUserName());
+                logmanagePojo.setOperator(user.getUserName());
             }else {
-                logInfo.setOperator("");
+                logmanagePojo.setOperator("");
             }
 
-            log1oneService.addLog(logInfo);
+            if(logBehaviorEvent.getType().equals(0)){
+                logManageService.addLog(logmanagePojo);
+            }else {
+                logManageService.addLogHd(logmanagePojo);
+            }
+
         }
     }
 }

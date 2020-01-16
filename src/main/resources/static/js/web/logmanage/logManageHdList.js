@@ -1,26 +1,28 @@
 /**
- * 用户权限组
+ * 日志管理-操作日志管理列表
  */
-layui.use(['form', 'table'], function () {
+layui.use(['form', 'table','laydate'], function () {
     var $ = layui.jquery,
         form = layui.form,
-        table = layui.table;
+        table = layui.table,
+        laydate = layui.laydate;
 
     table.render({
         elem: '#currentTableId',
-        url: '/xiaosai/PermissionGroupListData',
+        url: '/xiaosai/logManageListHdData',
         method:'post',
         contentType: 'application/json',
         cols: [[
-            {type: "checkbox", width: 50, fixed: "left"},
+            // {type: "checkbox", width: 50, fixed: "left"},
             {type: "numbers",title:"序号"},
-            // {field: 'id', width: 65, title: 'ID', sort: true},
-            {field: 'groupName', minwidth: 60, title: '权限组名称'},
-            {field: 'groupType', width: 100, title: '权限组代号'},
-            {field: 'accessLevel', width: 120, title: '权限等级'},
-            {field: 'createTime', title: '创建时间', minWidth: 80},
-            {field: 'modifyTime', minWidth: 80, title: '修改时间'},
-            {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+            {field: 'operator', width: 100, title: '操作人'},
+            {field: 'operationModule', width: 100, title: '模块'},
+            {field: 'operationType', width: 120, title: '类型'},
+            {field: 'operands', title: '对象', width: 120},
+            {field: 'ip', width: 120, title: 'ip'},
+            {field: 'operationContent', minWidth: 80, title: '操作内容'},
+            {field: 'operationTime', width: 160, title: '操作时间'}
+            // {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
         ]],
         id: 'tableReload',
         limits: [10, 15, 20, 25, 50, 100],
@@ -33,11 +35,16 @@ layui.use(['form', 'table'], function () {
         var result = data.field;
         //执行搜索重载
         table.reload('tableReload', {
-            url:"/xiaosai/PermissionGroupListData",
+            url:"/xiaosai/logManageListHdData",
             where: {
-                groupName: result.groupName,
-                accessLevel: result.accessLevel,
-                createTime: result.createTime
+                operator: result.operator,
+                operationModule: result.operationModule,
+                operationType: result.operationType,
+                operands: result.operands,
+                ip: result.ip,
+                operationContent: result.operationContent,
+                startTime: result.startTime,
+                endTime: result.endTime
             },
             page:{
                 curr: 1
@@ -50,17 +57,32 @@ layui.use(['form', 'table'], function () {
     $(".data-reset-btn").on("click",function () {
         //执行重置重载
         table.reload('tableReload', {
-            url:"/xiaosai/PermissionGroupListData",
+            url:"/xiaosai/logManageListHdData",
             where: {
-                groupName: '',
-                accessLevel: '',
-                createTime: ''
+                operator: '',
+                operationModule: '',
+                operationType: '',
+                operands: '',
+                ip: '',
+                operationContent: '',
+                startTime: '',
+                endTime: ''
             },
             page:{
                 curr: 1
             }
         });
     })
+
+    laydate.render({
+        elem:'#startTime',
+        type: "datetime"
+    });
+
+    laydate.render({
+        elem:'#endTime',
+        type: "datetime"
+    });
 
     // 监听添加操作
     $(".data-add-btn").on("click", function () {

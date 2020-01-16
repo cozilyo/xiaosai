@@ -2,6 +2,7 @@ package com.cozi.xiaosai.publistener;
 
 import com.cozi.xiaosai.domain.LogInfo;
 import com.cozi.xiaosai.event.LogBehaviorEvent;
+import com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,12 @@ public class LogBehaviorPublistener {
         this.applicationContext = applicationContext;
     }
 
-    public void publish(LogInfo logInfo){
-        applicationContext.publishEvent(new LogBehaviorEvent(this,logInfo));
+    /**
+     * 日志监听发布事件
+     * @param logmanagePojo 日志操作对象
+     * @param type 日志管理类型：0-登录日志，1-操作日志
+     */
+    public void publish(LogmanagePojo logmanagePojo,Integer type){
+        applicationContext.publishEvent(new LogBehaviorEvent(this,logmanagePojo,type));
     }
 }

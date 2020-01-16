@@ -10,8 +10,9 @@ import com.cozi.xiaosai.enums.OperationType;
 import com.cozi.xiaosai.pojo.dataorigin.sys.User;
 import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserEditParams;
 import com.cozi.xiaosai.pojo.dataorigin.sysParams.UserParams;
+import com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo;
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
-import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams;
+import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupParams;
 import com.cozi.xiaosai.publistener.LogBehaviorPublistener;
 import com.cozi.xiaosai.service.sys.UserService;
 import com.cozi.xiaosai.service.web.PermissionGroupService;
@@ -119,7 +120,13 @@ public class UserController {
     @ResponseBody
     public R getListData(@RequestBody(required = false) UserParams userParams){
         logger.info("用户信息请求参数："+userParams);
-        logBehaviorPublistener.publish(new LogInfo(0, OperationModule.TONGYONGPINGTAI.getModule(),OperationType.SELECT.getValue(),OperationObjects.XIAOSAI_USER.getValue(),userParams.toString()));
+        try {
+            logBehaviorPublistener.publish(
+                    new LogmanagePojo(0, OperationModule.TONGYONGPINGTAI.getModule(),OperationType.SELECT.getValue(),
+                            OperationObjects.XIAOSAI_USER.getValue(),userParams.toString()),1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         PageHelper.startPage(userParams.getPage(),userParams.getLimit(),"id");
         PageInfo<User> userPageInfo = new PageInfo<>(userService.userListByUser(userParams));
         return new PageFormatConver(userPageInfo).isOK();
@@ -198,28 +205,28 @@ public class UserController {
 
     /**
      * 权限组列表
-     * @param permissionGroupPojoParams
+     * @param permissionGroupParams
      * @return
      */
     @RequestMapping(value = "/PermissionGroupListData",method = RequestMethod.POST)
     @ResponseBody
-    public R getPermissionGroupListData(@RequestBody PermissionGroupPojoParams permissionGroupPojoParams){
-        logger.info("权限组请求参数："+permissionGroupPojoParams);
-        PageHelper.startPage(permissionGroupPojoParams.getPage(),permissionGroupPojoParams.getLimit(),"id");
-        PageInfo<PermissionGroupPojo> permissionGroupPojoPageInfo = new PageInfo<>(permissionGroupService.getPermissionGroup(permissionGroupPojoParams));
+    public R getPermissionGroupListData(@RequestBody PermissionGroupParams permissionGroupParams){
+        logger.info("权限组请求参数："+ permissionGroupParams);
+        PageHelper.startPage(permissionGroupParams.getPage(), permissionGroupParams.getLimit(),"id");
+        PageInfo<PermissionGroupPojo> permissionGroupPojoPageInfo = new PageInfo<>(permissionGroupService.getPermissionGroup(permissionGroupParams));
         return new PageFormatConver(permissionGroupPojoPageInfo).isOK();
     }
 
     /**
      * 权限组添加
-     * @param permissionGroupPojoParams
+     * @param permissionGroupParams
      * @return
      */
     @RequestMapping(value = "/addPermissionGroup",method = RequestMethod.POST)
     @ResponseBody
-    public R addPermissionGroup(@RequestBody PermissionGroupPojoParams permissionGroupPojoParams){
-        logger.info("权限组请求参数："+permissionGroupPojoParams);
-        return permissionGroupService.addPermissionGroup(permissionGroupPojoParams);
+    public R addPermissionGroup(@RequestBody PermissionGroupParams permissionGroupParams){
+        logger.info("权限组请求参数："+ permissionGroupParams);
+        return permissionGroupService.addPermissionGroup(permissionGroupParams);
     }
 
     /**
@@ -236,14 +243,14 @@ public class UserController {
 
     /**
      * 权限组编辑
-     * @param permissionGroupPojoParams
+     * @param permissionGroupParams
      * @return
      */
     @RequestMapping(value = "/editPermissionGroup",method = RequestMethod.POST)
     @ResponseBody
-    public R editPermissionGroup(@RequestBody PermissionGroupPojoParams permissionGroupPojoParams){
-        logger.info("权限组编辑参数："+permissionGroupPojoParams);
-        return permissionGroupService.editPermissionGroup(permissionGroupPojoParams);
+    public R editPermissionGroup(@RequestBody PermissionGroupParams permissionGroupParams){
+        logger.info("权限组编辑参数："+ permissionGroupParams);
+        return permissionGroupService.editPermissionGroup(permissionGroupParams);
     }
 
 

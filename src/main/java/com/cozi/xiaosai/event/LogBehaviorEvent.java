@@ -1,6 +1,7 @@
 package com.cozi.xiaosai.event;
 
 import com.cozi.xiaosai.domain.LogInfo;
+import com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo;
 import org.springframework.context.ApplicationEvent;
 
 /**
@@ -13,18 +14,30 @@ import org.springframework.context.ApplicationEvent;
 
 public class LogBehaviorEvent extends ApplicationEvent {
 
-    private LogInfo logInfo;
+    private LogmanagePojo logmanagePojo;
 
-    public LogBehaviorEvent(Object source, LogInfo logInfo) {
+    //日志管理类型：0-登录日志，1-操作日志
+    private Integer type;
+
+    public LogBehaviorEvent(Object source,LogmanagePojo logmanagePojo,Integer type) {
         super(source);
-        this.logInfo=logInfo;
+        this.logmanagePojo=logmanagePojo;
+        this.type = type;
     }
 
-    public LogInfo getLogInfo() {
-        return logInfo;
+    public LogmanagePojo getLogmanagePojo() {
+        return logmanagePojo;
     }
 
-    public void setLogInfo(LogInfo logInfo) {
-        this.logInfo = logInfo;
+    public void setLogmanagePojo(LogmanagePojo logmanagePojo) {
+        this.logmanagePojo = logmanagePojo;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

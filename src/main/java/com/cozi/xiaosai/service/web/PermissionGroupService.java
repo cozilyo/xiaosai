@@ -2,10 +2,8 @@ package com.cozi.xiaosai.service.web;
 
 import com.cozi.xiaosai.common.R;
 import com.cozi.xiaosai.pojo.dataorigin.web.PermissionGroupPojo;
-import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupPojoParams;
+import com.cozi.xiaosai.pojo.dataorigin.webParams.PermissionGroupParams;
 import com.github.pagehelper.Page;
-
-import java.util.List;
 
 /**
  * @author xiaosai
@@ -17,17 +15,17 @@ import java.util.List;
 public interface PermissionGroupService {
     /**
      * 通过权限组信息查找
-     * @param permissionGroupPojoParams 权限组信息
+     * @param permissionGroupParams 权限组信息
      * @return 权限组集合
      */
-    Page<PermissionGroupPojo> getPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams);
+    Page<PermissionGroupPojo> getPermissionGroup(PermissionGroupParams permissionGroupParams);
 
     /**
      * 权限组添加
-     * @param permissionGroupPojoParams
+     * @param permissionGroupParams
      * @return
      */
-    R addPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams);
+    R addPermissionGroup(PermissionGroupParams permissionGroupParams);
 
 
     /**
@@ -39,8 +37,8 @@ public interface PermissionGroupService {
 
     /**
      * 权限组编辑
-     * @param permissionGroupPojoParams
+     * @param permissionGroupParams
      * @return
      */
-    R editPermissionGroup(PermissionGroupPojoParams permissionGroupPojoParams);
+    R editPermissionGroup(PermissionGroupParams permissionGroupParams);
 }
