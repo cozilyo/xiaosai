@@ -72,7 +72,10 @@ public enum  CueWordsEnum {
 
     //日志管理
     LOG_MANAGE_LOGIN_IN(44,"登入系统"),
-    LOG_MANAGE_LOGIN_OUT(45,"登出系统")
+    LOG_MANAGE_LOGIN_OUT(45,"登出系统"),
+
+    LOGIN_RETURN_CODE(46,"return_code"),
+    LOGIN_RETURN_MSG(47,"return_msg"),
     ;
 
     private Integer key;

@@ -21,37 +21,37 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">操作人</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="operator" autocomplete="off" class="layui-input">
+                                <input type="text" id="operator" name="operator" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">操作模块</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="operationModule" autocomplete="off" class="layui-input">
+                                <input type="text" id="operationModule" name="operationModule" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">操作类型</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="operationType" autocomplete="off" class="layui-input">
+                                <input type="text" id="operationType" name="operationType" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">操作对象</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="operands" autocomplete="off" class="layui-input">
+                                <input type="text" id="operands" name="operands" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">操作ip</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="ip" autocomplete="off" class="layui-input">
+                                <input type="text" id="ip" name="ip" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">操作内容</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="operationContent" autocomplete="off" class="layui-input">
+                                <input type="text" id="operationContent" name="operationContent" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -75,11 +75,12 @@
             </div>
         </fieldset>
 
-        <#--<div class="layui-btn-group">
-            &lt;#&ndash;<button class="layui-btn data-add-btn">添加</button>&ndash;&gt;
-            <a class="layui-btn data-add-btn layui-menu-tips" href="/xiaosai/PermissionGroupAdd" target="_self">添加</a>
-            <button class="layui-btn layui-btn-danger data-delete-btn" style="margin-left: 10px !important;">批量删除</button>
-        </div>-->
+        <div class="layui-btn-group">
+            <button class="layui-btn data-export-part-btn">导出当前</button>
+            <button class="layui-btn data-export-all-btn">导出所有</button>
+            <#--<a class="layui-btn data-add-btn layui-menu-tips" href="/xiaosai/PermissionGroupAdd" target="_self">添加</a>
+            <button class="layui-btn layui-btn-danger data-delete-btn" style="margin-left: 10px !important;">批量删除</button>-->
+        </div>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
         <script type="text/html" id="currentTableBar">
             <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>

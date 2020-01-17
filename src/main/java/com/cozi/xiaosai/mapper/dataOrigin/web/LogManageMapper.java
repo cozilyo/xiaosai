@@ -1,8 +1,11 @@
 package com.cozi.xiaosai.mapper.dataOrigin.web;
 
+import com.cozi.xiaosai.excel.LogManageExcel;
 import com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo;
 import com.cozi.xiaosai.pojo.dataorigin.webParams.LogmanageParams;
 import com.github.pagehelper.Page;
+
+import java.util.List;
 
 /**
  * @author xiaosai
@@ -19,4 +22,8 @@ public interface LogManageMapper {
     Page<LogmanagePojo> selectLogManageList(LogmanageParams logmanageParams);
 
     Page<LogmanagePojo> selectLogManageHdList(LogmanageParams logmanageParams);
+
+    List<LogManageExcel> selectLogManageExcel(LogmanageParams logmanageParams);
+
+    List<LogManageExcel> selectLogManageHdExcel(LogmanageParams logmanageParams);
 }

@@ -1,58 +1,42 @@
-package com.cozi.xiaosai.pojo.dataorigin.web;
+package com.cozi.xiaosai.excel;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 
 /**
- * @Author xiaosai
- * @Date 2019-12-12 11:46
- * @Version 1.0
+ * @author xiaosai
+ * @version 1.0
+ * @date 2019-12-24 15:43
+ * @describe
  */
 
-public class LogmanagePojo {
-    private Integer id;
-//    操作者
+public class LogManageExcel {
+
+    @Excel(name = "操作人",orderNum = "0")
     private String operator;
-//    操作模块
+
+    @Excel(name = "操作模块",orderNum = "1")
     private Integer operationModule;
-//    操作类型
+
+    @Excel(name = "操作类型",orderNum = "2")
     private String operationType;
-//    操作对象
+
+    @Excel(name = "操作对象",orderNum = "3")
     private String operands;
-//    操作时间
+
+    @Excel(name = "操作时间",orderNum = "4")
     private String operationTime;
-//    操作ip
+
+    @Excel(name = "ip",orderNum = "5")
     private String ip;
-//    操作内容
+
+    @Excel(name = "操作内容",orderNum = "6")
     private String operationContent;
 
+    @Excel(name = "创建时间",orderNum = "7")
     private String createTime;
 
+    @Excel(name = "修改时间",orderNum = "8")
     private String modifyTime;
-
-    public LogmanagePojo(){
-    }
-
-    /**
-     *
-     * @param id
-     * @param operationModule 操作模块
-     * @param operationType 操作类型
-     * @param operands 对象
-     */
-    public LogmanagePojo(Integer id, Integer operationModule,
-                         String operationType, String operands, String operationContent){
-        this.id = id;
-        this.operationModule = operationModule;
-        this.operationType = operationType;
-        this.operands = operands;
-        this.operationContent = operationContent;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getOperator() {
         return operator;
@@ -128,10 +112,9 @@ public class LogmanagePojo {
 
     @Override
     public String toString() {
-        return "LogInfo{" +
-                "id=" + id +
-                ", operator='" + operator + '\'' +
-                ", operationModule='" + operationModule + '\'' +
+        return "LogManageExcel{" +
+                "operator='" + operator + '\'' +
+                ", operationModule=" + operationModule +
                 ", operationType='" + operationType + '\'' +
                 ", operands='" + operands + '\'' +
                 ", operationTime='" + operationTime + '\'' +

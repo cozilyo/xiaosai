@@ -84,9 +84,18 @@ layui.use(['form', 'table','laydate'], function () {
         type: "datetime"
     });
 
-    // 监听添加操作
-    $(".data-add-btn").on("click", function () {
-        /*top.layui.index.openTabsPage("/xiaosai/PermissionGroupAdd","添加权限组");*/
+    // 监听导出部分操作
+    $(".data-export-part-btn").on("click", function () {
+        var url = "/xiaosai/exportLogExcel?operator="+$('#operator').val()+"&operationModule="+$('#operationModule').val()+
+            "&operationType="+$('#operands').val()+"&ip="+$('#ip').val()+"&operationContent="+$('#operationContent').val()+
+            "&startTime="+$('#startTime').val()+"&endTime="+$('#endTime').val();
+        window.location.href = url;
+    });
+
+    // 监听导出所有操作
+    $(".data-export-all-btn").on("click", function () {
+        var url = "/xiaosai/exportLogExcel";
+        window.location.href = url;
     });
 
     // 监听删除操作

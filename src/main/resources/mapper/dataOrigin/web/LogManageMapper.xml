@@ -15,7 +15,28 @@
         FROM xiaosai_log
         WHERE 1=1
         <if test="operator!=null and operator!=''">
-
+            AND operator LIKE CONCAT('%',#{operator},'%')
+        </if>
+        <if test="operationModule!=null and operationModule!=''">
+            AND operation_module = #{operationModule}
+        </if>
+        <if test="operationType!=null and operationType!=''">
+            AND operation_type LIKE CONCAT('%',#{operationType},'%')
+        </if>
+        <if test="operands!=null and operands!=''">
+            AND operands LIKE CONCAT('%',#{operands},'%')
+        </if>
+        <if test="ip!=null and ip!=''">
+            AND ip LIKE CONCAT('%',#{ip},'%')
+        </if>
+        <if test="operationContent!=null and operationContent!=''">
+            AND operation_content LIKE CONCAT('%',#{operationContent},'%')
+        </if>
+        <if test="startTime!=null and startTime!=''">
+            AND operation_time >= #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            AND operation_time &lt;= #{endTime}
         </if>
     </select>
     <select id="selectLogManageHdList" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.LogmanageParams" resultType="com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo">
@@ -23,7 +44,86 @@
         FROM xiaosai_log_handle
         WHERE 1=1
         <if test="operator!=null and operator!=''">
-
+            AND operator LIKE CONCAT('%',#{operator},'%')
+        </if>
+        <if test="operationModule!=null and operationModule!=''">
+            AND operation_module = #{operationModule}
+        </if>
+        <if test="operationType!=null and operationType!=''">
+            AND operation_type LIKE CONCAT('%',#{operationType},'%')
+        </if>
+        <if test="operands!=null and operands!=''">
+            AND operands LIKE CONCAT('%',#{operands},'%')
+        </if>
+        <if test="ip!=null and ip!=''">
+            AND ip LIKE CONCAT('%',#{ip},'%')
+        </if>
+        <if test="operationContent!=null and operationContent!=''">
+            AND operation_content LIKE CONCAT('%',#{operationContent},'%')
+        </if>
+        <if test="startTime!=null and startTime!=''">
+            AND operation_time >= #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            AND operation_time &lt;= #{endTime}
+        </if>
+    </select>
+    <select id="selectLogManageExcel" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.LogmanageParams" resultType="com.cozi.xiaosai.excel.LogManageExcel">
+        SELECT id,operator,operation_module operationModule,operation_type operationType,operands,operation_time operationTime,ip,operation_content operationContent,create_time createTime,modify_time modifyTime
+        FROM xiaosai_log
+        WHERE 1=1
+        <if test="operator!=null and operator!=''">
+            AND operator LIKE CONCAT('%',#{operator},'%')
+        </if>
+        <if test="operationModule!=null and operationModule!=''">
+            AND operation_module = #{operationModule}
+        </if>
+        <if test="operationType!=null and operationType!=''">
+            AND operation_type LIKE CONCAT('%',#{operationType},'%')
+        </if>
+        <if test="operands!=null and operands!=''">
+            AND operands LIKE CONCAT('%',#{operands},'%')
+        </if>
+        <if test="ip!=null and ip!=''">
+            AND ip LIKE CONCAT('%',#{ip},'%')
+        </if>
+        <if test="operationContent!=null and operationContent!=''">
+            AND operation_content LIKE CONCAT('%',#{operationContent},'%')
+        </if>
+        <if test="startTime!=null and startTime!=''">
+            AND operation_time >= #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            AND operation_time &lt;= #{endTime}
+        </if>
+    </select>
+    <select id="selectLogManageHdExcel" parameterType="com.cozi.xiaosai.pojo.dataorigin.webParams.LogmanageParams" resultType="com.cozi.xiaosai.excel.LogManageExcel">
+        SELECT id,operator,operation_module operationModule,operation_type operationType,operands,operation_time operationTime,ip,operation_content operationContent,create_time createTime,modify_time modifyTime
+        FROM xiaosai_log_handle
+        WHERE 1=1
+        <if test="operator!=null and operator!=''">
+            AND operator LIKE CONCAT('%',#{operator},'%')
+        </if>
+        <if test="operationModule!=null and operationModule!=''">
+            AND operation_module = #{operationModule}
+        </if>
+        <if test="operationType!=null and operationType!=''">
+            AND operation_type LIKE CONCAT('%',#{operationType},'%')
+        </if>
+        <if test="operands!=null and operands!=''">
+            AND operands LIKE CONCAT('%',#{operands},'%')
+        </if>
+        <if test="ip!=null and ip!=''">
+            AND ip LIKE CONCAT('%',#{ip},'%')
+        </if>
+        <if test="operationContent!=null and operationContent!=''">
+            AND operation_content LIKE CONCAT('%',#{operationContent},'%')
+        </if>
+        <if test="startTime!=null and startTime!=''">
+            AND operation_time >= #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            AND operation_time &lt;= #{endTime}
         </if>
     </select>
 </mapper>

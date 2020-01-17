@@ -204,7 +204,7 @@ public class LoginController {
         //验证码有效
         if(redisUtils.get(user.getCaptcha().toUpperCase())!=null&&StaticValues.verify_code.equals(redisUtils.get(user.getCaptcha().toUpperCase()).toString())){
             Map<String, Object> map = loginService.userLogin(user, user.getCaptcha(),request, response);
-            if(map.get("return_code").equals(1)){
+            if(map.get(CueWordsEnum.LOGIN_RETURN_CODE.getValue()).equals(1)){
                 try {
                     logBehaviorPublistener.publish(
                             new LogmanagePojo(0, OperationModule.TONGYONGPINGTAI.getModule(), OperationType.SELECT.getValue(),
@@ -212,9 +212,9 @@ public class LoginController {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                return R.isOk().data(user.getUserName()).msg(CueWordsEnum.LOGIN_SUCCESS.getValue());
+                return R.isOk().data(map.get(CueWordsEnum.LOGIN_RETURN_MSG.getValue()).toString());
             }else {
-                return R.isFail().msg(CueWordsEnum.LOGIN_FAILED_PASSWORD_ERROR.getValue());
+                return R.isFail().msg(map.get(CueWordsEnum.LOGIN_RETURN_MSG.getValue()).toString());
             }
         //验证码失效
         }else{

@@ -1,8 +1,11 @@
 package com.cozi.xiaosai.service.web;
 
+import com.cozi.xiaosai.excel.LogManageExcel;
 import com.cozi.xiaosai.pojo.dataorigin.web.LogmanagePojo;
 import com.cozi.xiaosai.pojo.dataorigin.webParams.LogmanageParams;
 import com.github.pagehelper.Page;
+
+import java.util.List;
 
 /**
  * @author xiaosai
@@ -20,4 +23,8 @@ public interface LogManageService {
     Page<LogmanagePojo> getLogManageList(LogmanageParams logmanageParams);
 
     Page<LogmanagePojo> getLogManageHdList(LogmanageParams logmanageParams);
+
+    List<LogManageExcel> getLogManageExcel(LogmanageParams logmanageParams);
+
+    List<LogManageExcel> getLogManageHdExcel(LogmanageParams logmanageParams);
 }
