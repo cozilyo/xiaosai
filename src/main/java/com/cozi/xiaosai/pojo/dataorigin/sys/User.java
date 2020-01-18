@@ -15,6 +15,7 @@ public class User extends CaptchaPojo{
     private Integer id;
     private String userId;
     private Integer logoIconId;
+    private Integer deptId;
     private String name;
     private String userName;
     private String password;
@@ -26,6 +27,7 @@ public class User extends CaptchaPojo{
     private String idNum;
     private String address;
     private String remark;
+    private String deptName;
     private String createTime;
     private String modifyTime;
 
@@ -60,6 +62,14 @@ public class User extends CaptchaPojo{
 
     public void setLogoIconId(Integer logoIconId) {
         this.logoIconId = logoIconId;
+    }
+
+    public Integer getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(Integer deptId) {
+        this.deptId = deptId;
     }
 
     public String getName() {
@@ -164,6 +174,14 @@ public class User extends CaptchaPojo{
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     @Override

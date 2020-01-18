@@ -10,7 +10,9 @@ package com.cozi.xiaosai.util.redis;
 public enum RedisKey {
     BAR("bar_8027eed5"),
     MENU("menu_a276e535"),
-    SESSION("session_");
+    SESSION("session_"),
+    DEPTTREE("depttree_")
+    ;
 
     private String key;
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cozi.xiaosai.mapper.dataOrigin.web.DeptManageMapper">
+    <select id="selectDept" resultType="com.cozi.xiaosai.pojo.dataorigin.web.DeptManagePojo">
+        SELECT id,dept_name title,dept_parent_id deptParentId FROM xiaosai_dept
+    </select>
+    <select id="selectUserByDeptIds" parameterType="string" resultType="com.cozi.xiaosai.pojo.dataorigin.sys.User">
+        SELECT a.id,a.user_id userId,a.dept_id,a.name,a.user_name userName,a.age,a.gender,a.telephone,a.mail,a.id_num idNum,a.create_time createTime,a.modify_time modifyTime,b.dept_name deptName
+        FROM xiaosai_user a,xiaosai_dept b
+        WHERE a.dept_id = b.id AND 1=1
+        <if test="_ids!=null and _ids!=''">
+            AND a.dept_id IN (${_ids})
+        </if>
+    </select>
+</mapper>

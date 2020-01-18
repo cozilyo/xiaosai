@@ -76,6 +76,11 @@ public enum  CueWordsEnum {
 
     LOGIN_RETURN_CODE(46,"return_code"),
     LOGIN_RETURN_MSG(47,"return_msg"),
+
+    DEPT_MANAGE_SUCCESS(48,"部门信息成功查出"),
+    DEPT_MANAGE_FAILED(49,"部门信息查出失败！"),
+    DEPT_MANAGE_FAILED_TO_USER(50,"人员信息获取失败！"),
+    DEPT_MANAGE_SUCCESS_TO_USER(50,"人员信息获取成功")
     ;
 
     private Integer key;

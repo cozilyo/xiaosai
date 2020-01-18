@@ -32,10 +32,10 @@ public class LogManageExcel {
     @Excel(name = "操作内容",orderNum = "6")
     private String operationContent;
 
-    @Excel(name = "创建时间",orderNum = "7")
+    //@Excel(name = "创建时间",orderNum = "7")
     private String createTime;
 
-    @Excel(name = "修改时间",orderNum = "8")
+    //@Excel(name = "修改时间",orderNum = "8")
     private String modifyTime;
 
     public String getOperator() {

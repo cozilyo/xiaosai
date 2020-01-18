@@ -14,6 +14,7 @@ import com.cozi.xiaosai.common.PageModel;
 public class UserParams extends PageModel {
     private Integer id;
     private String userId;
+    private Integer deptId;
     private String name;
     private String userName;
     private String password;
@@ -42,6 +43,14 @@ public class UserParams extends PageModel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(Integer deptId) {
+        this.deptId = deptId;
     }
 
     public String getUserId() {

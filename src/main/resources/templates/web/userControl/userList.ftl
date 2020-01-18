@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="../layuimini/css/public.css" media="all">
 <#--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>-->
 </head>
-<body>
+<body class="">
+
 <div class="layuimini-container">
     <div class="layuimini-main">
-
         <fieldset class="layui-elem-field layuimini-search">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">

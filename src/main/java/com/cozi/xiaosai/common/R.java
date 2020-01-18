@@ -125,9 +125,10 @@ public class R<T> implements Serializable {
     public String toString() {
         return "R{" +
                 "data=" + data +
-                ", status=" + code +
+                ", code=" + code +
                 ", error='" + error + '\'' +
                 ", msg='" + msg + '\'' +
+                ", count=" + count +
                 '}';
     }
 

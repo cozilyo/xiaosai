@@ -1,11 +1,12 @@
 /*
 用户列表页面
 */
-layui.use(['form','layer', 'table'], function () {
+layui.use(['form','layer', 'table','element'], function () {
     var $ = layui.jquery,
         form = layui.form,
         table = layui.table,
-        layer = layui.layer;
+        layer = layui.layer,
+    element = layui.element;
 
     table.render({
         elem: '#currentTableId',
