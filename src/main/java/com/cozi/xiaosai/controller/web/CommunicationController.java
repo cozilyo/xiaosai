@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CommunicationController {
 
 
+    /**
+     *通讯首页
+     * @return
+     */
     @RequestMapping("/communicationIndex")
     public String getCommunicationIndexFtl(){
         return "web/communication/CommunicationIndex";
