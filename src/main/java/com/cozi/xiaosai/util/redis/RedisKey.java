@@ -11,7 +11,7 @@ public enum RedisKey {
     BAR("bar_8027eed5"),
     MENU("menu_a276e535"),
     SESSION("session_"),
-    DEPTTREE("depttree_")
+    DEPTTREE("depttree_xiaosai")
     ;
 
     private String key;

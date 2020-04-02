@@ -62,7 +62,8 @@ layui.use(['form'], function () {
             data: JSON.stringify(params),
             success: function (val) {
                 if (val.code == 0) {
-                    window.location = "/xiaosai/index?userName="+val.data;
+                    console.log(val)
+                    window.location = "/xiaosai/index?userName="+result.userName;
                 } else {
                     Swal.fire(val.msg);
                 }

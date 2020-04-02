@@ -13,6 +13,12 @@ layui.use(['form','layer', 'table','element'], function () {
         url: '/xiaosai/userListData',
         method:'post',
         contentType: 'application/json',
+        /*toolbar: '#toolbarDemo', //开启头部工具栏，并为其绑定左侧模板
+        defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+            title: '提示'
+            ,layEvent: 'LAYTABLE_TIPS'
+            ,icon: 'layui-icon-tips'
+        }],*/
         cols: [[
             {type: "checkbox", width: 50, fixed: "left"},
             {type:"numbers",title:"序号"},

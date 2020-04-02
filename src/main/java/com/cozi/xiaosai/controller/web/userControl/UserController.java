@@ -120,13 +120,13 @@ public class UserController {
     @ResponseBody
     public R getListData(@RequestBody(required = false) UserParams userParams){
         logger.info("用户信息请求参数："+userParams);
-        try {
+        /*try {
             logBehaviorPublistener.publish(
                     new LogmanagePojo(0, OperationModule.TONGYONGPINGTAI.getModule(),OperationType.SELECT.getValue(),
                             OperationObjects.XIAOSAI_USER.getValue(),userParams.toString()),1);
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
         PageHelper.startPage(userParams.getPage(),userParams.getLimit(),"id");
         PageInfo<User> userPageInfo = new PageInfo<>(userService.userListByUser(userParams));
         return new PageFormatConver(userPageInfo).isOK();
